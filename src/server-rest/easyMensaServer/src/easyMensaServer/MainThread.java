@@ -1,10 +1,11 @@
 package easyMensaServer;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.Date;
-
-import database.*;
-
+import java.util.GregorianCalendar;
 
 public class MainThread {
 
@@ -15,21 +16,29 @@ public class MainThread {
 		Database dtb = new Database();
 		
 		int numeroPersone;
-		Calendar cal;
+		GregorianCalendar  cal;
 		Date d;
 		while(true) {
-			
+
 			numeroPersone = Integer.parseInt(up.getNumeroPersone());
-		
-			cal = cal = Calendar.getInstance();
+			cal = cal = (GregorianCalendar) GregorianCalendar.getInstance();
+			
 			d = cal.getTime();
 			
 			Orario o = new Orario(d.getHours(),d.getMinutes(),d.getSeconds());
 			
-			Statistiche stat = new Statistiche(numeroPersone);
+			Statistiche stat = new Statistiche(numeroPersone,o);
+						
+			dtb.putStatistic(d.getYear()+1900,d.getMonth()+1,d.getDate(),stat);
 			
-			dtb.putStatistic("" +d.getYear(), "" + d.getMonth(), "" + d.getDay(), o, stat);
+			dtb.stampa();
 			
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}

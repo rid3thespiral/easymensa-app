@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class StatisticheTelecamere {
 	
-	String urlBaseTelecamere = "http://localhost:8080/RestServer/telecamere";
+	String urlBaseTelecamere = "http://localhost:8080/easyMensaServer/cam";
 
 	public String getNumeroPersone() {
 

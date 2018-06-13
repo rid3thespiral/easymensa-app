@@ -17,6 +17,7 @@ import {MyApp} from "./app.component";
 import {SettingsPage} from "../pages/settings/settings";
 import {CheckoutTripPage} from "../pages/checkout-trip/checkout-trip";
 import {HomePage} from "../pages/home/home";
+import { StatistichePage } from "../pages/statistiche/statistiche";
 import {LoginPage} from "../pages/login/login";
 import {NotificationsPage} from "../pages/notifications/notifications";
 import {RegisterPage} from "../pages/register/register";
@@ -41,6 +42,7 @@ import { ChartsModule } from 'ng2-charts';
     SettingsPage,
     CheckoutTripPage,
     HomePage,
+    StatistichePage,
     LoginPage,
     LocalWeatherPage,
     NotificationsPage,
@@ -69,6 +71,7 @@ import { ChartsModule } from 'ng2-charts';
     SettingsPage,
     CheckoutTripPage,
     HomePage,
+    StatistichePage,
     LoginPage,
     LocalWeatherPage,
     NotificationsPage,

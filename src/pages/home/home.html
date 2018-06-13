@@ -7,32 +7,63 @@
     <ion-title>
       <strong>UNISA</strong> Easy Mensa
     </ion-title>
-    <ion-buttons end>
-      <button ion-button tappable (click)="presentNotifications($event)">
-        <ion-icon name="notifications"></ion-icon>
-      </button>
-      <button ion-button tappable (click)="goToAccount()">
-        <ion-icon name="cog"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="animated fadeIn common-bg">
 
-  <ion-card no-margin margin-bottom class="full-width">
-    <ion-item tappable (click)="choosePlace('from')" class="border-bottom">
-      <ion-icon name="search" color="primary" item-left></ion-icon>
-      <span>{{ search.name }}</span>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="md-calendar" color="primary" item-left></ion-icon>
-      <ion-datetime class="no-pl" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="search.date"></ion-datetime>
-    </ion-item>
-  </ion-card>
+<ion-content padding class="common-bg">
 
-  <button ion-button icon-start block no-margin color="primary" class="round" tappable (click)="doSearch()">
-    <ion-icon name="search"></ion-icon> Cerca
-  </button>
+  <ion-grid class="card" padding *ngIf="weather">
+    <ion-row>
+      <ion-col width-50 offset-25>
+        <h2 class="location text-dark">{{weather.display_location.full}}</h2>
+        <div class="icon">
+          <img src="{{weather.icon_url}}" alt="weather">
+        </div>
+        <h1 class="temp">{{weather.temp_c}}&deg;</h1>
+      </ion-col>
+      <ion-col width-100>
+        <ion-list>
+          <ion-item>
+            <strong>Temp:</strong> {{weather.temperature_string}}
+          </ion-item>
+          <ion-item>
+            <strong>Umidità:</strong> {{weather.relative_humidity}}
+          </ion-item>
+          <ion-item>
+            <strong>Visibilità:</strong> {{weather.visibility_km}}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="card" padding *ngIf="weather">
+    <ion-row>
+      <ion-col width-50 offset-25>
+        <h3> Enjoy your Time! </h3>
+        <h6> L'app di Ateneo consente di regolare e prevedere l’affluenza in mensa. Fatti furbo e pianifica il tuo pranzo.</h6>
+      </ion-col>
+      <ion-col width-50 offset-25>
+        <h3>
+          <img src="../../assets/img/time.jpg">
+        </h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="card" padding *ngIf="weather">
+          <h1> Tempo di attesa previsto: 15' </h1>
+  </ion-grid>
+
+  <ion-grid class="card">
+    <ion-row>
+      <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </ion-row>
+
+  </ion-grid>
+
 
 </ion-content>

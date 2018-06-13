@@ -25,6 +25,9 @@ import {TripDetailPage} from "../pages/trip-detail/trip-detail";
 import {TripsPage} from "../pages/trips/trips";
 import {LocalWeatherPage} from "../pages/local-weather/local-weather";
 
+import { ChartsModule } from 'ng2-charts';
+
+
 // import services
 // end import services
 // end import services
@@ -47,6 +50,7 @@ import {LocalWeatherPage} from "../pages/local-weather/local-weather";
     TripsPage
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {

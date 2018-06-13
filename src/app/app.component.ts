@@ -9,6 +9,9 @@ import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
 import { LocalWeatherPage } from "../pages/local-weather/local-weather";
 
+import { StatistichePage } from "../pages/statistiche/statistiche";
+
+
 export interface MenuItem {
     title: string;
     component: any;
@@ -22,7 +25,7 @@ export interface MenuItem {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = HomePage;
 
   appMenuItems: Array<MenuItem>;
 
@@ -36,7 +39,7 @@ export class MyApp {
 
     this.appMenuItems = [
       {title: 'Home', component: HomePage, icon: 'home'},
-      {title: 'Local Weather', component: LocalWeatherPage, icon: 'partly-sunny'}
+      {title: 'Statistiche', component: StatistichePage, icon: 'partly-sunny'}
     ];
   }
 
@@ -63,8 +66,5 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  logout() {
-    this.nav.setRoot(LoginPage);
-  }
 
 }

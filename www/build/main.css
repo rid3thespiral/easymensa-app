@@ -21164,31 +21164,6 @@ ion-navbar.toolbar {
   min-height: calc(56px + env(safe-area-inset-bottom));
 }
 
-page-checkout-trip .trip-info .trip-image,
-.checkout-trip .trip-info .trip-image {
-  width: 100%;
-  height: 120px;
-  background-size: 100% auto;
-  background-position: center;
-  border-radius: 1rem 1rem 0 0;
-}
-
-page-checkout-trip .trip-info .trip-features ion-icon,
-.checkout-trip .trip-info .trip-features ion-icon {
-  min-width: 1.5rem;
-  text-align: center;
-}
-
-page-checkout-trip .item.no-border .item-inner,
-.checkout-trip .item.no-border .item-inner {
-  padding-right: 0;
-}
-
-page-checkout-trip .item.no-border .item-inner [item-end],
-.checkout-trip .item.no-border .item-inner [item-end] {
-  margin: 0;
-}
-
 page-home ion-list,
 .home ion-list {
   border-radius: 1rem;
@@ -21209,103 +21184,22 @@ page-home ion-list ion-datetime,
   padding-left: 0;
 }
 
-page-search-location ion-input,
-page-search-location ion-input::-webkit-input-placeholder,
-.search-location ion-input,
-.search-location ion-input::-webkit-input-placeholder {
-  color: #fff;
-}
-
-page-search-location ion-input,
-page-search-location ion-input:-ms-input-placeholder,
-.search-location ion-input,
-.search-location ion-input:-ms-input-placeholder {
-  color: #fff;
-}
-
-page-search-location ion-input,
-page-search-location ion-input::placeholder,
-.search-location ion-input,
-.search-location ion-input::placeholder {
-  color: #fff;
-}
-
-page-account .card,
-.settings .card {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  overflow: hidden;
-}
-
-page-trip-detail ul.highlight,
-.trip-detail ul.highlight {
-  padding-left: 0;
-  font-size: 1.2rem;
-  list-style: none;
-}
-
-page-trip-detail ul.highlight li,
-.trip-detail ul.highlight li {
-  margin-bottom: 1rem;
-}
-
-page-trip-detail .text-sm,
-.trip-detail .text-sm {
-  font-size: 1.2rem;
-  line-height: 2rem;
-}
-
-page-trip-detail .booking-form ion-grid ion-row ion-col,
-.trip-detail .booking-form ion-grid ion-row ion-col {
-  padding: 0;
-}
-
-page-trip-detail .booking-form .form-bottom,
-.trip-detail .booking-form .form-bottom {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-page-trip-detail .booking-form .form-bottom .pull-right,
-.trip-detail .booking-form .form-bottom .pull-right {
-  margin-left: auto;
-}
-
-page-trips .card,
-.trips .card {
+page-statistiche ion-list,
+.statistiche ion-list {
   border-radius: 1rem;
-}
-
-page-trips .trip,
-.trips .trip {
   overflow: hidden;
 }
 
-page-trips .trip .background,
-.trips .trip .background {
-  background-size: 100% auto;
-  background-position: center;
+page-statistiche ion-list ion-item,
+page-statistiche ion-list .item:first-child,
+page-statistiche ion-list .item:last-child,
+.statistiche ion-list ion-item,
+.statistiche ion-list .item:first-child,
+.statistiche ion-list .item:last-child {
+  border: none;
 }
 
-page-trips .trip .background .background-filter,
-.trips .trip .background .background-filter {
-  height: 16rem;
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.65)));
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.65));
-}
-
-page-trips .trip .background .background-filter .align-bottom,
-.trips .trip .background .background-filter .align-bottom {
-  width: 100%;
-}
-
-page-trips .trip .background .background-filter .align-bottom h6,
-.trips .trip .background .background-filter .align-bottom h6 {
-  margin-top: 0;
+page-statistiche ion-list ion-datetime,
+.statistiche ion-list ion-datetime {
+  padding-left: 0;
 }

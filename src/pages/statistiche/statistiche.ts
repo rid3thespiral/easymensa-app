@@ -14,27 +14,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class StatistichePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    
-  }
-
- // go to result page
- doSearch() {
-}
-
+  ready: boolean = false;
+  public lineChartLegend: boolean = true;
+  public lineChartType: string = 'line';
+  public lineChartLabels: Array<any> = [];
   public lineChartData: Array<any> = [
-    { data: [10, 20, 80, 70, 50,60,70,70,70,60,50,10], label: 'Numero di Persone in coda' }
-  ];
-
-  public lineChartLabels: Array<any> = ['10:00','10:30', '11:00','11:30', '12:00','12:30', '13:00','13:30', '14:00','14:30', '15:00','15:30',];
-  
+    { data: [], label: '' }];
   public lineChartOptions: any = {
     responsive: true
   };
-
   public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -43,38 +31,125 @@ export class StatistichePage {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
 
-  public lineChartLegend: boolean = true;
 
-  public lineChartType: string = 'line';
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
 
-  public randomize(): void {
-    let _lineChartData: Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
+  ionViewDidLoad() {
+  }
+
+  // go to result page
+
+  close() {
+    this.ready = false;
+  }
+
+  doDate(mydate,value): any {
+
+    if (value == 'Ricerca per anno') {
+
+      let data: Date = new Date(mydate);
+      let anno: String = data.getFullYear().toString();
+
+      return anno;
     }
-    this.lineChartData = _lineChartData;
+    if (value == 'Ricerca per mese') {
+
+      let data: Date = new Date(mydate);
+      let anno: String = data.getFullYear().toString();
+      let mese: String = (data.getMonth()+1).toString();
+
+      return mese + "/" + anno;
+
+    }
+    if (value == 'Ricerca per giorno') {
+
+      let data: Date = new Date(mydate);
+      let anno: String = data.getFullYear().toString();
+      let mese: String = (data.getMonth()+1).toString();
+      let giorno: String = data.getDate().toString();
+
+      return giorno + "/" + mese + "/" + anno;
+    }
+
+  }
+
+  doSearch(value1, value, mydate) {
+
+    if (value1 == null || value == null || mydate == null) {
+      alert("Inserisci i valori")
+    } else {
+
+      this.ready = true;
+
+      if (value == 'Ricerca per anno') {
+
+        let data: Date = new Date(mydate);
+        let anno: String = data.getFullYear().toString();
+
+        this.lineChartLabels = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic',];
+
+        if (value1 == "Tempo d'attesa") {
+          this.lineChartData = [
+            { data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: "Tempo d'attesa" }
+          ];
+        }
+        if (value1 == "Numero di persone") {
+          this.lineChartData = [
+            { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Numero di persone" }
+          ];
+        }
+
+      }
+
+      if (value == 'Ricerca per mese') {
+
+        let data: Date = new Date(mydate);
+        let anno: String = data.getFullYear().toString();
+        let mese: String = (data.getMonth()+1).toString();
+
+        this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',];
+
+        if (value1 == "Tempo d'attesa") {
+          this.lineChartData = [
+            { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Tempo d'attesa" }
+          ];
+        }
+        if (value1 == "Numero di persone") {
+          this.lineChartData = [
+            { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Numero di persone" }
+          ];
+        }
+
+      }
+
+      if (value == 'Ricerca per giorno') {
+
+        let data: Date = new Date(mydate);
+        let anno: String = data.getFullYear().toString();
+        let mese: String = (data.getMonth()+1).toString();
+        let giorno: String = data.getDate().toString();
+
+        this.lineChartLabels = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',];
+
+        if (value1 == "Tempo d'attesa") {
+          this.lineChartData = [
+            { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Tempo d'attesa" }
+          ];
+        }
+        if (value1 == "Numero di persone") {
+          this.lineChartData = [
+            { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Numero di persone" }
+          ];
+        }
+
+      }
+
+
+    }
   }
 
   // events

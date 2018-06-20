@@ -10,10 +10,13 @@ import { WeatherProvider } from '../../services/weather';
 export class HomePage {
 
   // search condition
+  public index: number = 0;
   public ready: boolean;
   public todayDate: Date;
   public weather: any;
-  public lineChartData: Array<any>;
+  public lineChartData: Array<any> = [
+    { data: [], label: 'Numero di Persone in coda' }
+  ];;
   public lineChartLabels: Array<any> = ['12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00'];
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
@@ -44,13 +47,13 @@ export class HomePage {
     this.updateLineChartData();
   }
 
-  public utcTime(){
+  public utcTime() {
     setInterval(() => {
       this.todayDate = new Date()
     }, 1000);
   }
 
-  public getWeather(){
+  public getWeather() {
     setInterval(() => {
       this.weatherProvider.getWeather('IT', 'Fisciano').subscribe((weather: any) => {
         this.weather = weather.current_observation;
@@ -58,11 +61,11 @@ export class HomePage {
     }, 1000);
   }
 
-  public check(){
+  public check() {
     setInterval(() => {
       let ora = this.todayDate.getHours();
 
-      if (ora > 11 && ora < 15) {
+      if (ora > 12 && ora < 15) {
         this.ready = true;
       } else {
         this.ready = false;
@@ -70,14 +73,23 @@ export class HomePage {
     }, 1000);
   }
 
-  public updateLineChartData(){
+  public updateLineChartData() {
+
     setInterval(() => {
+
+      let ora = this.todayDate.getHours();
+      let minuti = this.todayDate.getMinutes();
+      let secondi = this.todayDate.getSeconds();
+
       // qui si deve fare la get al server
       this.lineChartData = [
-        { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: 'Numero di Persone in coda' }
+        { data: [minuti, 0, 0, secondi, 0, 0, ora, 0, 0, secondi, 0, 0, minuti], label: 'Numero di Persone in coda' }
       ];
+
+
     }, 1000);
   }
+
 
   public orario(): any {
     let ora = this.todayDate.getHours().toLocaleString();

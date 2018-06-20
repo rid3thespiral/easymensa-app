@@ -100,10 +100,9 @@ var HomePage = (function () {
     function HomePage(navCtrl, weatherProvider) {
         this.navCtrl = navCtrl;
         this.weatherProvider = weatherProvider;
-        this.lineChartData = [
-            { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: 'Numero di Persone in coda' }
-        ];
-        this.lineChartLabels = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',];
+        this.lineChartLabels = ['12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00'];
+        this.lineChartLegend = true;
+        this.lineChartType = 'line';
         this.lineChartOptions = {
             responsive: true
         };
@@ -116,55 +115,58 @@ var HomePage = (function () {
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgba(148,159,177,0.8)'
             },
-            {
-                backgroundColor: 'rgba(77,83,96,0.2)',
-                borderColor: 'rgba(77,83,96,1)',
-                pointBackgroundColor: 'rgba(77,83,96,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(77,83,96,1)'
-            },
-            {
-                backgroundColor: 'rgba(148,159,177,0.2)',
-                borderColor: 'rgba(148,159,177,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-            }
         ];
-        this.lineChartLegend = true;
-        this.lineChartType = 'line';
     }
     HomePage.prototype.ionViewWillEnter = function () {
-        this.location = {
-            state: 'IT',
-            city: 'Fisciano'
-        };
-        this.getWeather(this.location);
+        this.getWeather();
+        this.utcTime();
+        this.check();
+        this.updateLineChartData();
     };
-    HomePage.prototype.getWeather = function (location) {
+    HomePage.prototype.utcTime = function () {
         var _this = this;
-        if (typeof location === 'string') {
-            this.location = JSON.parse(location);
-            console.log(this.location);
-        }
-        else {
-            this.location = location;
-        }
-        this.weatherProvider.getWeather(this.location.state, this.location.city).subscribe(function (weather) {
-            _this.weather = weather.current_observation;
-        });
+        setInterval(function () {
+            _this.todayDate = new Date();
+        }, 1000);
     };
-    HomePage.prototype.randomize = function () {
-        var _lineChartData = new Array(this.lineChartData.length);
-        for (var i = 0; i < this.lineChartData.length; i++) {
-            _lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
-            for (var j = 0; j < this.lineChartData[i].data.length; j++) {
-                _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
+    HomePage.prototype.getWeather = function () {
+        var _this = this;
+        setInterval(function () {
+            _this.weatherProvider.getWeather('IT', 'Fisciano').subscribe(function (weather) {
+                _this.weather = weather.current_observation;
+            });
+        }, 1000);
+    };
+    HomePage.prototype.check = function () {
+        var _this = this;
+        setInterval(function () {
+            var ora = _this.todayDate.getHours();
+            if (ora > 11 && ora < 15) {
+                _this.ready = true;
             }
-        }
-        this.lineChartData = _lineChartData;
+            else {
+                _this.ready = false;
+            }
+        }, 1000);
+    };
+    HomePage.prototype.updateLineChartData = function () {
+        var _this = this;
+        setInterval(function () {
+            // qui si deve fare la get al server
+            _this.lineChartData = [
+                { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: 'Numero di Persone in coda' }
+            ];
+        }, 1000);
+    };
+    HomePage.prototype.orario = function () {
+        var ora = this.todayDate.getHours().toLocaleString();
+        var minuti = this.todayDate.getMinutes().toLocaleString();
+        var secondi = this.todayDate.getSeconds().toLocaleString();
+        return ora + ":" + minuti + ":" + secondi;
+    };
+    HomePage.prototype.getStimaTempo = function () {
+        //Qui si deve calcolare la stima del tempo
+        return '15';
     };
     // events
     HomePage.prototype.chartClicked = function (e) {
@@ -177,13 +179,12 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/home/home.html"*/'<!-- -->\n<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <strong>UNISA</strong> Easy Mensa\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="common-bg">\n\n  <ion-grid class="card" padding *ngIf="weather">\n    <ion-row>\n      <ion-col width-50 offset-25>\n        <h2 class="location text-dark">{{weather.display_location.full}}</h2>\n        <div class="icon">\n          <img src="{{weather.icon_url}}" alt="weather">\n        </div>\n        <h1 class="temp">{{weather.temp_c}}&deg;</h1>\n      </ion-col>\n      <ion-col width-100>\n        <ion-list>\n          <ion-item>\n            <strong>Temp:</strong> {{weather.temperature_string}}\n          </ion-item>\n          <ion-item>\n            <strong>Umidità:</strong> {{weather.relative_humidity}}\n          </ion-item>\n          <ion-item>\n            <strong>Visibilità:</strong> {{weather.visibility_km}}\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" padding *ngIf="weather">\n    <ion-row>\n      <ion-col width-50 offset-25>\n        <h3> Enjoy your Time! </h3>\n        <h6> L\'app di Ateneo consente di regolare e prevedere l’affluenza in mensa. Fatti furbo e pianifica il tuo pranzo.</h6>\n      </ion-col>\n      <ion-col width-50 offset-25>\n        <h3>\n          <img src="assets/img/time.jpg">\n        </h3>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" padding *ngIf="weather">\n          <h1> Tempo di attesa previsto: 15\' </h1>\n  </ion-grid>\n\n  <ion-grid class="card">\n    <ion-row>\n      <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"\n        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"\n        (chartClick)="chartClicked($event)"></canvas>\n    </ion-row>\n\n  </ion-grid>\n\n\n</ion-content>'/*ion-inline-end:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/home/home.html"*/'<!-- -->\n<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <strong>UNISA</strong> Easy Mensa\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="common-bg">\n\n  <ion-grid class="card" padding *ngIf="weather">\n    <ion-row>\n      <ion-col width-50 offset-25>\n        <h2 class="location text-dark">{{weather.display_location.full}}</h2>\n        <div class="icon">\n          <img src="{{weather.icon_url}}" alt="weather">\n        </div>\n        <h1 class="temp">{{weather.temp_c}}&deg;</h1>\n      </ion-col>\n      <ion-col width-100>\n        <ion-list>\n          <ion-item>\n            <strong>Temp:</strong> {{weather.temperature_string}}\n          </ion-item>\n          <ion-item>\n            <strong>Umidità:</strong> {{weather.relative_humidity}}\n          </ion-item>\n          <ion-item>\n            <strong>Visibilità:</strong> {{weather.visibility_km}}\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" padding *ngIf="weather">\n    <ion-row>\n      <ion-col width-50 offset-25>\n        <h3> Enjoy your Time! </h3>\n        <h6> L\'app di Ateneo consente di regolare e prevedere l’affluenza in mensa. Fatti furbo e pianifica il tuo pranzo.</h6>\n        <h1>{{orario()}}</h1>\n      </ion-col>\n      <ion-col width-50 offset-25>\n        <h3>\n          <img src="assets/img/time.jpg">\n        </h3>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" *ngIf="ready">\n          <h1> Tempo di attesa previsto: {{getStimaTempo()}} </h1>\n  </ion-grid>\n\n  <ion-grid class="card" *ngIf="ready">\n    <ion-row>\n      <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"\n        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"\n        (chartClick)="chartClicked($event)"></canvas>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" *ngIf="!ready">\n    <h1>\n      La mensa apre alle ore 12:00 \n    </h1>\n  </ion-grid>\n\n\n</ion-content>'/*ion-inline-end:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */]) === "function" && _b || Object])
 ], HomePage);
 
-//
+var _a, _b;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
@@ -243,6 +244,26 @@ var StatistichePage = (function () {
     StatistichePage.prototype.close = function () {
         this.ready = false;
     };
+    StatistichePage.prototype.doDate = function (mydate, value) {
+        if (value == 'Ricerca per anno') {
+            var data = new Date(mydate);
+            var anno = data.getFullYear().toString();
+            return anno;
+        }
+        if (value == 'Ricerca per mese') {
+            var data = new Date(mydate);
+            var anno = data.getFullYear().toString();
+            var mese = (data.getMonth() + 1).toString();
+            return mese + "/" + anno;
+        }
+        if (value == 'Ricerca per giorno') {
+            var data = new Date(mydate);
+            var anno = data.getFullYear().toString();
+            var mese = (data.getMonth() + 1).toString();
+            var giorno = data.getDate().toString();
+            return giorno + "/" + mese + "/" + anno;
+        }
+    };
     StatistichePage.prototype.doSearch = function (value1, value, mydate) {
         if (value1 == null || value == null || mydate == null) {
             alert("Inserisci i valori");
@@ -250,6 +271,8 @@ var StatistichePage = (function () {
         else {
             this.ready = true;
             if (value == 'Ricerca per anno') {
+                var data = new Date(mydate);
+                var anno = data.getFullYear().toString();
                 this.lineChartLabels = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic',];
                 if (value1 == "Tempo d'attesa") {
                     this.lineChartData = [
@@ -263,6 +286,9 @@ var StatistichePage = (function () {
                 }
             }
             if (value == 'Ricerca per mese') {
+                var data = new Date(mydate);
+                var anno = data.getFullYear().toString();
+                var mese = (data.getMonth() + 1).toString();
                 this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',];
                 if (value1 == "Tempo d'attesa") {
                     this.lineChartData = [
@@ -276,6 +302,10 @@ var StatistichePage = (function () {
                 }
             }
             if (value == 'Ricerca per giorno') {
+                var data = new Date(mydate);
+                var anno = data.getFullYear().toString();
+                var mese = (data.getMonth() + 1).toString();
+                var giorno = data.getDate().toString();
                 this.lineChartLabels = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',];
                 if (value1 == "Tempo d'attesa") {
                     this.lineChartData = [

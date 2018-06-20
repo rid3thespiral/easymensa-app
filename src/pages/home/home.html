@@ -43,6 +43,7 @@
       <ion-col width-50 offset-25>
         <h3> Enjoy your Time! </h3>
         <h6> L'app di Ateneo consente di regolare e prevedere l’affluenza in mensa. Fatti furbo e pianifica il tuo pranzo.</h6>
+        <h1>{{orario()}}</h1>
       </ion-col>
       <ion-col width-50 offset-25>
         <h3>
@@ -52,17 +53,22 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="card" padding *ngIf="weather">
-          <h1> Tempo di attesa previsto: 15' </h1>
+  <ion-grid class="card" *ngIf="ready">
+          <h1> Tempo di attesa previsto: {{getStimaTempo()}} </h1>
   </ion-grid>
 
-  <ion-grid class="card">
+  <ion-grid class="card" *ngIf="ready">
     <ion-row>
       <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
         [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
         (chartClick)="chartClicked($event)"></canvas>
     </ion-row>
+  </ion-grid>
 
+  <ion-grid class="card" *ngIf="!ready">
+    <h1>
+      La mensa apre alle ore 12:00 
+    </h1>
   </ion-grid>
 
 

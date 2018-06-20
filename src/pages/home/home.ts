@@ -47,12 +47,14 @@ export class HomePage {
     this.updateLineChartData();
   }
 
+  //grazie al metodo set interval ogni 1000ms viene aggiornata l'ora
   public utcTime() {
     setInterval(() => {
       this.todayDate = new Date()
     }, 1000);
   }
 
+  //grazie al metodo set interval ogni 1000ms viene aggiornato il meteo
   public getWeather() {
     setInterval(() => {
       this.weatherProvider.getWeather('IT', 'Fisciano').subscribe((weather: any) => {
@@ -61,11 +63,13 @@ export class HomePage {
     }, 1000);
   }
 
+  //grazie al metodo set interval ogni 1000ms viene aggiornata la variabile
+  //ready per visulizzare solo dopo mezzoggiorno (apertura mensa) il grafico
   public check() {
     setInterval(() => {
       let ora = this.todayDate.getHours();
 
-      if (ora > 12 && ora < 15) {
+      if (ora > 12) {
         this.ready = true;
       } else {
         this.ready = false;
@@ -73,6 +77,8 @@ export class HomePage {
     }, 1000);
   }
 
+  //grazie al metodo set interval ogni 15 min vengono aggiornati i dati
+  //provenienti dalle telecamere in real time e visualizzati sul grafico
   public updateLineChartData() {
 
     setInterval(() => {

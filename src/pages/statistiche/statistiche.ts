@@ -77,6 +77,7 @@ export class StatistichePage {
 
   }
 
+  // in base ai dati scelti dall'utente si effettua una query ai dati storici
   doSearch(value1, value, mydate) {
 
     if (value1 == null || value == null || mydate == null) {

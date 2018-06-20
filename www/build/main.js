@@ -129,12 +129,14 @@ var HomePage = (function () {
         this.check();
         this.updateLineChartData();
     };
+    //grazie al metodo set interval ogni 1000ms viene aggiornata l'ora
     HomePage.prototype.utcTime = function () {
         var _this = this;
         setInterval(function () {
             _this.todayDate = new Date();
         }, 1000);
     };
+    //grazie al metodo set interval ogni 1000ms viene aggiornato il meteo
     HomePage.prototype.getWeather = function () {
         var _this = this;
         setInterval(function () {
@@ -143,11 +145,13 @@ var HomePage = (function () {
             });
         }, 1000);
     };
+    //grazie al metodo set interval ogni 1000ms viene aggiornata la variabile
+    //ready per visulizzare solo dopo mezzoggiorno (apertura mensa) il grafico
     HomePage.prototype.check = function () {
         var _this = this;
         setInterval(function () {
             var ora = _this.todayDate.getHours();
-            if (ora > 12 && ora < 15) {
+            if (ora > 12) {
                 _this.ready = true;
             }
             else {
@@ -155,6 +159,8 @@ var HomePage = (function () {
             }
         }, 1000);
     };
+    //grazie al metodo set interval ogni 15 min vengono aggiornati i dati
+    //provenienti dalle telecamere in real time e visualizzati sul grafico
     HomePage.prototype.updateLineChartData = function () {
         var _this = this;
         setInterval(function () {
@@ -190,10 +196,10 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'page-home',template:/*ion-inline-start:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/home/home.html"*/'<!-- -->\n<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <strong>UNISA</strong> Easy Mensa\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="common-bg">\n\n  <ion-grid class="card" padding *ngIf="weather">\n    <ion-row>\n      <ion-col width-50 offset-25>\n        <h2 class="location text-dark">{{weather.display_location.full}}</h2>\n        <div class="icon">\n          <img src="{{weather.icon_url}}" alt="weather">\n        </div>\n        <h1 class="temp">{{weather.temp_c}}&deg;</h1>\n      </ion-col>\n      <ion-col width-100>\n        <ion-list>\n          <ion-item>\n            <strong>Temp:</strong> {{weather.temperature_string}}\n          </ion-item>\n          <ion-item>\n            <strong>Umidità:</strong> {{weather.relative_humidity}}\n          </ion-item>\n          <ion-item>\n            <strong>Visibilità:</strong> {{weather.visibility_km}}\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" padding *ngIf="weather">\n    <ion-row>\n      <ion-col width-50 offset-25>\n        <h3> Enjoy your Time! </h3>\n        <h6> L\'app di Ateneo consente di regolare e prevedere l’affluenza in mensa. Fatti furbo e pianifica il tuo pranzo.</h6>\n        <h1>{{orario()}}</h1>\n      </ion-col>\n      <ion-col width-50 offset-25>\n        <h3>\n          <img src="assets/img/time.jpg">\n        </h3>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" *ngIf="ready">\n          <h1> Tempo di attesa previsto: {{getStimaTempo()}} </h1>\n  </ion-grid>\n\n  <ion-grid class="card" *ngIf="ready">\n    <ion-row>\n      <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"\n        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"\n        (chartClick)="chartClicked($event)"></canvas>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" *ngIf="!ready">\n    <h1>\n      La mensa apre alle ore 12:00 \n    </h1>\n  </ion-grid>\n\n\n</ion-content>'/*ion-inline-end:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */]])
 ], HomePage);
 
-var _a, _b;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
@@ -273,6 +279,7 @@ var StatistichePage = (function () {
             return giorno + "/" + mese + "/" + anno;
         }
     };
+    // in base ai dati scelti dall'utente si effettua una query ai dati storici
     StatistichePage.prototype.doSearch = function (value1, value, mydate) {
         if (value1 == null || value == null || mydate == null) {
             alert("Inserisci i valori");

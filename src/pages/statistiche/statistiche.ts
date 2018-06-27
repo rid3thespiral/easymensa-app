@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import {ServermensaProvider} from '../../providers/servermensa/servermensa'
+
 
 /**
  * Generated class for the StatistichePage page.
@@ -11,10 +13,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-statistiche',
   templateUrl: 'statistiche.html',
+  providers: [ServermensaProvider],
 })
 export class StatistichePage {
 
   ready: boolean = false;
+  public users: any;
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
   public lineChartLabels: Array<any> = [];
@@ -35,10 +39,15 @@ export class StatistichePage {
   ];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public mensa: ServermensaProvider,
+  ) {
   }
 
   ionViewDidLoad() {
+    this.hello();
   }
 
   // go to result page
@@ -47,7 +56,16 @@ export class StatistichePage {
     this.ready = false;
   }
 
-  doDate(mydate,value): any {
+  hello(){
+    this.mensa.getExample().subscribe((data: any) => {
+      console.log('data = '+ data)
+      this.users = data[0].id;
+    });
+
+  }
+
+
+  doDate(mydate, value): any {
 
     if (value == 'Ricerca per anno') {
 
@@ -60,7 +78,7 @@ export class StatistichePage {
 
       let data: Date = new Date(mydate);
       let anno: String = data.getFullYear().toString();
-      let mese: String = (data.getMonth()+1).toString();
+      let mese: String = (data.getMonth() + 1).toString();
 
       return mese + "/" + anno;
 
@@ -69,7 +87,7 @@ export class StatistichePage {
 
       let data: Date = new Date(mydate);
       let anno: String = data.getFullYear().toString();
-      let mese: String = (data.getMonth()+1).toString();
+      let mese: String = (data.getMonth() + 1).toString();
       let giorno: String = data.getDate().toString();
 
       return giorno + "/" + mese + "/" + anno;
@@ -110,7 +128,7 @@ export class StatistichePage {
 
         let data: Date = new Date(mydate);
         let anno: String = data.getFullYear().toString();
-        let mese: String = (data.getMonth()+1).toString();
+        let mese: String = (data.getMonth() + 1).toString();
 
         this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',];
 
@@ -131,7 +149,7 @@ export class StatistichePage {
 
         let data: Date = new Date(mydate);
         let anno: String = data.getFullYear().toString();
-        let mese: String = (data.getMonth()+1).toString();
+        let mese: String = (data.getMonth() + 1).toString();
         let giorno: String = data.getDate().toString();
 
         this.lineChartLabels = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',];

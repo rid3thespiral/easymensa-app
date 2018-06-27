@@ -10,6 +10,7 @@ import { WeatherProvider } from '../../services/weather';
 export class HomePage {
 
   // search condition
+  public aperto: boolean = true;
   public index: number = 0;
   public ready: boolean;
   public todayDate: Date;
@@ -41,8 +42,8 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    this.getWeather();
     this.utcTime();
+    this.getWeather();
     this.check();
     this.updateLineChartData();
   }
@@ -69,7 +70,13 @@ export class HomePage {
     setInterval(() => {
       let ora = this.todayDate.getHours();
 
-      if (ora > 12) {
+      if (ora > 11 && ora <15) {
+        this.aperto = true;
+      } else {
+        this.aperto = false;
+      }
+
+      if (ora >= 9) {
         this.ready = true;
       } else {
         this.ready = false;

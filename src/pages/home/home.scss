@@ -1,5 +1,12 @@
 page-home,
 .home {
+
+  ion-content {
+    background-image: url('../assets/img/bg.jpg');
+    $background-color: transparent;
+
+  }
+
   ion-list {
     border-radius: 1rem;
     overflow: hidden;
@@ -14,4 +21,6 @@ page-home,
       padding-left: 0;
     }
   }
+
+  
 }

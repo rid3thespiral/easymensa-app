@@ -15,6 +15,7 @@ import {HomePage} from "../pages/home/home";
 import { StatistichePage } from "../pages/statistiche/statistiche";
 
 import { ChartsModule } from 'ng2-charts';
+import { ServermensaProvider } from '../providers/servermensa/servermensa';
 
 
 // import services
@@ -54,7 +55,8 @@ import { ChartsModule } from 'ng2-charts';
     StatusBar,
     SplashScreen,
     Keyboard,
-    WeatherProvider
+    WeatherProvider,
+    ServermensaProvider
   ]
 })
 

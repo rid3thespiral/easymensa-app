@@ -34,7 +34,7 @@ export class MyApp {
 
     this.appMenuItems = [
       {title: 'Home', component: HomePage, icon: 'home'},
-      {title: 'Statistiche', component: StatistichePage, icon: 'partly-sunny'}
+      {title: 'Statistiche', component: StatistichePage, icon: 'person'}
     ];
   }
 

@@ -106,4 +106,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="fullscreen" value="false" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
 </widget>

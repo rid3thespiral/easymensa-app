@@ -18,6 +18,8 @@
 
 <ion-content padding>
 
+  <h1>{{users}}</h1>
+
   <ion-grid class="card">
     <ion-list *ngIf = '!ready'>
         <ion-item>
@@ -44,7 +46,7 @@
               <ion-datetime displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="myDate"></ion-datetime>
       </ion-item>
       <ion-item *ngIf = "value == 'Ricerca per giorno'">
-          <ion-label>Seleziona per giorno</ion-label>
+          <ion-label>Seleziona per giorno </ion-label>
           <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="myDate" values = "YYYY"></ion-datetime>
       </ion-item>
     </ion-list>

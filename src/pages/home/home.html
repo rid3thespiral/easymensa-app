@@ -53,6 +53,55 @@
     </ion-list>
   </ion-grid>
 
+<ion-card>
+    <ion-slides pager="true" [initialSlide]="getGiorno()">
+      <ion-slide>
+        <div>
+          <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          </div>
+          <button (click)="randomize()">Update</button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div>
+          <div style="display: block">
+            <canvas baseChart [datasets]="barChartData2" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          </div>
+          <button (click)="randomize()">Update</button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div>
+          <div style="display: block">
+            <canvas baseChart [datasets]="barChartData3" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+          <div>
+            <div style="display: block">
+              <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+            <button (click)="randomize()">Update</button>
+          </div>
+        </ion-slide>
+        <ion-slide>
+            <div>
+              <div style="display: block">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                  [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+              </div>
+              <button (click)="randomize()">Update</button>
+            </div>
+          </ion-slide>
+    </ion-slides>
+  </ion-card>
+
   <ion-grid class="card" *ngIf="ready">
     <h1> Tempo di attesa previsto: {{getStimaTempo()}} </h1>
   </ion-grid>

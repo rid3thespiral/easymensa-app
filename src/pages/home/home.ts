@@ -35,6 +35,37 @@ export class HomePage {
     },
   ];
 
+  public barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels: string[] = ['12.00', '12.30', '13.00', '13.30', '14.00', '14.30', '15.00'];
+  public barChartType: string = 'bar';
+  public barChartLegend: boolean = true;
+
+  public barChartData: any[] = [
+    { data: [12, 15, 25, 20, 15, 5, 5], label: 'Tempo di attesa stimato' }
+  ];
+
+  public barChartData2: any[] = [
+    { data: [12, 15, 25, 20, 15, 5, 5], label: 'Tempo di attesa stimato' }
+  ];
+
+  public barChartData3: any[] = [
+    { data: [12, 15, 25, 20, 15, 5, 5], label: 'Tempo di attesa stimato' }
+  ];
+
+
+  // events
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
+
   constructor(
     public navCtrl: NavController,
     private weatherProvider: WeatherProvider,
@@ -46,6 +77,12 @@ export class HomePage {
     this.getWeather();
     this.check();
     this.updateLineChartData();
+  }
+
+  public getGiorno(): any {
+    var d = new Date();
+    var n = d.getDay()
+    return n-1;
   }
 
   //grazie al metodo set interval ogni 1000ms viene aggiornata l'ora
@@ -114,14 +151,6 @@ export class HomePage {
   public getStimaTempo(): any {
     //Qui si deve calcolare la stima del tempo
     return '15';
-  }
-
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
-  public chartHovered(e: any): void {
-    console.log(e);
   }
 
 

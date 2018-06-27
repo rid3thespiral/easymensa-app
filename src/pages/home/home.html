@@ -1,4 +1,3 @@
-<!-- -->
 <ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle>
@@ -10,50 +9,57 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding class="common-bg">
 
   <ion-grid class="card" padding *ngIf="weather">
-      <ion-row>
-        <ion-col width-50 offset-25>
-          <h3 color = "secondary"> Enjoy your Time! </h3>
-          <h6> L'app di Ateneo consente di regolare e prevedere l’affluenza in mensa. Fatti furbo e pianifica il tuo pranzo.</h6>
-          <h1>{{orario()}}</h1>
-        </ion-col>
-      </ion-row>
+    <ion-item>
+      <h1>
+        <strong> Enjoy your Time! </strong>
+      </h1>
+    </ion-item>
+    <ion-item>
+      <h2> L'app di Ateneo consente di regolare e prevedere </h2>
+      <h2>l’affluenza in mensa. </h2>
+      <h2> Fatti furbo e pianifica il tuo pranzo.</h2>
+    </ion-item>
+    <ion-item>
+      <h1>
+        <strong>{{orario()}}</strong>
+      </h1>
+    </ion-item>
   </ion-grid>
 
   <ion-grid class="card" padding>
     <ion-list>
+
       <ion-item>
         <ion-label>
-          <strong> Organizza la tua visita</strong>
+          <strong> Organizza la tua visita </strong>
         </ion-label>
       </ion-item>
+
       <ion-item>
         <ion-label>
-          <ion-icon name="pin"></ion-icon> Via della Tecnica n. 1, 84084 Fisciano SA</ion-label>
+          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{getNumeroPersone()}}</ion-label>
       </ion-item>
-      <ion-item *ngIf='aperto'>
-        <ion-label>
-          <ion-icon name="time"></ion-icon>
-          <strong>Aperto</strong> chiude alle 15:00</ion-label>
-      </ion-item>
-      <ion-item *ngIf='!aperto'>
-        <ion-label>
-          <ion-icon name="time"></ion-icon>
-          <strong>Chiuso</strong> riapre alle ore 12.00</ion-label>
-      </ion-item>
+
       <ion-item>
         <ion-label>
-          <ion-icon name="alarm"></ion-icon> Picco di attesa fino a
+          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{getStimaTempo()}}'</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="alert"></ion-icon> Picco di attesa fino a
           <strong>1h dalle 13:00 alle 14:00</strong>
         </ion-label>
       </ion-item>
+
     </ion-list>
   </ion-grid>
 
-<ion-card>
+
+  <ion-card>
     <ion-slides pager="true" [initialSlide]="getGiorno()">
       <ion-slide>
         <div>
@@ -82,43 +88,53 @@
         </div>
       </ion-slide>
       <ion-slide>
-          <div>
-            <div style="display: block">
-              <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-                [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-            </div>
-            <button (click)="randomize()">Update</button>
+        <div>
+          <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
           </div>
-        </ion-slide>
-        <ion-slide>
-            <div>
-              <div style="display: block">
-                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-                  [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-              </div>
-              <button (click)="randomize()">Update</button>
-            </div>
-          </ion-slide>
+          <button (click)="randomize()">Update</button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div>
+          <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          </div>
+          <button (click)="randomize()">Update</button>
+        </div>
+      </ion-slide>
     </ion-slides>
   </ion-card>
 
-  <ion-grid class="card" *ngIf="ready">
-    <h1> Tempo di attesa previsto: {{getStimaTempo()}} </h1>
+
+
+  <ion-grid class="card" padding>
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          <strong> Informazioni </strong>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="pin"></ion-icon> Via della Tecnica n. 1, 84084 Fisciano SA</ion-label>
+      </ion-item>
+      <ion-item *ngIf='aperto'>
+        <ion-label>
+          <ion-icon name="time"></ion-icon>
+          <strong>Aperto</strong> chiude alle 15:00</ion-label>
+      </ion-item>
+      <ion-item *ngIf='!aperto'>
+        <ion-label>
+          <ion-icon name="time"></ion-icon>
+          <strong>Chiuso</strong> riapre alle ore 12.00</ion-label>
+      </ion-item>
+    </ion-list>
   </ion-grid>
 
-  <ion-card class="card" *ngIf="ready">
-    <ion-row>
-      <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
-        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
-    </ion-row>
-  </ion-card>
 
-  <ion-card class="card" *ngIf="!ready">
-    <h1>
-      La mensa apre alle ore 12:00 {{ready}}
-    </h1>
-  </ion-card>
 
 
 </ion-content>

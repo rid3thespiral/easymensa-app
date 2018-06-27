@@ -153,6 +153,10 @@ export class HomePage {
     return '15';
   }
 
+  public getNumeroPersone(): any {
+    //Qui si deve calcolare la stima del tempo
+    return '1005';
+  }
 
 }
 

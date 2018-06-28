@@ -86,30 +86,28 @@
         </div>
       </ion-slide>
       <ion-slide>
-<<<<<<< HEAD
-          <div>
-            <div style="display: block">
-              <canvas baseChart [datasets]="barChartData" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-                [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-            </div>
+        <div>
+          <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions"
+              [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
           </div>
-        </ion-slide>
-        <ion-slide>
-            <div>
-              <div style="display: block">
-                <canvas baseChart [datasets]="barChartData"  [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-                [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-              </div>
-            </div>
-          </ion-slide>
-=======
+        </div>
+      </ion-slide>
+      <ion-slide>
         <div>
           <div style="display: block">
             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+              [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
           </div>
-          <button (click)="randomize()">Update</button>
         </div>
+      </ion-slide>
+    <ion-slide>
+      <div>
+        <div style="display: block">
+          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
       </ion-slide>
       <ion-slide>
         <div>
@@ -117,10 +115,8 @@
             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
               [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
           </div>
-          <button (click)="randomize()">Update</button>
         </div>
       </ion-slide>
->>>>>>> b60183a56bea3d9e878cf9dbb52009f2ac8c284f
     </ion-slides>
   </ion-card>
 

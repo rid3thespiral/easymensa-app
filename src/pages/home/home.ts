@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { WeatherProvider } from '../../services/weather';
+import {AlertController} from 'ionic-angular';
+
 
 @Component({
   selector: 'page-home',
@@ -35,6 +37,18 @@ export class HomePage {
     },
   ];
 
+  public chartColors: Array<any> = [
+    { // first color
+      backgroundColor: 'rgba(0,0,255,0.6)',
+      borderColor: 'rgba(0,0,255,0.6)',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)',
+      hoverBackgroundColor:'rgba(30,144,255,0.6)',
+      hoverdBorderColor :'rgba(30,144,255,0.6)'
+    },];
+
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -44,21 +58,58 @@ export class HomePage {
   public barChartLegend: boolean = true;
 
   public barChartData: any[] = [
-    { data: [12, 15, 25, 20, 15, 5, 5], label: 'Tempo di attesa stimato' }
+    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' }
   ];
 
   public barChartData2: any[] = [
-    { data: [12, 15, 25, 20, 15, 5, 5], label: 'Tempo di attesa stimato' }
+    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' }
   ];
 
   public barChartData3: any[] = [
-    { data: [12, 15, 25, 20, 15, 5, 5], label: 'Tempo di attesa stimato' }
+    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' }
   ];
 
 
   // events
+  public sottotitolo: string;
+  public titolo : string;
   public chartClicked(e: any): void {
-    console.log(e);
+    if (e.active.length > 0) {
+      const chart = e.active[0]._chart;
+      const activePoints = chart.getElementAtEvent(e.event);
+        if ( activePoints.length > 0) {
+          // get the internal index of slice in pie chart
+          const clickedElementIndex = activePoints[0]._index;
+          const label = chart.data.labels[clickedElementIndex];
+          // get value by index
+          const value = chart.data.datasets[0].data[clickedElementIndex];
+          if(value <10){
+            this.titolo= 'Poco affollato'
+          }
+          if(value >=20 && value<25 ){
+            this.titolo = 'Affollato'
+          }
+          if(value >25){
+            this.titolo = 'Molto affollato'
+          }
+          this.mostraAlert(this.titolo,label,value);
+
+          console.log(clickedElementIndex, label, value)
+        }
+       }
+      
+  }
+
+  public mostraAlert(titolo,orario,value): void{
+    let alert = this.alertController.create({
+      title: 'Ore : '+orario+" "+titolo,
+      subTitle: "Fino a "+value+" persone in attesa",
+      buttons: ['OK']
+  });
+
+  alert.present();
+    
+
   }
 
 
@@ -69,6 +120,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private weatherProvider: WeatherProvider,
+    private alertController: AlertController
   ) {
   }
 

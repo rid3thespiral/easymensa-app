@@ -61,7 +61,6 @@
             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
               [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
           </div>
-          <button (click)="randomize()">Update</button>
         </div>
       </ion-slide>
       <ion-slide>
@@ -70,7 +69,6 @@
             <canvas baseChart [datasets]="barChartData2" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
               [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
           </div>
-          <button (click)="randomize()">Update</button>
         </div>
       </ion-slide>
       <ion-slide>
@@ -84,19 +82,17 @@
       <ion-slide>
           <div>
             <div style="display: block">
-              <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+              <canvas baseChart [datasets]="barChartData" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
                 [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
             </div>
-            <button (click)="randomize()">Update</button>
           </div>
         </ion-slide>
         <ion-slide>
             <div>
               <div style="display: block">
-                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-                  [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                <canvas baseChart [datasets]="barChartData"  [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
               </div>
-              <button (click)="randomize()">Update</button>
             </div>
           </ion-slide>
     </ion-slides>

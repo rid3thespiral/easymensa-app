@@ -87,10 +87,10 @@ export class HomePage {
         if (value < 10) {
           this.titolo = 'Poco affollato'
         }
-        if (value >= 20 && value < 25) {
-          this.titolo = 'Affollato'
+        if (value >= 10 && value < 20) {
+          this.titolo = 'Normalmente Affollato'
         }
-        if (value > 25) {
+        if (value > 20) {
           this.titolo = 'Molto affollato'
         }
         this.mostraAlert(this.titolo, label, value);

@@ -48,7 +48,15 @@ export class HomePage {
       pointHoverBorderColor: 'rgba(225,10,24,0.2)',
       hoverBackgroundColor: 'rgba(30,144,255,0.6)',
       hoverdBorderColor: 'rgba(30,144,255,0.6)'
-    },];
+    },
+    { // grey
+      backgroundColor: 'rgba(255,0,0,0.6)',
+      borderColor: 'rgba(255,0,0,0.6)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }];
 
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
@@ -58,22 +66,47 @@ export class HomePage {
   public barChartType: string = 'bar';
   public barChartLegend: boolean = true;
 
-  public barChartData: any[] = [
-    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' }
+  public barChartData1: any[] = [
+    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato'},
+    { data: this.generateData(1), label: 'Media di questo mese' }
   ];
 
   public barChartData2: any[] = [
-    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' }
+    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' },
+    { data: this.generateData(2), label: 'Media di questo mese' }
   ];
 
   public barChartData3: any[] = [
-    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' }
+    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' },
+    { data: this.generateData(3), label: 'Media di questo mese' }
+  ];
+
+  public barChartData4: any[] = [
+    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' },
+    { data: this.generateData(4), label: 'Media di questo mese' }
+  ];
+
+  public barChartData5: any[] = [
+    { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' },
+    { data: this.generateData(5), label: 'Media di questo mese' }
   ];
 
 
   // events
   public sottotitolo: string;
   public titolo: string;
+  public generateData(giorno : any):any[]{
+    var d = new Date();
+    var n = d.getDay()
+    if (n == giorno){
+      return [5,5,15,20,15,25];
+    }
+    else{
+      return [0,0,0,0,0,0];
+    }
+
+
+  }
   public chartClicked(e: any): void {
     if (e.active.length > 0) {
       const chart = e.active[0]._chart;

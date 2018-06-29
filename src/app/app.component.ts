@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from "../pages/home/home";
 import { StatistichePage } from "../pages/statistiche/statistiche";
-
+import { InfoPage } from "../pages/info/info";
 
 export interface MenuItem {
     title: string;
@@ -34,7 +34,8 @@ export class MyApp {
 
     this.appMenuItems = [
       {title: 'Home', component: HomePage, icon: 'home'},
-      {title: 'Statistiche', component: StatistichePage, icon: 'person'}
+      {title: 'Statistiche', component: StatistichePage, icon: 'person'},
+      {title: 'Info', component: InfoPage, icon: 'information-circle'}
     ];
   }
 

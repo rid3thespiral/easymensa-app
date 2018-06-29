@@ -21189,6 +21189,15 @@ page-home ion-list ion-datetime,
   padding-left: 0;
 }
 
+page-info ion-content {
+  background-image: url("../assets/img/bg.jpg");
+}
+
+page-statistiche ion-content,
+.statistiche ion-content {
+  background-image: url("../assets/img/bg.jpg");
+}
+
 page-statistiche ion-list,
 .statistiche ion-list {
   border-radius: 1rem;

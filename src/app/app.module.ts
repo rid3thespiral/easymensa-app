@@ -13,6 +13,8 @@ import {WeatherProvider} from "../services/weather";
 import {MyApp} from "./app.component";
 import {HomePage} from "../pages/home/home";
 import { StatistichePage } from "../pages/statistiche/statistiche";
+import { InfoPage } from "../pages/info/info";
+
 
 import { ChartsModule } from 'ng2-charts';
 import { ServermensaProvider } from '../providers/servermensa/servermensa';
@@ -30,6 +32,7 @@ import { ServermensaProvider } from '../providers/servermensa/servermensa';
     MyApp,
     HomePage,
     StatistichePage,
+    InfoPage,
   ],
   imports: [
     ChartsModule,
@@ -50,6 +53,7 @@ import { ServermensaProvider } from '../providers/servermensa/servermensa';
     MyApp,
     HomePage,
     StatistichePage,
+    InfoPage,
   ],
   providers: [
     StatusBar,

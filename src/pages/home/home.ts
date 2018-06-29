@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { WeatherProvider } from '../../services/weather';
-import {AlertController} from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 
 @Component({
@@ -45,8 +45,8 @@ export class HomePage {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(225,10,24,0.2)',
-      hoverBackgroundColor:'rgba(30,144,255,0.6)',
-      hoverdBorderColor :'rgba(30,144,255,0.6)'
+      hoverBackgroundColor: 'rgba(30,144,255,0.6)',
+      hoverdBorderColor: 'rgba(30,144,255,0.6)'
     },];
 
   public barChartOptions: any = {
@@ -72,43 +72,43 @@ export class HomePage {
 
   // events
   public sottotitolo: string;
-  public titolo : string;
+  public titolo: string;
   public chartClicked(e: any): void {
     if (e.active.length > 0) {
       const chart = e.active[0]._chart;
       const activePoints = chart.getElementAtEvent(e.event);
-        if ( activePoints.length > 0) {
-          // get the internal index of slice in pie chart
-          const clickedElementIndex = activePoints[0]._index;
-          const label = chart.data.labels[clickedElementIndex];
-          // get value by index
-          const value = chart.data.datasets[0].data[clickedElementIndex];
-          if(value <10){
-            this.titolo= 'Poco affollato'
-          }
-          if(value >=20 && value<25 ){
-            this.titolo = 'Affollato'
-          }
-          if(value >25){
-            this.titolo = 'Molto affollato'
-          }
-          this.mostraAlert(this.titolo,label,value);
-
-          console.log(clickedElementIndex, label, value)
+      if (activePoints.length > 0) {
+        // get the internal index of slice in pie chart
+        const clickedElementIndex = activePoints[0]._index;
+        const label = chart.data.labels[clickedElementIndex];
+        // get value by index
+        const value = chart.data.datasets[0].data[clickedElementIndex];
+        if (value < 10) {
+          this.titolo = 'Poco affollato'
         }
-       }
-      
+        if (value >= 20 && value < 25) {
+          this.titolo = 'Affollato'
+        }
+        if (value > 25) {
+          this.titolo = 'Molto affollato'
+        }
+        this.mostraAlert(this.titolo, label, value);
+
+        console.log(clickedElementIndex, label, value)
+      }
+    }
+
   }
 
-  public mostraAlert(titolo,orario,value): void{
+  public mostraAlert(titolo, orario, value): void {
     let alert = this.alertController.create({
-      title: 'Ore : '+orario+" "+titolo,
-      subTitle: "Fino a "+value+" persone in attesa",
+      title: 'Ore : ' + orario + " " + titolo,
+      subTitle: "Fino a " + value + " persone in attesa",
       buttons: ['OK']
-  });
+    });
 
-  alert.present();
-    
+    alert.present();
+
 
   }
 
@@ -134,7 +134,7 @@ export class HomePage {
   public getGiorno(): any {
     var d = new Date();
     var n = d.getDay()
-    return n-1;
+    return n - 1;
   }
 
   //grazie al metodo set interval ogni 1000ms viene aggiornata l'ora
@@ -159,7 +159,7 @@ export class HomePage {
     setInterval(() => {
       let ora = this.todayDate.getHours();
 
-      if (ora > 11 && ora <15) {
+      if (ora > 11 && ora < 15) {
         this.aperto = true;
       } else {
         this.aperto = false;
@@ -190,6 +190,20 @@ export class HomePage {
 
 
     }, 1000);
+  }
+
+  public getDay(): any {
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    return weekday[d.getDay()];
   }
 
 

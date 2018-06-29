@@ -1,17 +1,20 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      <strong>UNISA</strong> Easy Mensa
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu">
+          UNISA Easy Mensa
+        </ion-icon>
+      </button>
+      <ion-title text-right>
+        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> 
+      </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding class="common-bg">
 
   <ion-grid class="card" padding *ngIf="weather">
+    <ion-list>
     <ion-item>
       <h1>
         <strong> Enjoy your Time! </strong>
@@ -27,6 +30,7 @@
         <strong>{{orario()}}</strong>
       </h1>
     </ion-item>
+  </ion-list>
   </ion-grid>
 
   <ion-grid class="card" padding>
@@ -120,7 +124,20 @@
     </ion-slides>
   </ion-card>
 
+  <ion-grid class="card" padding>
+      <ion-list>
 
+      <ion-item>
+        <h1>
+            <ion-icon name = 'ribbon'> Top Time to eat on {{getDay()}} </ion-icon>
+        </h1>
+      </ion-item>
+      <ion-item>
+            <strong> from 14:00 to 15:00 </strong>
+      </ion-item>
+      
+    </ion-list>
+    </ion-grid>
 
   <ion-grid class="card" padding>
     <ion-list>

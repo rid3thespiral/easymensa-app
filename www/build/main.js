@@ -1,6 +1,51 @@
-webpackJsonp([0],{
+webpackJsonp([1],{
 
-/***/ 119:
+/***/ 111:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the InfoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var InfoPage = (function () {
+    function InfoPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    InfoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad InfoPage');
+    };
+    return InfoPage;
+}());
+InfoPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'page-info',template:/*ion-inline-start:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/info/info.html"*/'<!--\n  Generated template for the InfoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n      <button ion-button menuToggle>\n        <ion-icon name="menu">\n          UNISA Easy Mensa\n        </ion-icon>\n      </button>\n      <ion-title text-right>\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n\n<ion-content padding>\n\n    <ion-grid class="card">\n\n      <ion-item>\n          <strong>Info</strong>\n      </ion-item>\n\n      <ion-item>\n        D\'Auria Vincenzo\n      </ion-item>\n\n      <ion-item>\n          Pepe Roberto\n      </ion-item>\n\n      <ion-item>\n          Davide Battaglia\n      </ion-item>\n\n    </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/info/info.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], InfoPage);
+
+//# sourceMappingURL=info.js.map
+
+/***/ }),
+
+/***/ 120:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,35 +58,43 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 119;
+webpackEmptyAsyncContext.id = 120;
 
 /***/ }),
 
-/***/ 160:
-/***/ (function(module, exports) {
+/***/ 161:
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
+var map = {
+	"../pages/info/info.module": [
+		463,
+		0
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
 	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 160;
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 161;
+module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 203:
+/***/ 204:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WeatherProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -76,14 +129,14 @@ WeatherProvider = __decorate([
 
 /***/ }),
 
-/***/ 205:
+/***/ 206:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_weather__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_weather__ = __webpack_require__(204);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -250,6 +303,18 @@ var HomePage = (function () {
             ];
         }, 1000);
     };
+    HomePage.prototype.getDay = function () {
+        var d = new Date();
+        var weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+        return weekday[d.getDay()];
+    };
     HomePage.prototype.orario = function () {
         var ora = this.todayDate.getHours().toLocaleString();
         var minuti = this.todayDate.getMinutes().toLocaleString();
@@ -268,25 +333,24 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-home',template:/*ion-inline-start:"C:\Users\asus\Desktop\easymensa-app\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      <strong>UNISA</strong> Easy Mensa\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="common-bg">\n\n\n\n  <ion-grid class="card" padding *ngIf="weather">\n\n    <ion-item>\n\n      <h1>\n\n        <strong> Enjoy your Time! </strong>\n\n      </h1>\n\n    </ion-item>\n\n    <ion-item>\n\n      <h2> L\'app di Ateneo consente di regolare e prevedere </h2>\n\n      <h2>l’affluenza in mensa. </h2>\n\n      <h2> Fatti furbo e pianifica il tuo pranzo.</h2>\n\n    </ion-item>\n\n    <ion-item>\n\n      <h1>\n\n        <strong>{{orario()}}</strong>\n\n      </h1>\n\n    </ion-item>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="card" padding>\n\n    <ion-list>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <strong> Organizza la tua visita </strong>\n\n        </ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{getNumeroPersone()}}</ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{getStimaTempo()}}\'</ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="alert"></ion-icon> Picco di attesa fino a\n\n          <strong>1h dalle 13:00 alle 14:00</strong>\n\n        </ion-label>\n\n      </ion-item>\n\n\n\n    </ion-list>\n\n  </ion-grid>\n\n\n\n\n\n  <ion-card>\n\n    <ion-slides pager="true" [initialSlide]="getGiorno()">\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n            <canvas baseChart [datasets]="barChartData" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n            <canvas baseChart [datasets]="barChartData2" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n            <canvas baseChart [datasets]="barChartData3" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n            <canvas baseChart [datasets]="barChartData" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions"\n\n              [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n    <ion-slide>\n\n      <div>\n\n        <div style="display: block">\n\n          <canvas baseChart [datasets]="barChartData" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n        </div>\n\n      </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n    </ion-slides>\n\n  </ion-card>\n\n\n\n\n\n\n\n  <ion-grid class="card" padding>\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label>\n\n          <strong> Informazioni </strong>\n\n        </ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="pin"></ion-icon> Via della Tecnica n. 1, 84084 Fisciano SA</ion-label>\n\n      </ion-item>\n\n      <ion-item *ngIf=\'aperto\'>\n\n        <ion-label>\n\n          <ion-icon name="time"></ion-icon>\n\n          <strong>Aperto</strong> chiude alle 15:00</ion-label>\n\n      </ion-item>\n\n      <ion-item *ngIf=\'!aperto\'>\n\n        <ion-label>\n\n          <ion-icon name="time"></ion-icon>\n\n          <strong>Chiuso</strong> riapre alle ore 12.00</ion-label>\n\n      </ion-item>\n\n    </ion-list>\n\n  </ion-grid>\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\asus\Desktop\easymensa-app\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/home/home.html"*/'<ion-header>\n    <ion-navbar color="primary">\n      <button ion-button menuToggle>\n        <ion-icon name="menu">\n          UNISA Easy Mensa\n        </ion-icon>\n      </button>\n      <ion-title text-right>\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n      </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding class="common-bg">\n\n  <ion-grid class="card" padding *ngIf="weather">\n    <ion-list>\n    <ion-item>\n      <h1>\n        <strong> Enjoy your Time! </strong>\n      </h1>\n    </ion-item>\n    <ion-item>\n      <h2> L\'app di Ateneo consente di regolare e prevedere </h2>\n      <h2>l’affluenza in mensa. </h2>\n      <h2> Fatti furbo e pianifica il tuo pranzo.</h2>\n    </ion-item>\n    <ion-item>\n      <h1>\n        <strong>{{orario()}}</strong>\n      </h1>\n    </ion-item>\n  </ion-list>\n  </ion-grid>\n\n  <ion-grid class="card" padding>\n    <ion-list>\n\n      <ion-item>\n        <ion-label>\n          <strong> Organizza la tua visita </strong>\n        </ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>\n          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{getNumeroPersone()}}</ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>\n          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{getStimaTempo()}}\'</ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>\n          <ion-icon name="alert"></ion-icon> Picco di attesa fino a\n          <strong>1h dalle 13:00 alle 14:00</strong>\n        </ion-label>\n      </ion-item>\n\n    </ion-list>\n  </ion-grid>\n\n\n  <ion-card>\n    <ion-slides pager="true" [initialSlide]="getGiorno()">\n      <ion-slide>\n        <div>\n          <div style="display: block">\n            <canvas baseChart [datasets]="barChartData" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n            <canvas baseChart [datasets]="barChartData2" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n            <canvas baseChart [datasets]="barChartData3" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n            <canvas baseChart [datasets]="barChartData" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions"\n              [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n    <ion-slide>\n      <div>\n        <div style="display: block">\n          <canvas baseChart [datasets]="barChartData" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n        </div>\n      </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n    </ion-slides>\n  </ion-card>\n\n  <ion-grid class="card" padding>\n      <ion-list>\n\n      <ion-item>\n        <h1>\n            <ion-icon name = \'ribbon\'> Top Time to eat on {{getDay()}} </ion-icon>\n        </h1>\n      </ion-item>\n      <ion-item>\n            <strong> from 14:00 to 15:00 </strong>\n      </ion-item>\n      \n    </ion-list>\n    </ion-grid>\n\n  <ion-grid class="card" padding>\n    <ion-list>\n      <ion-item>\n        <ion-label>\n          <strong> Informazioni </strong>\n        </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label>\n          <ion-icon name="pin"></ion-icon> Via della Tecnica n. 1, 84084 Fisciano SA</ion-label>\n      </ion-item>\n      <ion-item *ngIf=\'aperto\'>\n        <ion-label>\n          <ion-icon name="time"></ion-icon>\n          <strong>Aperto</strong> chiude alle 15:00</ion-label>\n      </ion-item>\n      <ion-item *ngIf=\'!aperto\'>\n        <ion-label>\n          <ion-icon name="time"></ion-icon>\n          <strong>Chiuso</strong> riapre alle ore 12.00</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-grid>\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
 ], HomePage);
 
+var _a, _b, _c;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
 
-/***/ 206:
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatistichePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__ = __webpack_require__(208);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -433,11 +497,11 @@ var StatistichePage = (function () {
 }());
 StatistichePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-statistiche',template:/*ion-inline-start:"C:\Users\asus\Desktop\easymensa-app\src\pages\statistiche\statistiche.html"*/'<!--\n\n  Generated template for the StatistichePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      <strong>Statistiche</strong>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <h1>{{users}}</h1>\n\n\n\n  <ion-grid class="card">\n\n    <ion-list *ngIf = \'!ready\'>\n\n        <ion-item>\n\n            <ion-label>Personalizza il tipo di ricerca</ion-label>\n\n            <ion-select [(ngModel)]="value1">\n\n              <ion-option >Tempo d\'attesa</ion-option>\n\n              <ion-option>Numero di persone</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n        <ion-item>\n\n            <ion-label>Seleziona tipo di ricerca</ion-label>\n\n            <ion-select [(ngModel)]="value">\n\n              <ion-option>Ricerca per anno</ion-option>\n\n              <ion-option>Ricerca per mese</ion-option>\n\n              <ion-option>Ricerca per giorno</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n      <ion-item *ngIf = "value == \'Ricerca per anno\'">\n\n              <ion-label>Seleziona Anno</ion-label>\n\n              <ion-datetime displayFormat="YYYY" [(ngModel)]="myDate"></ion-datetime>\n\n      </ion-item>\n\n      <ion-item *ngIf = "value == \'Ricerca per mese\'">\n\n              <ion-label>Seleziona Mese</ion-label>\n\n              <ion-datetime displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="myDate"></ion-datetime>\n\n      </ion-item>\n\n      <ion-item *ngIf = "value == \'Ricerca per giorno\'">\n\n          <ion-label>Seleziona per giorno </ion-label>\n\n          <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="myDate" values = "YYYY"></ion-datetime>\n\n      </ion-item>\n\n    </ion-list>\n\n    <button ion-button *ngIf = \'!ready\' icon-start block no-margin color="primary" class="round" tappable (click)="doSearch(value1,value,myDate)">\n\n      <ion-icon name="search"></ion-icon> Cerca\n\n    </button>\n\n  </ion-grid>\n\n\n\n  <button ion-button *ngIf = \'ready\' tappable (click)="close()">\n\n    <ion-icon name="indietro"></ion-icon> Indietro \n\n  </button>\n\n\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label> {{value1}} </ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label> {{value}} </ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label> {{doDate(myDate,value)}} </ion-label>\n\n      </ion-item>\n\n    </ion-list>\n\n  </ion-grid>\n\n\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n\n    <ion-row>\n\n      <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"\n\n        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"\n\n        (chartClick)="chartClicked($event)"></canvas>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\asus\Desktop\easymensa-app\src\pages\statistiche\statistiche.html"*/,
+        selector: 'page-statistiche',template:/*ion-inline-start:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/statistiche/statistiche.html"*/'<!--\n  Generated template for the StatistichePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n      <button ion-button menuToggle>\n        <ion-icon name="menu">\n          UNISA Easy Mensa\n        </ion-icon>\n      </button>\n      <ion-title text-right>\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n      </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n  <h1>{{users}}</h1>\n\n  <ion-grid class="card">\n    <ion-list *ngIf = \'!ready\'>\n        <ion-item>\n            <ion-label>Personalizza il tipo di ricerca</ion-label>\n            <ion-select [(ngModel)]="value1">\n              <ion-option >Tempo d\'attesa</ion-option>\n              <ion-option>Numero di persone</ion-option>\n            </ion-select>\n          </ion-item>\n        <ion-item>\n            <ion-label>Seleziona tipo di ricerca</ion-label>\n            <ion-select [(ngModel)]="value">\n              <ion-option>Ricerca per anno</ion-option>\n              <ion-option>Ricerca per mese</ion-option>\n              <ion-option>Ricerca per giorno</ion-option>\n            </ion-select>\n          </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per anno\'">\n              <ion-label>Seleziona Anno</ion-label>\n              <ion-datetime displayFormat="YYYY" [(ngModel)]="myDate"></ion-datetime>\n      </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per mese\'">\n              <ion-label>Seleziona Mese</ion-label>\n              <ion-datetime displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="myDate"></ion-datetime>\n      </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per giorno\'">\n          <ion-label>Seleziona per giorno </ion-label>\n          <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="myDate" values = "YYYY"></ion-datetime>\n      </ion-item>\n    </ion-list>\n    <button ion-button *ngIf = \'!ready\' icon-start block no-margin color="primary" class="round" tappable (click)="doSearch(value1,value,myDate)">\n      <ion-icon name="search"></ion-icon> Cerca\n    </button>\n  </ion-grid>\n\n  <button ion-button *ngIf = \'ready\' tappable (click)="close()">\n    <ion-icon name="indietro"></ion-icon> Indietro \n  </button>\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n    <ion-list>\n      <ion-item>\n        <ion-label> {{value1}} </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label> {{value}} </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label> {{doDate(myDate,value)}} </ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-grid>\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n    <ion-row>\n      <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"\n        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"\n        (chartClick)="chartClicked($event)"></canvas>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/pages/statistiche/statistiche.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__["a" /* ServermensaProvider */]],
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__["a" /* ServermensaProvider */]])
 ], StatistichePage);
 
@@ -445,14 +509,14 @@ StatistichePage = __decorate([
 
 /***/ }),
 
-/***/ 207:
+/***/ 208:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ServermensaProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -493,14 +557,14 @@ ServermensaProvider = __decorate([
 
 /***/ }),
 
-/***/ 337:
+/***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_module__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_module__ = __webpack_require__(356);
 
 
 
@@ -511,32 +575,34 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 355:
+/***/ 356:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(399);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_keyboard__ = __webpack_require__(411);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_weather__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(412);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_statistiche_statistiche__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_charts__ = __webpack_require__(413);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_servermensa_servermensa__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(400);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_keyboard__ = __webpack_require__(412);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_weather__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(413);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_statistiche_statistiche__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_info_info__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ng2_charts__ = __webpack_require__(414);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_ng2_charts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_servermensa_servermensa__ = __webpack_require__(208);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -567,9 +633,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_10__pages_home_home__["a" /* HomePage */],
             __WEBPACK_IMPORTED_MODULE_11__pages_statistiche_statistiche__["a" /* StatistichePage */],
+            __WEBPACK_IMPORTED_MODULE_12__pages_info_info__["a" /* InfoPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_12_ng2_charts__["ChartsModule"],
+            __WEBPACK_IMPORTED_MODULE_13_ng2_charts__["ChartsModule"],
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */], {
@@ -577,7 +644,9 @@ AppModule = __decorate([
                 scrollAssist: true,
                 autoFocusAssist: false
             }, {
-                links: []
+                links: [
+                    { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] }
+                ]
             }),
             __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["a" /* IonicStorageModule */].forRoot({
                 name: '__ionic3_start_theme',
@@ -589,13 +658,14 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_10__pages_home_home__["a" /* HomePage */],
             __WEBPACK_IMPORTED_MODULE_11__pages_statistiche_statistiche__["a" /* StatistichePage */],
+            __WEBPACK_IMPORTED_MODULE_12__pages_info_info__["a" /* InfoPage */],
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__["a" /* SplashScreen */],
             __WEBPACK_IMPORTED_MODULE_7__ionic_native_keyboard__["a" /* Keyboard */],
             __WEBPACK_IMPORTED_MODULE_8__services_weather__["a" /* WeatherProvider */],
-            __WEBPACK_IMPORTED_MODULE_13__providers_servermensa_servermensa__["a" /* ServermensaProvider */]
+            __WEBPACK_IMPORTED_MODULE_14__providers_servermensa_servermensa__["a" /* ServermensaProvider */]
         ]
     })
 ], AppModule);
@@ -604,17 +674,18 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 412:
+/***/ 413:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_statistiche_statistiche__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_statistiche_statistiche__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_info_info__ = __webpack_require__(111);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -630,6 +701,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MyApp = (function () {
     function MyApp(platform, statusBar, splashScreen) {
         this.platform = platform;
@@ -639,7 +711,8 @@ var MyApp = (function () {
         this.initializeApp();
         this.appMenuItems = [
             { title: 'Home', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */], icon: 'home' },
-            { title: 'Statistiche', component: __WEBPACK_IMPORTED_MODULE_5__pages_statistiche_statistiche__["a" /* StatistichePage */], icon: 'person' }
+            { title: 'Statistiche', component: __WEBPACK_IMPORTED_MODULE_5__pages_statistiche_statistiche__["a" /* StatistichePage */], icon: 'person' },
+            { title: 'Info', component: __WEBPACK_IMPORTED_MODULE_6__pages_info_info__["a" /* InfoPage */], icon: 'information-circle' }
         ];
     }
     MyApp.prototype.initializeApp = function () {
@@ -662,13 +735,13 @@ var MyApp = (function () {
     return MyApp;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Nav */])
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\asus\Desktop\easymensa-app\src\app\app.html"*/'<ion-menu side="left" id="authenticated" [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n            <ion-col width-50 offset-25>\n\n            <h3><img src="assets/img/logoMensa.jpeg"></h3>\n\n            </ion-col>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content color="primary">\n\n\n\n    <ion-list class="user-list">\n\n      <button ion-item menuClose class="text-1x" *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon" color="primary"></ion-icon>\n\n        <span ion-text color="primary">{{menuItem.title}}</span>\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\asus\Desktop\easymensa-app\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/app/app.html"*/'<ion-menu side="left" id="authenticated" [content]="content">\n  <ion-header>\n    <ion-toolbar>\n            <ion-col width-50 offset-25>\n            <h3><img src="assets/img/logoMensa.jpeg"></h3>\n            </ion-col>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content color="primary">\n\n    <ion-list class="user-list">\n      <button ion-item menuClose class="text-1x" *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon" color="primary"></ion-icon>\n        <span ion-text color="primary">{{menuItem.title}}</span>\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/vincenzodauria/Documents/GitHub/easymensa-app/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */],
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */],
         __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
@@ -677,256 +750,256 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 443:
+/***/ 444:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 214,
-	"./af.js": 214,
-	"./ar": 215,
-	"./ar-dz": 216,
-	"./ar-dz.js": 216,
-	"./ar-kw": 217,
-	"./ar-kw.js": 217,
-	"./ar-ly": 218,
-	"./ar-ly.js": 218,
-	"./ar-ma": 219,
-	"./ar-ma.js": 219,
-	"./ar-sa": 220,
-	"./ar-sa.js": 220,
-	"./ar-tn": 221,
-	"./ar-tn.js": 221,
-	"./ar.js": 215,
-	"./az": 222,
-	"./az.js": 222,
-	"./be": 223,
-	"./be.js": 223,
-	"./bg": 224,
-	"./bg.js": 224,
-	"./bm": 225,
-	"./bm.js": 225,
-	"./bn": 226,
-	"./bn.js": 226,
-	"./bo": 227,
-	"./bo.js": 227,
-	"./br": 228,
-	"./br.js": 228,
-	"./bs": 229,
-	"./bs.js": 229,
-	"./ca": 230,
-	"./ca.js": 230,
-	"./cs": 231,
-	"./cs.js": 231,
-	"./cv": 232,
-	"./cv.js": 232,
-	"./cy": 233,
-	"./cy.js": 233,
-	"./da": 234,
-	"./da.js": 234,
-	"./de": 235,
-	"./de-at": 236,
-	"./de-at.js": 236,
-	"./de-ch": 237,
-	"./de-ch.js": 237,
-	"./de.js": 235,
-	"./dv": 238,
-	"./dv.js": 238,
-	"./el": 239,
-	"./el.js": 239,
-	"./en-au": 240,
-	"./en-au.js": 240,
-	"./en-ca": 241,
-	"./en-ca.js": 241,
-	"./en-gb": 242,
-	"./en-gb.js": 242,
-	"./en-ie": 243,
-	"./en-ie.js": 243,
-	"./en-il": 244,
-	"./en-il.js": 244,
-	"./en-nz": 245,
-	"./en-nz.js": 245,
-	"./eo": 246,
-	"./eo.js": 246,
-	"./es": 247,
-	"./es-do": 248,
-	"./es-do.js": 248,
-	"./es-us": 249,
-	"./es-us.js": 249,
-	"./es.js": 247,
-	"./et": 250,
-	"./et.js": 250,
-	"./eu": 251,
-	"./eu.js": 251,
-	"./fa": 252,
-	"./fa.js": 252,
-	"./fi": 253,
-	"./fi.js": 253,
-	"./fo": 254,
-	"./fo.js": 254,
-	"./fr": 255,
-	"./fr-ca": 256,
-	"./fr-ca.js": 256,
-	"./fr-ch": 257,
-	"./fr-ch.js": 257,
-	"./fr.js": 255,
-	"./fy": 258,
-	"./fy.js": 258,
-	"./gd": 259,
-	"./gd.js": 259,
-	"./gl": 260,
-	"./gl.js": 260,
-	"./gom-latn": 261,
-	"./gom-latn.js": 261,
-	"./gu": 262,
-	"./gu.js": 262,
-	"./he": 263,
-	"./he.js": 263,
-	"./hi": 264,
-	"./hi.js": 264,
-	"./hr": 265,
-	"./hr.js": 265,
-	"./hu": 266,
-	"./hu.js": 266,
-	"./hy-am": 267,
-	"./hy-am.js": 267,
-	"./id": 268,
-	"./id.js": 268,
-	"./is": 269,
-	"./is.js": 269,
-	"./it": 270,
-	"./it.js": 270,
-	"./ja": 271,
-	"./ja.js": 271,
-	"./jv": 272,
-	"./jv.js": 272,
-	"./ka": 273,
-	"./ka.js": 273,
-	"./kk": 274,
-	"./kk.js": 274,
-	"./km": 275,
-	"./km.js": 275,
-	"./kn": 276,
-	"./kn.js": 276,
-	"./ko": 277,
-	"./ko.js": 277,
-	"./ky": 278,
-	"./ky.js": 278,
-	"./lb": 279,
-	"./lb.js": 279,
-	"./lo": 280,
-	"./lo.js": 280,
-	"./lt": 281,
-	"./lt.js": 281,
-	"./lv": 282,
-	"./lv.js": 282,
-	"./me": 283,
-	"./me.js": 283,
-	"./mi": 284,
-	"./mi.js": 284,
-	"./mk": 285,
-	"./mk.js": 285,
-	"./ml": 286,
-	"./ml.js": 286,
-	"./mn": 287,
-	"./mn.js": 287,
-	"./mr": 288,
-	"./mr.js": 288,
-	"./ms": 289,
-	"./ms-my": 290,
-	"./ms-my.js": 290,
-	"./ms.js": 289,
-	"./mt": 291,
-	"./mt.js": 291,
-	"./my": 292,
-	"./my.js": 292,
-	"./nb": 293,
-	"./nb.js": 293,
-	"./ne": 294,
-	"./ne.js": 294,
-	"./nl": 295,
-	"./nl-be": 296,
-	"./nl-be.js": 296,
-	"./nl.js": 295,
-	"./nn": 297,
-	"./nn.js": 297,
-	"./pa-in": 298,
-	"./pa-in.js": 298,
-	"./pl": 299,
-	"./pl.js": 299,
-	"./pt": 300,
-	"./pt-br": 301,
-	"./pt-br.js": 301,
-	"./pt.js": 300,
-	"./ro": 302,
-	"./ro.js": 302,
-	"./ru": 303,
-	"./ru.js": 303,
-	"./sd": 304,
-	"./sd.js": 304,
-	"./se": 305,
-	"./se.js": 305,
-	"./si": 306,
-	"./si.js": 306,
-	"./sk": 307,
-	"./sk.js": 307,
-	"./sl": 308,
-	"./sl.js": 308,
-	"./sq": 309,
-	"./sq.js": 309,
-	"./sr": 310,
-	"./sr-cyrl": 311,
-	"./sr-cyrl.js": 311,
-	"./sr.js": 310,
-	"./ss": 312,
-	"./ss.js": 312,
-	"./sv": 313,
-	"./sv.js": 313,
-	"./sw": 314,
-	"./sw.js": 314,
-	"./ta": 315,
-	"./ta.js": 315,
-	"./te": 316,
-	"./te.js": 316,
-	"./tet": 317,
-	"./tet.js": 317,
-	"./tg": 318,
-	"./tg.js": 318,
-	"./th": 319,
-	"./th.js": 319,
-	"./tl-ph": 320,
-	"./tl-ph.js": 320,
-	"./tlh": 321,
-	"./tlh.js": 321,
-	"./tr": 322,
-	"./tr.js": 322,
-	"./tzl": 323,
-	"./tzl.js": 323,
-	"./tzm": 324,
-	"./tzm-latn": 325,
-	"./tzm-latn.js": 325,
-	"./tzm.js": 324,
-	"./ug-cn": 326,
-	"./ug-cn.js": 326,
-	"./uk": 327,
-	"./uk.js": 327,
-	"./ur": 328,
-	"./ur.js": 328,
-	"./uz": 329,
-	"./uz-latn": 330,
-	"./uz-latn.js": 330,
-	"./uz.js": 329,
-	"./vi": 331,
-	"./vi.js": 331,
-	"./x-pseudo": 332,
-	"./x-pseudo.js": 332,
-	"./yo": 333,
-	"./yo.js": 333,
-	"./zh-cn": 334,
-	"./zh-cn.js": 334,
-	"./zh-hk": 335,
-	"./zh-hk.js": 335,
-	"./zh-tw": 336,
-	"./zh-tw.js": 336
+	"./af": 215,
+	"./af.js": 215,
+	"./ar": 216,
+	"./ar-dz": 217,
+	"./ar-dz.js": 217,
+	"./ar-kw": 218,
+	"./ar-kw.js": 218,
+	"./ar-ly": 219,
+	"./ar-ly.js": 219,
+	"./ar-ma": 220,
+	"./ar-ma.js": 220,
+	"./ar-sa": 221,
+	"./ar-sa.js": 221,
+	"./ar-tn": 222,
+	"./ar-tn.js": 222,
+	"./ar.js": 216,
+	"./az": 223,
+	"./az.js": 223,
+	"./be": 224,
+	"./be.js": 224,
+	"./bg": 225,
+	"./bg.js": 225,
+	"./bm": 226,
+	"./bm.js": 226,
+	"./bn": 227,
+	"./bn.js": 227,
+	"./bo": 228,
+	"./bo.js": 228,
+	"./br": 229,
+	"./br.js": 229,
+	"./bs": 230,
+	"./bs.js": 230,
+	"./ca": 231,
+	"./ca.js": 231,
+	"./cs": 232,
+	"./cs.js": 232,
+	"./cv": 233,
+	"./cv.js": 233,
+	"./cy": 234,
+	"./cy.js": 234,
+	"./da": 235,
+	"./da.js": 235,
+	"./de": 236,
+	"./de-at": 237,
+	"./de-at.js": 237,
+	"./de-ch": 238,
+	"./de-ch.js": 238,
+	"./de.js": 236,
+	"./dv": 239,
+	"./dv.js": 239,
+	"./el": 240,
+	"./el.js": 240,
+	"./en-au": 241,
+	"./en-au.js": 241,
+	"./en-ca": 242,
+	"./en-ca.js": 242,
+	"./en-gb": 243,
+	"./en-gb.js": 243,
+	"./en-ie": 244,
+	"./en-ie.js": 244,
+	"./en-il": 245,
+	"./en-il.js": 245,
+	"./en-nz": 246,
+	"./en-nz.js": 246,
+	"./eo": 247,
+	"./eo.js": 247,
+	"./es": 248,
+	"./es-do": 249,
+	"./es-do.js": 249,
+	"./es-us": 250,
+	"./es-us.js": 250,
+	"./es.js": 248,
+	"./et": 251,
+	"./et.js": 251,
+	"./eu": 252,
+	"./eu.js": 252,
+	"./fa": 253,
+	"./fa.js": 253,
+	"./fi": 254,
+	"./fi.js": 254,
+	"./fo": 255,
+	"./fo.js": 255,
+	"./fr": 256,
+	"./fr-ca": 257,
+	"./fr-ca.js": 257,
+	"./fr-ch": 258,
+	"./fr-ch.js": 258,
+	"./fr.js": 256,
+	"./fy": 259,
+	"./fy.js": 259,
+	"./gd": 260,
+	"./gd.js": 260,
+	"./gl": 261,
+	"./gl.js": 261,
+	"./gom-latn": 262,
+	"./gom-latn.js": 262,
+	"./gu": 263,
+	"./gu.js": 263,
+	"./he": 264,
+	"./he.js": 264,
+	"./hi": 265,
+	"./hi.js": 265,
+	"./hr": 266,
+	"./hr.js": 266,
+	"./hu": 267,
+	"./hu.js": 267,
+	"./hy-am": 268,
+	"./hy-am.js": 268,
+	"./id": 269,
+	"./id.js": 269,
+	"./is": 270,
+	"./is.js": 270,
+	"./it": 271,
+	"./it.js": 271,
+	"./ja": 272,
+	"./ja.js": 272,
+	"./jv": 273,
+	"./jv.js": 273,
+	"./ka": 274,
+	"./ka.js": 274,
+	"./kk": 275,
+	"./kk.js": 275,
+	"./km": 276,
+	"./km.js": 276,
+	"./kn": 277,
+	"./kn.js": 277,
+	"./ko": 278,
+	"./ko.js": 278,
+	"./ky": 279,
+	"./ky.js": 279,
+	"./lb": 280,
+	"./lb.js": 280,
+	"./lo": 281,
+	"./lo.js": 281,
+	"./lt": 282,
+	"./lt.js": 282,
+	"./lv": 283,
+	"./lv.js": 283,
+	"./me": 284,
+	"./me.js": 284,
+	"./mi": 285,
+	"./mi.js": 285,
+	"./mk": 286,
+	"./mk.js": 286,
+	"./ml": 287,
+	"./ml.js": 287,
+	"./mn": 288,
+	"./mn.js": 288,
+	"./mr": 289,
+	"./mr.js": 289,
+	"./ms": 290,
+	"./ms-my": 291,
+	"./ms-my.js": 291,
+	"./ms.js": 290,
+	"./mt": 292,
+	"./mt.js": 292,
+	"./my": 293,
+	"./my.js": 293,
+	"./nb": 294,
+	"./nb.js": 294,
+	"./ne": 295,
+	"./ne.js": 295,
+	"./nl": 296,
+	"./nl-be": 297,
+	"./nl-be.js": 297,
+	"./nl.js": 296,
+	"./nn": 298,
+	"./nn.js": 298,
+	"./pa-in": 299,
+	"./pa-in.js": 299,
+	"./pl": 300,
+	"./pl.js": 300,
+	"./pt": 301,
+	"./pt-br": 302,
+	"./pt-br.js": 302,
+	"./pt.js": 301,
+	"./ro": 303,
+	"./ro.js": 303,
+	"./ru": 304,
+	"./ru.js": 304,
+	"./sd": 305,
+	"./sd.js": 305,
+	"./se": 306,
+	"./se.js": 306,
+	"./si": 307,
+	"./si.js": 307,
+	"./sk": 308,
+	"./sk.js": 308,
+	"./sl": 309,
+	"./sl.js": 309,
+	"./sq": 310,
+	"./sq.js": 310,
+	"./sr": 311,
+	"./sr-cyrl": 312,
+	"./sr-cyrl.js": 312,
+	"./sr.js": 311,
+	"./ss": 313,
+	"./ss.js": 313,
+	"./sv": 314,
+	"./sv.js": 314,
+	"./sw": 315,
+	"./sw.js": 315,
+	"./ta": 316,
+	"./ta.js": 316,
+	"./te": 317,
+	"./te.js": 317,
+	"./tet": 318,
+	"./tet.js": 318,
+	"./tg": 319,
+	"./tg.js": 319,
+	"./th": 320,
+	"./th.js": 320,
+	"./tl-ph": 321,
+	"./tl-ph.js": 321,
+	"./tlh": 322,
+	"./tlh.js": 322,
+	"./tr": 323,
+	"./tr.js": 323,
+	"./tzl": 324,
+	"./tzl.js": 324,
+	"./tzm": 325,
+	"./tzm-latn": 326,
+	"./tzm-latn.js": 326,
+	"./tzm.js": 325,
+	"./ug-cn": 327,
+	"./ug-cn.js": 327,
+	"./uk": 328,
+	"./uk.js": 328,
+	"./ur": 329,
+	"./ur.js": 329,
+	"./uz": 330,
+	"./uz-latn": 331,
+	"./uz-latn.js": 331,
+	"./uz.js": 330,
+	"./vi": 332,
+	"./vi.js": 332,
+	"./x-pseudo": 333,
+	"./x-pseudo.js": 333,
+	"./yo": 334,
+	"./yo.js": 334,
+	"./zh-cn": 335,
+	"./zh-cn.js": 335,
+	"./zh-hk": 336,
+	"./zh-hk.js": 336,
+	"./zh-tw": 337,
+	"./zh-tw.js": 337
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -942,9 +1015,9 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 443;
+webpackContext.id = 444;
 
 /***/ })
 
-},[337]);
+},[338]);
 //# sourceMappingURL=main.js.map

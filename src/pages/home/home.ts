@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { WeatherProvider } from '../../services/weather';
 import { AlertController } from 'ionic-angular';
+import { LaunchNavigator} from '@ionic-native/launch-navigator';
 
 
 @Component({
@@ -112,6 +113,11 @@ export class HomePage {
 
   }
 
+  public openMaps(){
+    console.log('ciao');
+    this.launchnavigator.navigate("Via della Tecnica n. 1, 84084 Fisciano SA");
+  }
+
 
   public chartHovered(e: any): void {
     console.log(e);
@@ -120,7 +126,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private weatherProvider: WeatherProvider,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private launchnavigator: LaunchNavigator
   ) {
   }
 

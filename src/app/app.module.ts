@@ -18,6 +18,7 @@ import { InfoPage } from "../pages/info/info";
 
 import { ChartsModule } from 'ng2-charts';
 import { ServermensaProvider } from '../providers/servermensa/servermensa';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 
 // import services
@@ -60,7 +61,8 @@ import { ServermensaProvider } from '../providers/servermensa/servermensa';
     SplashScreen,
     Keyboard,
     WeatherProvider,
-    ServermensaProvider
+    ServermensaProvider,
+    LaunchNavigator
   ]
 })
 

@@ -21193,6 +21193,21 @@ page-info ion-content {
   background-image: url("../assets/img/bg.jpg");
 }
 
+page-info ion-list {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+page-info ion-list ion-item,
+page-info ion-list .item:first-child,
+page-info ion-list .item:last-child {
+  border: none;
+}
+
+page-info ion-list ion-datetime {
+  padding-left: 0;
+}
+
 page-statistiche ion-content,
 .statistiche ion-content {
   background-image: url("../assets/img/bg.jpg");

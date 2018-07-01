@@ -1,9 +1,24 @@
 page-info {
 
-    ion-content {
-        background-image: url('../assets/img/bg.jpg');
-        $background-color: transparent;
-    
-      }
+  ion-content {
+    background-image: url('../assets/img/bg.jpg');
+    $background-color: transparent;
+
+  }
+
+  ion-list {
+    border-radius: 1rem;
+    overflow: hidden;
+
+    ion-item,
+    .item:first-child,
+    .item:last-child {
+      border: none;
+    }
+
+    ion-datetime {
+      padding-left: 0;
+    }
+  }
 
 }

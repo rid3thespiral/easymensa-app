@@ -34,8 +34,8 @@
     <feature name="LaunchNavigator">
         <param name="android-package" value="uk.co.workingedge.phonegap.plugin.LaunchNavigator" />
     </feature>
-    <name>Ionic 3 Start Theme</name>
-    <description>Ionic 3 Start Theme</description>
+    <name>UNISA Easy Mensa</name>
+    <description>UNISA Easy Mensa</description>
     <author email="firminoata@gmail.com" href="https://ionictheme.com">Ionic Theme</author>
     <content src="index.html" />
     <access origin="*" />

@@ -11,18 +11,31 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class ServermensaProvider {
-  apiKey = '1e4a0bdb251c64e4';
-  url: string;
+  apiKey = '2487fadc0b46b34cc4c41359ad98b76627e95206';
+  url: string = 'https://cors.io/?http://dashpro.aitech.vision/dashboard/api/devices/mensa/';
   log: Observable<any>;
 
   constructor(public http: HttpClient) {
-    console.log('Hello ServermensaProvider Provider');
-    this.url = 'https://jsonplaceholder.typicode.com/users';
+
   }
 
-  public getExample() {
-    return this.http.get('http://dashboard.aitech.vision:8080/api/devices/key=e0c54bcdf2e11d8a2b65a3a7b4212a63745f2a3c').map( res => res);
-    
+  public getConfigurationMensa(){
+    console.log(this.url+'configuration/'+this.apiKey)
+    return this.http.get(this.url+'configuration/'+this.apiKey).map(res => res)};
+
+  public getSensorsMensa(){
+    return this.http.get(this.url+'sensors/'+this.apiKey);
   }
+
+  public getDataEnter(begin,end){
+    console.log(this.url+'sensors/2/events/'+this.apiKey+'/?type=14&begin='+begin+'&end='+end)
+    return this.http.get(this.url+'sensors/2/events/'+this.apiKey+'/?type=14&begin='+begin+'&end='+end);
+  }
+
+  public getDataExit(begin,end){
+    console.log(this.url+'sensors/33/events/'+this.apiKey+'/?type=14&begin='+begin+'&end='+end)
+    return this.http.get(this.url+'sensors/33/events/'+this.apiKey+'/?type=14&begin='+begin+'&end='+end);
+  }
+
 
 }

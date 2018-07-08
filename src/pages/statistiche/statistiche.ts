@@ -47,7 +47,6 @@ export class StatistichePage {
   }
 
   ionViewDidLoad() {
-    this.hello();
   }
 
   // go to result page
@@ -55,15 +54,15 @@ export class StatistichePage {
   close() {
     this.ready = false;
   }
-
-  hello(){
+/*
+  //hello(){
     this.mensa.getExample().subscribe((data: any) => {
       console.log('data = '+ data)
       this.users = data[0].id;
     });
 
   }
-
+*/
 
   doDate(mydate, value): any {
 

@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { WeatherProvider } from '../../services/weather';
 import { AlertController } from 'ionic-angular';
 import { LaunchNavigator} from '@ionic-native/launch-navigator';
+import { ServermensaProvider } from '../../providers/servermensa/servermensa';
 
 
 @Component({
@@ -12,32 +13,130 @@ import { LaunchNavigator} from '@ionic-native/launch-navigator';
 
 export class HomePage {
 
-  // search condition
-  public aperto: boolean = true;
-  public index: number = 0;
-  public ready: boolean;
-  public todayDate: Date;
-  public weather: any;
-  public lineChartData: Array<any> = [
-    { data: [], label: 'Numero di Persone in coda' }
-  ];;
-  public lineChartLabels: Array<any> = ['12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00'];
-  public lineChartLegend: boolean = true;
-  public lineChartType: string = 'line';
-  public lineChartOptions: any = {
-    responsive: true
-  };
-  public lineChartColors: Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-  ];
+  constructor(
+    public navCtrl: NavController,
+    private weatherProvider: WeatherProvider,
+    private mensaProvider: ServermensaProvider,
+    private alertController: AlertController,
+    private launchnavigator: LaunchNavigator
+  ) {
+  }
 
+  ////////////////////////////////////////////////////////////////////////
+  // SET DI FUNZIONI CHE VENGONO ESEGUITE QUANDO SI ACCEDE ALLA PAGINA HOME
+  ionViewWillEnter() {
+    this.utcTime();
+    this.getWeather();
+    this.getNumeroPersone();
+  }
+
+  ////////////////////////////////////////////////////////////////////////
+  //FUNZIONI PER GENERARE ORARIO REAL TIME
+  public todayDate: Date;
+
+  public utcTime() {
+    setInterval(() => {
+      this.todayDate = new Date();
+    }, 1000);
+  }
+
+  public orario(): any {
+    let ora = this.todayDate.getHours().toLocaleString();
+    let minuti = this.todayDate.getMinutes().toLocaleString();
+    let secondi = this.todayDate.getSeconds().toLocaleString();
+    return ora + ":" + minuti + ":" + secondi;
+  }
+
+  ////////////////////////////////////////////////////////////////////////
+  //FUNZIONI PER GENERARE METEO
+  public weather: any;
+  public getWeather() {
+      this.weatherProvider.getWeather('IT', 'Fisciano').subscribe((weather: any) => {
+        this.weather = weather.current_observation;
+      });
+  }
+
+  ////////////////////////////////////////////////////////////////////////
+  // FUNZIONI CARD INFORMAZIONI
+  public openMaps(){
+    console.log('ciao');
+    this.launchnavigator.navigate("Via della Tecnica n. 1, 84084 Fisciano SA");
+  }
+
+  ////////////////////////////////////////////////////////////////////////
+  // FUNZIONI CARD ORGANIZZA LA TUA VISITA
+
+  public enter;
+  public exit;
+  public stimaTempoUnaPeronsa = 5;
+  public realTimeCountPerson;
+  public realTimeStimaTempo;
+
+  public getNumeroPersone(){
+    var d = new Date('7/6/2018');
+
+    let ora = d.getHours();
+    let minuti = d.getMinutes();
+    let secondi = d.getSeconds();
+    
+    let end = this.getUnixTime(d);
+    let begin;
+
+    if(minuti > 10)
+     begin = this.getUnixTime(this.setOrario(d,ora,minuti-1,secondi))
+    else
+     begin = this.getUnixTime(this.setOrario(d,ora-1,10+minuti,secondi))
+
+    begin = this.getUnixTime(this.setOrario(new Date('7/4/2018'),13,15,0));
+    end = this.getUnixTime(this.setOrario(new Date('7/4/2018'),13,16,0)); 
+
+    this.mensaProvider.getDataEnter(begin,end).subscribe((data: any) => {
+      console.log(data.events)
+      this.realTimeCountPerson  = data.events[data.events.length-1].actual_count;
+      this.realTimeStimaTempo = this.realTimeCountPerson*this.stimaTempoUnaPeronsa;
+    });;
+
+    /*
+    this.mensaProvider.getDataExit(begin,end).subscribe((data2: any) => {
+      console.log(data2.events)
+      this.realTimeCountPerson = this.realTimeCountPerson - data2.events[data2.events.length-1].actual_count;
+      this.realTimeStimaTempo = this.realTimeCountPerson*this.stimaTempoUnaPeronsa;
+    });;*/
+
+
+    
+  }
+
+  public maxAttesa(): any {
+
+  }
+
+
+  public getTopTime(): any{
+
+  }
+
+  public getGiorno(): any {
+      var d = new Date();
+      var n = d.getDay()
+      return n - 1;
+  }
+
+  public getDay(): any {
+      var d = new Date();
+      var weekday = new Array(7);
+      weekday[0] = "Sunday";
+      weekday[1] = "Monday";
+      weekday[2] = "Tuesday";
+      weekday[3] = "Wednesday";
+      weekday[4] = "Thursday";
+      weekday[5] = "Friday";
+      weekday[6] = "Saturday";
+      return weekday[d.getDay()];
+    }
+    
+  ////////////////////////////////////////////////////////////////////////
+  // FUNZIONI GRAFICO 
   public chartColors: Array<any> = [
     { // first color
       backgroundColor: 'rgba(0,0,255,0.6)',
@@ -57,7 +156,6 @@ export class HomePage {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }];
-
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -65,36 +163,29 @@ export class HomePage {
   public barChartLabels: string[] = ['12.00', '12.30', '13.00', '13.30', '14.00', '14.30', '15.00'];
   public barChartType: string = 'bar';
   public barChartLegend: boolean = true;
-
   public barChartData1: any[] = [
     { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato'},
     { data: this.generateData(1), label: 'Media di questo mese' }
   ];
-
   public barChartData2: any[] = [
     { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' },
     { data: this.generateData(2), label: 'Media di questo mese' }
   ];
-
   public barChartData3: any[] = [
     { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' },
     { data: this.generateData(3), label: 'Media di questo mese' }
   ];
-
   public barChartData4: any[] = [
     { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' },
     { data: this.generateData(4), label: 'Media di questo mese' }
   ];
-
   public barChartData5: any[] = [
     { data: [12, 15, 25, 30, 15, 20, 5], label: 'Tempo di attesa stimato' },
     { data: this.generateData(5), label: 'Media di questo mese' }
   ];
-
-
-  // events
   public sottotitolo: string;
   public titolo: string;
+
   public generateData(giorno : any):any[]{
     var d = new Date();
     var n = d.getDay()
@@ -104,8 +195,6 @@ export class HomePage {
     else{
       return [0,0,0,0,0,0];
     }
-
-
   }
   public chartClicked(e: any): void {
     if (e.active.length > 0) {
@@ -133,135 +222,50 @@ export class HomePage {
     }
 
   }
-
   public mostraAlert(titolo, orario, value): void {
     let alert = this.alertController.create({
       title: 'Ore : ' + orario + " " + titolo,
       subTitle: "Fino a " + value + " persone in attesa",
       buttons: ['OK']
     });
-
     alert.present();
-
-
   }
 
-  public openMaps(){
-    console.log('ciao');
-    this.launchnavigator.navigate("Via della Tecnica n. 1, 84084 Fisciano SA");
+  ////////////////////////////////////////////////////////////////
+  // GET DAL SERVER 
+
+  /** Prende in input un parametro Date e ne restituisce il corrrispondente valore Unix */
+  public getUnixTime(data: Date): string {
+    return (Math.ceil(data.getTime() / 1000)).toString()
   }
 
-
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
-
-  constructor(
-    public navCtrl: NavController,
-    private weatherProvider: WeatherProvider,
-    private alertController: AlertController,
-    private launchnavigator: LaunchNavigator
-  ) {
-  }
-
-  ionViewWillEnter() {
-    this.utcTime();
-    this.getWeather();
-    this.check();
-    this.updateLineChartData();
-  }
-
-  public getGiorno(): any {
-    var d = new Date();
-    var n = d.getDay()
-    return n - 1;
-  }
-
-  //grazie al metodo set interval ogni 1000ms viene aggiornata l'ora
-  public utcTime() {
-    setInterval(() => {
-      this.todayDate = new Date()
-    }, 1000);
-  }
-
-  //grazie al metodo set interval ogni 1000ms viene aggiornato il meteo
-  public getWeather() {
-    setInterval(() => {
-      this.weatherProvider.getWeather('IT', 'Fisciano').subscribe((weather: any) => {
-        this.weather = weather.current_observation;
-      });
-    }, 1000);
-  }
-
-  //grazie al metodo set interval ogni 1000ms viene aggiornata la variabile
-  //ready per visulizzare solo dopo mezzoggiorno (apertura mensa) il grafico
-  public check() {
-    setInterval(() => {
-      let ora = this.todayDate.getHours();
-
-      if (ora > 11 && ora < 15) {
-        this.aperto = true;
-      } else {
-        this.aperto = false;
-      }
-
-      if (ora >= 9) {
-        this.ready = true;
-      } else {
-        this.ready = false;
-      }
-    }, 1000);
-  }
-
-  //grazie al metodo set interval ogni 15 min vengono aggiornati i dati
-  //provenienti dalle telecamere in real time e visualizzati sul grafico
-  public updateLineChartData() {
-
-    setInterval(() => {
-
-      let ora = this.todayDate.getHours();
-      let minuti = this.todayDate.getMinutes();
-      let secondi = this.todayDate.getSeconds();
-
-      // qui si deve fare la get al server
-      this.lineChartData = [
-        { data: [minuti, 0, 0, secondi, 0, 0, ora, 0, 0, secondi, 0, 0, minuti], label: 'Numero di Persone in coda' }
-      ];
-
-
-    }, 1000);
-  }
-
-  public getDay(): any {
-    var d = new Date();
-    var weekday = new Array(7);
-    weekday[0] = "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
-
-    return weekday[d.getDay()];
+  public setOrario(data: Date, ora, minuti, secondi): Date {
+      data.setHours(ora)
+      data.setMinutes(minuti)
+      data.setSeconds(secondi)
+      return data
   }
 
 
-  public orario(): any {
-    let ora = this.todayDate.getHours().toLocaleString();
-    let minuti = this.todayDate.getMinutes().toLocaleString();
-    let secondi = this.todayDate.getSeconds().toLocaleString();
-    return ora + ":" + minuti + ":" + secondi;
-  }
+  public mensa: any;
+  public testMensa(){
 
-  public getStimaTempo(): any {
-    //Qui si deve calcolare la stima del tempo
-    return '15';
-  }
+    var result: String = '';
+8
+    let begin: any = this.getUnixTime(this.setOrario(new Date('7/4/2018'),13,0,0));
+    let end: any = this.getUnixTime(this.setOrario(new Date('7/4/2018'),13,1,0));
 
-  public getNumeroPersone(): any {
-    //Qui si deve calcolare la stima del tempo
-    return '1005';
+    console.log(begin)
+    console.log(end)
+
+    this.mensaProvider.getDataEnter(begin,end).subscribe((data: any) => {
+      console.log(data.events)
+      this.mensa  = data.events[0].actual_count;
+    });;
+
+
+    console.log(result)
+
   }
 
 }

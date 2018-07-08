@@ -8,6 +8,7 @@ import { HomePage } from "../pages/home/home";
 import { StatistichePage } from "../pages/statistiche/statistiche";
 import { InfoPage } from "../pages/info/info";
 
+
 export interface MenuItem {
     title: string;
     component: any;

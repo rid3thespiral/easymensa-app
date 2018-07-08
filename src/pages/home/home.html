@@ -1,4 +1,4 @@
-ioni<ion-header>
+<ion-header>
     <ion-navbar color="primary">
       <button ion-button menuToggle>
         <ion-icon name="menu">
@@ -13,7 +13,17 @@ ioni<ion-header>
 
 <ion-content padding class="common-bg">
 
-  <ion-grid class="card" padding *ngIf="weather">
+  <ion-grid>
+
+        <button ion-button (click)="testMensa()">
+            <ion-icon name="search"></ion-icon> Cerca
+        </button>
+        <ion-item>
+      <ion-label>{{mensa}}</ion-label>
+    </ion-item>
+  </ion-grid>
+
+  <ion-grid class="card" padding *ngIf="todayDate">
     <ion-list>
     <ion-item>
       <h1>
@@ -44,12 +54,12 @@ ioni<ion-header>
 
       <ion-item>
         <ion-label>
-          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{getNumeroPersone()}}</ion-label>
+          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{realTimeCountPerson}}</ion-label>
       </ion-item>
 
       <ion-item>
         <ion-label>
-          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{getStimaTempo()}}'</ion-label>
+          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{realTimeStimaTempo}} min</ion-label>
       </ion-item>
 
       <ion-item>
@@ -58,6 +68,12 @@ ioni<ion-header>
           <strong>1h dalle 13:00 alle 14:00</strong>
         </ion-label>
       </ion-item>
+
+      <ion-item>
+          <ion-label>
+              <ion-icon name = 'ribbon'></ion-icon><strong> Top Time on {{getDay()}} from 14:00 to 15:00 </strong>
+          </ion-label>
+        </ion-item>
 
     </ion-list>
   </ion-grid>
@@ -112,21 +128,6 @@ ioni<ion-header>
       </ion-slide>
     </ion-slides>
   </ion-card>
-
-  <ion-grid class="card" padding>
-      <ion-list>
-
-      <ion-item>
-        <h1>
-            <ion-icon name = 'ribbon'> Top Time to eat on {{getDay()}} </ion-icon>
-        </h1>
-      </ion-item>
-      <ion-item>
-            <strong> from 14:00 to 15:00 </strong>
-      </ion-item>
-      
-    </ion-list>
-    </ion-grid>
 
   <ion-grid class="card" padding>
     <ion-list>

@@ -25,10 +25,8 @@ export class HomePage {
   ////////////////////////////////////////////////////////////////////////
   // SET DI FUNZIONI CHE VENGONO ESEGUITE QUANDO SI ACCEDE ALLA PAGINA HOME
   ionViewWillEnter() {
-    this.createVettore();/** Appena si carica la view calcolo i valori delle query e riempi i grafi */
     this.utcTime();
     this.getWeather();
-    this.getNumeroPersone();
   }
 
   
@@ -108,35 +106,7 @@ export class HomePage {
   public venerdì_5;
   public venerdì_6;
 
-  public getNumeroPersone() {
-    var d = new Date('7/6/2018');
 
-    let ora = d.getHours();
-    let minuti = d.getMinutes();
-    let secondi = d.getSeconds();
-
-    let end = this.getUnixTime(d);
-    let begin;
-
-    if (minuti > 10)
-      begin = this.getUnixTime(this.setOrario(d, ora, minuti - 1, secondi))
-    else
-      begin = this.getUnixTime(this.setOrario(d, ora - 1, 10 + minuti, secondi))
-
-    begin = this.getUnixTime(this.setOrario(new Date('7/4/2018'), 13, 15, 0));
-    end = this.getUnixTime(this.setOrario(new Date('7/4/2018'), 14, 16, 0));
-
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.realTimeCountPerson = data.events[data.events.length - 1].actual_count;
-      this.realTimeStimaTempo = this.realTimeCountPerson * this.stimaTempoUnaPeronsa;
-    });;
-        /*
-    this.mensaProvider.getDataExit(begin,end).subscribe((data2: any) => {
-      console.log(data2.events)
-      this.realTimeCountPerson = this.realTimeCountPerson - data2.events[data2.events.length-1].actual_count;
-      this.realTimeStimaTempo = this.realTimeCountPerson*this.stimaTempoUnaPeronsa;
-    });;*/
-  }
 
   public maxAttesa(): any {
 
@@ -266,527 +236,6 @@ export class HomePage {
    * VARIABILI GLOBALI
    */
 
-  public getValori(i, ora_b, minuti_b, secondi_b, ora_e, minuti_e, secondi_e): any {
-    var oggi = new Date()
-    if (oggi.getDay() == 0) {
-      var giornoSettimana = 7
-    }
-    else {
-      var giornoSettimana = oggi.getDay()
-    }
-    if (i < giornoSettimana) {
-      var offset = 0
-    }
-    else {
-      var offset = 7
-    }
-    var giorno = this.getSettimana()[i]
-    var giornoScorso_b = new Date(giorno)
-    var giornoScorso_e = new Date(giorno)
-    giornoScorso_b = new Date(giornoScorso_b.setDate(giornoScorso_b.getDate() - offset))
-    giornoScorso_e = new Date(giornoScorso_e.setDate(giornoScorso_e.getDate() - offset))
-    giornoScorso_b = this.setOrario(giornoScorso_b, ora_b, minuti_b, secondi_b)
-    giornoScorso_e = this.setOrario(giornoScorso_e, ora_e, minuti_e, secondi_e)
-    var Unix_giornoScorso_b = this.getUnixTime(giornoScorso_b)
-    var Unix_giornoScorso_e = this.getUnixTime(giornoScorso_e)
-    this.mensaProvider.getDataEnter(Unix_giornoScorso_b, Unix_giornoScorso_e).subscribe((data: any) => {
-      this.valore = data.events;
-    });;
-    return this.valore
-  }
-
-  /** Funzione che fa le 30 query */
-  public createVettore() {
-    var oggi = new Date()
-    if (oggi.getDay() == 0) {
-      var giornoSettimana = 7
-    }
-    else {
-      var giornoSettimana = oggi.getDay()
-    }
-    /** SLIDE DEL LUNEDI */
-    if (1 > giornoSettimana) {
-      var offset = 7
-    }
-    else {
-      var offset = 0
-    }
-    var settimana = this.getSettimana()
-    var lunedì_corrente = new Date(settimana[0])
-    var lunedì_scorso_b = new Date(lunedì_corrente.setDate(lunedì_corrente.getDate() - offset))
-    lunedì_corrente = new Date(settimana[0])
-    var lunedì_scorso_e = new Date(lunedì_corrente.setDate(lunedì_corrente.getDate() - offset))
-    lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 12, 0, 0)
-    lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 12, 29, 59)
-    var begin = this.getUnixTime(lunedì_scorso_b)
-    var end = this.getUnixTime(lunedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.lunedì_1=5
-      }
-      else{
-        this.lunedì_1=data.events[0].actual_count;
-      }
-    });;
-    lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 12, 30, 0)
-    lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 12, 59, 59)
-    begin = this.getUnixTime(lunedì_scorso_b)
-    end = this.getUnixTime(lunedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.lunedì_2=5
-      }
-      else{
-        this.lunedì_2=data.events[0].actual_count;
-      }
-    });;
-    lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 13, 0, 0)
-    lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 13, 29, 59)
-    begin = this.getUnixTime(lunedì_scorso_b)
-    end = this.getUnixTime(lunedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.lunedì_3=5
-      }
-      else{
-        this.lunedì_3=data.events[0].actual_count;
-      }
-    });;
-    lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 13, 30, 0)
-    lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 13, 59, 59)
-    begin = this.getUnixTime(lunedì_scorso_b)
-    end = this.getUnixTime(lunedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.lunedì_4=5
-      }
-      else{
-        this.lunedì_4=data.events[0].actual_count;
-      }
-    });;
-    lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 14, 0, 0)
-    lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 14, 29, 59)
-    begin = this.getUnixTime(lunedì_scorso_b)
-    end = this.getUnixTime(lunedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.lunedì_5=5
-      }
-      else{
-        this.lunedì_5=data.events[0].actual_count;
-      }
-    });;
-    lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 14, 30, 0)
-    lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 15, 0, 0)
-    begin = this.getUnixTime(lunedì_scorso_b)
-    end = this.getUnixTime(lunedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.lunedì_6=5
-      }
-      else{
-        this.lunedì_6=data.events[0].actual_count;
-      }
-    });;
-        /** SLIDE DEL MARTEDI */
-
-    if (2 > giornoSettimana) {
-      offset = 7
-    }
-    else {
-      offset = 0
-    }
-    var settimana = this.getSettimana()
-    var martedì_corrente = new Date(settimana[1])
-    var martedì_scorso_b = new Date(martedì_corrente.setDate(martedì_corrente.getDate() - offset))
-    martedì_corrente = new Date(settimana[1])
-    var martedì_scorso_e = new Date(martedì_corrente.setDate(martedì_corrente.getDate() - offset))
-    martedì_scorso_b = this.setOrario(martedì_scorso_b, 12, 0, 0)
-    martedì_scorso_e = this.setOrario(martedì_scorso_e, 12, 29, 59)
-    var begin = this.getUnixTime(martedì_scorso_b)
-    var end = this.getUnixTime(martedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.martedì_1=5
-      }
-      else{
-        this.martedì_1=data.events[0].actual_count;
-      }
-    });;
-    martedì_scorso_b = this.setOrario(martedì_scorso_b, 12, 30, 0)
-    martedì_scorso_e = this.setOrario(martedì_scorso_e, 12, 59, 59)
-    begin = this.getUnixTime(martedì_scorso_b)
-    end = this.getUnixTime(martedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.martedì_2=5
-      }
-      else{
-        this.martedì_2=data.events[0].actual_count;
-      }
-    });;
-    martedì_scorso_b = this.setOrario(martedì_scorso_b, 13, 0, 0)
-    martedì_scorso_e = this.setOrario(martedì_scorso_e, 13, 29, 59)
-    begin = this.getUnixTime(martedì_scorso_b)
-    end = this.getUnixTime(martedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.martedì_3=5
-      }
-      else{
-        this.martedì_3=data.events[0].actual_count;
-      }
-    });;
-    martedì_scorso_b = this.setOrario(martedì_scorso_b, 13, 30, 0)
-    martedì_scorso_e = this.setOrario(martedì_scorso_e, 13, 59, 59)
-    begin = this.getUnixTime(martedì_scorso_b)
-    end = this.getUnixTime(martedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.martedì_4=5
-      }
-      else{
-        this.martedì_4=data.events[0].actual_count;
-      }
-    });;
-    martedì_scorso_b = this.setOrario(martedì_scorso_b, 14, 0, 0)
-    martedì_scorso_e = this.setOrario(martedì_scorso_e, 14, 29, 59)
-    begin = this.getUnixTime(martedì_scorso_b)
-    end = this.getUnixTime(martedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.martedì_5=5
-      }
-      else{
-        this.martedì_5=data.events[0].actual_count;
-      }
-    });;
-    martedì_scorso_b = this.setOrario(martedì_scorso_b, 14, 30, 0)
-    martedì_scorso_e = this.setOrario(martedì_scorso_e, 15, 0, 0)
-    begin = this.getUnixTime(martedì_scorso_b)
-    end = this.getUnixTime(martedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.martedì_6=5
-      }
-      else{
-        this.martedì_6=data.events[0].actual_count;
-      }
-    });;
-        /** SLIDE DEL MERCOLEDI */
-
-    if (3 > giornoSettimana) {
-      var offset = 7
-    }
-    else {
-      var offset = 0
-    }
-    var mercoledì_corrente = new Date(settimana[2])
-    var mercoledì_scorso_b = new Date(mercoledì_corrente.setDate(mercoledì_corrente.getDate() - offset))
-    mercoledì_corrente = new Date(settimana[2])
-    var mercoledì_scorso_e = new Date(mercoledì_corrente.setDate(mercoledì_corrente.getDate() - offset))
-    mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 12, 0, 0)
-    mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 12, 29, 59)
-    var begin = this.getUnixTime(mercoledì_scorso_b)
-    var end = this.getUnixTime(mercoledì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.mercoledì_1=5
-      }
-      else{
-        this.mercoledì_1=data.events[0].actual_count;
-      }
-    });;
-    mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 12, 30, 0)
-    mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 12, 59, 59)
-    var begin = this.getUnixTime(mercoledì_scorso_b)
-    var end = this.getUnixTime(mercoledì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.mercoledì_2=5
-      }
-      else{
-        this.mercoledì_2=data.events[0].actual_count;
-      }
-    });;
-    mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 13, 0, 0)
-    mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 13, 29, 59)
-    var begin = this.getUnixTime(mercoledì_scorso_b)
-    var end = this.getUnixTime(mercoledì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.mercoledì_3=5
-      }
-      else{
-        this.mercoledì_3=data.events[0].actual_count;
-      }
-    });;
-    mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 13, 30, 0)
-    mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 13, 59, 59)
-    var begin = this.getUnixTime(mercoledì_scorso_b)
-    var end = this.getUnixTime(mercoledì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.mercoledì_4=5
-      }
-      else{
-        this.mercoledì_4=data.events[0].actual_count;
-      }
-    });;
-    mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 14, 0, 0)
-    mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 14, 29, 59)
-    var begin = this.getUnixTime(mercoledì_scorso_b)
-    var end = this.getUnixTime(mercoledì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.mercoledì_5=5
-      }
-      else{
-        this.mercoledì_5=data.events[0].actual_count;
-      }
-    });;
-    mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 14, 30, 0)
-    mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 14, 59, 59)
-    var begin = this.getUnixTime(mercoledì_scorso_b)
-    var end = this.getUnixTime(mercoledì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.mercoledì_6=5
-      }
-      else{
-        this.mercoledì_6=data.events[0].actual_count;
-      }
-    });;
-        /** SLIDE DEL GIOVEDI */
-
-    if (4 > giornoSettimana) {
-      var offset = 7
-    }
-    else {
-      var offset = 0
-    }
-    var giovedì_corrente = new Date(settimana[3])
-    var giovedì_scorso_b = new Date(giovedì_corrente.setDate(giovedì_corrente.getDate() - offset))
-    giovedì_corrente = new Date(settimana[3])
-    var giovedì_scorso_e = new Date(giovedì_corrente.setDate(giovedì_corrente.getDate() - offset))
-    giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 12, 0, 0)
-    giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 12, 29, 59)
-    var begin = this.getUnixTime(giovedì_scorso_b)
-    var end = this.getUnixTime(giovedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.giovedì_1=5
-      }
-      else{
-        this.giovedì_1=data.events[0].actual_count;
-      }
-    });;
-    giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 12, 30, 0)
-    giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 12, 59, 59)
-    var begin = this.getUnixTime(giovedì_scorso_b)
-    var end = this.getUnixTime(giovedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.giovedì_2=5
-      }
-      else{
-        this.giovedì_2=data.events[0].actual_count;
-      }
-    });;
-    giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 13, 0, 0)
-    giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 13, 29, 59)
-    var begin = this.getUnixTime(giovedì_scorso_b)
-    var end = this.getUnixTime(giovedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.giovedì_3=5
-      }
-      else{
-        this.giovedì_3=data.events[0].actual_count;
-      }
-    });;
-    giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 13, 30, 0)
-    giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 13, 59, 59)
-    var begin = this.getUnixTime(giovedì_scorso_b)
-    var end = this.getUnixTime(giovedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.giovedì_4=5
-      }
-      else{
-        this.giovedì_4=data.events[0].actual_count;
-      }
-    });;
-    giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 14, 0, 0)
-    giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 14, 29, 59)
-    var begin = this.getUnixTime(giovedì_scorso_b)
-    var end = this.getUnixTime(giovedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.giovedì_5=5
-      }
-      else{
-        this.giovedì_5=data.events[0].actual_count;
-      }
-    });;
-    giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 14, 30, 0)
-    giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 14, 59, 59)
-    var begin = this.getUnixTime(giovedì_scorso_b)
-    var end = this.getUnixTime(giovedì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.giovedì_6=5
-      }
-      else{
-        this.giovedì_6=data.events[0].actual_count;
-      }
-    });;
-        /** SLIDE DEL VENERDI */
-
-    if (5 > giornoSettimana) {
-      var offset = 7
-    }
-    else {
-      var offset = 0
-    }
-    var venerdì_corrente = new Date(settimana[4])
-    var venerdì_scorso_b = new Date(venerdì_corrente.setDate(venerdì_corrente.getDate() - offset))
-    venerdì_corrente = new Date(settimana[4])
-    var venerdì_scorso_e = new Date(venerdì_corrente.setDate(venerdì_corrente.getDate() - offset))
-    venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 12, 0, 0)
-    venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 12, 29, 59)
-    var begin = this.getUnixTime(venerdì_scorso_b)
-    var end = this.getUnixTime(venerdì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.venerdì_1=5
-      }
-      else{
-        this.venerdì_1=data.events[0].actual_count;
-      }
-    });;
-    venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 12, 30, 0)
-    venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 12, 59, 59)
-    var begin = this.getUnixTime(venerdì_scorso_b)
-    var end = this.getUnixTime(venerdì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.venerdì_2=5
-      }
-      else{
-        this.venerdì_2=data.events[0].actual_count;
-      }
-    });;
-    venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 13, 0, 0)
-    venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 13, 29, 59)
-    var begin = this.getUnixTime(venerdì_scorso_b)
-    var end = this.getUnixTime(venerdì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.venerdì_3=5
-      }
-      else{
-        this.venerdì_3=data.events[0].actual_count;
-      }
-    });;
-    venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 13, 30, 0)
-    venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 13, 59, 59)
-    var begin = this.getUnixTime(venerdì_scorso_b)
-    var end = this.getUnixTime(venerdì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.venerdì_4=5
-      }
-      else{
-        this.venerdì_4=data.events[0].actual_count;
-      }
-    });;
-    venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 14, 0, 0)
-    venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 14, 29, 59)
-    var begin = this.getUnixTime(venerdì_scorso_b)
-    var end = this.getUnixTime(venerdì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.venerdì_5=5
-      }
-      else{
-        this.venerdì_5=data.events[0].actual_count;
-      }
-    });;
-    venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 14, 30, 0)
-    venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 15, 0, 0)
-    var begin = this.getUnixTime(venerdì_scorso_b)
-    var end = this.getUnixTime(venerdì_scorso_e)
-    console.log("begin : "+begin+" end : "+end)
-    this.mensaProvider.getDataEnter(begin, end).subscribe((data: any) => {
-      this.vettore = data.events;
-      if(this.vettore.length==0){
-        this.venerdì_6=5
-      }
-      else{
-        this.venerdì_6=data.events[0].actual_count;
-      }
-    });;
-  }
-
   public generateData(giorno: any): any[] {
     var d = new Date();
     var n = d.getDay()
@@ -843,6 +292,68 @@ export class HomePage {
     data.setMinutes(minuti)
     data.setSeconds(secondi)
     return data
+  }
+
+  public giornoSettimana():any{
+    var oggi = new Date()
+    var giornoSettimana;
+    if (oggi.getDay() == 0) {
+      giornoSettimana = 7
+    }
+    else {
+      giornoSettimana = oggi.getDay()
+    }
+    return giornoSettimana
+  }
+
+  public getOffset(i):any{
+    var giornoSettimana=this.giornoSettimana()
+    var offset
+    if (i > giornoSettimana) {
+      offset = 7
+    }
+    else {
+      offset = 0
+    }
+    return offset
+  }
+
+  public getQueryTimestamp(indice,offset): string[]{
+    var settimana = this.getSettimana()
+    var giorno_corrente = new Date(settimana[indice])
+    var lunedì_scorso_b = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset))
+    giorno_corrente = new Date(settimana[0])
+    var lunedì_scorso_e = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset))
+    lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 12, 0, 0)
+    lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 12, 29, 59)
+    var begin = this.getUnixTime(lunedì_scorso_b)
+    var end = this.getUnixTime(lunedì_scorso_e)
+    return [begin,end]
+  }
+
+  public lunedi:any[]=[0,0,0,0,0,0];
+  public app;
+  public rest;
+  public getLunedi(){
+    var offeset=this.getOffset(1)
+    var begin=this.getUnixTime(this.setOrario(new Date('7/9/2018'),10,0,0))
+    var end=this.getUnixTime(this.setOrario(new Date('7/9/2018'),13,0,0))
+    var i=0;
+    this.mensaProvider.getDataQueueMinute(begin, end).subscribe((data: any) => {
+      this.rest=data.timeslots
+      console.log(this.rest)
+      let l =this.rest.length
+      for (let x=0; x<l;x=x+1){
+        let v=this.rest[x]
+        let j =v.aggregated_value;
+        this.lunedi[i]=j
+        i++
+      }
+      console.log(this.lunedi)
+
+
+    });;
+
   }
 }
 

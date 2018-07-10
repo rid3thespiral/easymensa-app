@@ -30,8 +30,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ServermensaProvider = (function () {
     function ServermensaProvider(http) {
         this.http = http;
-        this.apiKey = '2487fadc0b46b34cc4c41359ad98b76627e95206';
-        this.url = 'https://cors.io/?http://dashpro.aitech.vision/dashboard/api/devices/mensa/';
+        this.apiKey = 'e5d2771d89306c93c264abd203751bd413d6cf28';
+        this.url = 'https://cors.io/?http://dashpro.aitech.vision/dashboard/api/devices/mensa10/';
     }
     ServermensaProvider.prototype.getConfigurationMensa = function () {
         console.log(this.url + 'configuration/' + this.apiKey);
@@ -41,21 +41,34 @@ var ServermensaProvider = (function () {
     ServermensaProvider.prototype.getSensorsMensa = function () {
         return this.http.get(this.url + 'sensors/' + this.apiKey);
     };
-    ServermensaProvider.prototype.getDataEnter = function (begin, end) {
-        console.log(this.url + 'sensors/2/events/' + this.apiKey + '/?type=14&begin=' + begin + '&end=' + end);
-        return this.http.get(this.url + 'sensors/2/events/' + this.apiKey + '/?type=14&begin=' + begin + '&end=' + end);
+    ServermensaProvider.prototype.getDataQueue = function (begin, end) {
+        console.log(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end);
+        return this.http.get(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end);
     };
-    ServermensaProvider.prototype.getDataExit = function (begin, end) {
-        console.log(this.url + 'sensors/33/events/' + this.apiKey + '/?type=14&begin=' + begin + '&end=' + end);
-        return this.http.get(this.url + 'sensors/33/events/' + this.apiKey + '/?type=14&begin=' + begin + '&end=' + end);
+    ServermensaProvider.prototype.getDataQueueMinute = function (begin, end) {
+        console.log(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end);
+        return this.http.get(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end + '&aggregation_mode=by_minute');
+    };
+    ServermensaProvider.prototype.getDataQueueHour = function (begin, end) {
+        console.log(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end);
+        return this.http.get(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end + '&aggregation_mode=by_hour');
+    };
+    ServermensaProvider.prototype.getDataQueueDay = function (begin, end) {
+        console.log(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end);
+        return this.http.get(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end + '&aggregation_mode=by_day');
+    };
+    ServermensaProvider.prototype.getDataQueueWeek = function (begin, end) {
+        console.log(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end);
+        return this.http.get(this.url + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end + '&aggregation_mode=by_week');
     };
     return ServermensaProvider;
 }());
 ServermensaProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
 ], ServermensaProvider);
 
+var _a;
 //# sourceMappingURL=servermensa.js.map
 
 /***/ }),
@@ -251,14 +264,13 @@ var HomePage = (function () {
         this.barChartLabels = ['12.00', '12.30', '13.00', '13.30', '14.00', '14.30'];
         this.barChartType = 'bar';
         this.barChartLegend = true;
+        this.lunedi = [0, 0, 0, 0, 0, 0];
     }
     ////////////////////////////////////////////////////////////////////////
     // SET DI FUNZIONI CHE VENGONO ESEGUITE QUANDO SI ACCEDE ALLA PAGINA HOME
     HomePage.prototype.ionViewWillEnter = function () {
-        this.createVettore();
         this.utcTime();
         this.getWeather();
-        this.getNumeroPersone();
     };
     HomePage.prototype.utcTime = function () {
         var _this = this;
@@ -283,32 +295,6 @@ var HomePage = (function () {
     HomePage.prototype.openMaps = function () {
         this.launchnavigator.navigate("Via della Tecnica n. 1, 84084 Fisciano SA");
     };
-    HomePage.prototype.getNumeroPersone = function () {
-        var _this = this;
-        var d = new Date('7/6/2018');
-        var ora = d.getHours();
-        var minuti = d.getMinutes();
-        var secondi = d.getSeconds();
-        var end = this.getUnixTime(d);
-        var begin;
-        if (minuti > 10)
-            begin = this.getUnixTime(this.setOrario(d, ora, minuti - 1, secondi));
-        else
-            begin = this.getUnixTime(this.setOrario(d, ora - 1, 10 + minuti, secondi));
-        begin = this.getUnixTime(this.setOrario(new Date('7/4/2018'), 13, 15, 0));
-        end = this.getUnixTime(this.setOrario(new Date('7/4/2018'), 14, 16, 0));
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.realTimeCountPerson = data.events[data.events.length - 1].actual_count;
-            _this.realTimeStimaTempo = _this.realTimeCountPerson * _this.stimaTempoUnaPeronsa;
-        });
-        ;
-        /*
-    this.mensaProvider.getDataExit(begin,end).subscribe((data2: any) => {
-      console.log(data2.events)
-      this.realTimeCountPerson = this.realTimeCountPerson - data2.events[data2.events.length-1].actual_count;
-      this.realTimeStimaTempo = this.realTimeCountPerson*this.stimaTempoUnaPeronsa;
-    });;*/
-    };
     HomePage.prototype.maxAttesa = function () {
     };
     HomePage.prototype.getTopTime = function () {
@@ -330,6 +316,7 @@ var HomePage = (function () {
         weekday[6] = "Saturday";
         return weekday[d.getDay()];
     };
+    /** Funzioni che uso nel file 'home.html' */
     HomePage.prototype.getValoriLunedi = function () {
         var barChartData1 = [
             { data: [this.lunedì_1, this.lunedì_2, this.lunedì_3, this.lunedì_4, this.lunedì_5, this.lunedì_6], label: 'Tempo di attesa stimato' },
@@ -383,548 +370,9 @@ var HomePage = (function () {
         var venerdì = new Date(oggi.setDate(dataIniziale + 4));
         return [lunedì, martedì, mercoledì, giovedì, venerdì];
     };
-    HomePage.prototype.getValori = function (i, ora_b, minuti_b, secondi_b, ora_e, minuti_e, secondi_e) {
-        var _this = this;
-        var oggi = new Date();
-        if (oggi.getDay() == 0) {
-            var giornoSettimana = 7;
-        }
-        else {
-            var giornoSettimana = oggi.getDay();
-        }
-        if (i < giornoSettimana) {
-            var offset = 0;
-        }
-        else {
-            var offset = 7;
-        }
-        var giorno = this.getSettimana()[i];
-        var giornoScorso_b = new Date(giorno);
-        var giornoScorso_e = new Date(giorno);
-        giornoScorso_b = new Date(giornoScorso_b.setDate(giornoScorso_b.getDate() - offset));
-        giornoScorso_e = new Date(giornoScorso_e.setDate(giornoScorso_e.getDate() - offset));
-        giornoScorso_b = this.setOrario(giornoScorso_b, ora_b, minuti_b, secondi_b);
-        giornoScorso_e = this.setOrario(giornoScorso_e, ora_e, minuti_e, secondi_e);
-        var Unix_giornoScorso_b = this.getUnixTime(giornoScorso_b);
-        var Unix_giornoScorso_e = this.getUnixTime(giornoScorso_e);
-        this.mensaProvider.getDataEnter(Unix_giornoScorso_b, Unix_giornoScorso_e).subscribe(function (data) {
-            _this.valore = data.events;
-        });
-        ;
-        return this.valore;
-    };
-    HomePage.prototype.createVettore = function () {
-        var _this = this;
-        var oggi = new Date();
-        if (oggi.getDay() == 0) {
-            var giornoSettimana = 7;
-        }
-        else {
-            var giornoSettimana = oggi.getDay();
-        }
-        if (1 > giornoSettimana) {
-            var offset = 7;
-        }
-        else {
-            var offset = 0;
-        }
-        var settimana = this.getSettimana();
-        var lunedì_corrente = new Date(settimana[0]);
-        var lunedì_scorso_b = new Date(lunedì_corrente.setDate(lunedì_corrente.getDate() - offset));
-        lunedì_corrente = new Date(settimana[0]);
-        var lunedì_scorso_e = new Date(lunedì_corrente.setDate(lunedì_corrente.getDate() - offset));
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 12, 0, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(lunedì_scorso_b);
-        var end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_1 = 5;
-            }
-            else {
-                _this.lunedì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 12, 30, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 12, 59, 59);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_2 = 5;
-            }
-            else {
-                _this.lunedì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 13, 0, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 13, 29, 59);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_3 = 5;
-            }
-            else {
-                _this.lunedì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 13, 30, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 13, 59, 59);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_4 = 5;
-            }
-            else {
-                _this.lunedì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 14, 0, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 14, 29, 59);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_5 = 5;
-            }
-            else {
-                _this.lunedì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 14, 30, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 15, 0, 0);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_6 = 5;
-            }
-            else {
-                _this.lunedì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-        if (2 > giornoSettimana) {
-            offset = 7;
-        }
-        else {
-            offset = 0;
-        }
-        var settimana = this.getSettimana();
-        var martedì_corrente = new Date(settimana[1]);
-        var martedì_scorso_b = new Date(martedì_corrente.setDate(martedì_corrente.getDate() - offset));
-        martedì_corrente = new Date(settimana[1]);
-        var martedì_scorso_e = new Date(martedì_corrente.setDate(martedì_corrente.getDate() - offset));
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 12, 0, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(martedì_scorso_b);
-        var end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_1 = 5;
-            }
-            else {
-                _this.martedì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 12, 30, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 12, 59, 59);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_2 = 5;
-            }
-            else {
-                _this.martedì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 13, 0, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 13, 29, 59);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_3 = 5;
-            }
-            else {
-                _this.martedì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 13, 30, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 13, 59, 59);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_4 = 5;
-            }
-            else {
-                _this.martedì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 14, 0, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 14, 29, 59);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_5 = 5;
-            }
-            else {
-                _this.martedì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 14, 30, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 15, 0, 0);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_6 = 5;
-            }
-            else {
-                _this.martedì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-        if (3 > giornoSettimana) {
-            var offset = 7;
-        }
-        else {
-            var offset = 0;
-        }
-        var mercoledì_corrente = new Date(settimana[2]);
-        var mercoledì_scorso_b = new Date(mercoledì_corrente.setDate(mercoledì_corrente.getDate() - offset));
-        mercoledì_corrente = new Date(settimana[2]);
-        var mercoledì_scorso_e = new Date(mercoledì_corrente.setDate(mercoledì_corrente.getDate() - offset));
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 12, 0, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_1 = 5;
-            }
-            else {
-                _this.mercoledì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 12, 30, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 12, 59, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_2 = 5;
-            }
-            else {
-                _this.mercoledì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 13, 0, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 13, 29, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_3 = 5;
-            }
-            else {
-                _this.mercoledì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 13, 30, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 13, 59, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_4 = 5;
-            }
-            else {
-                _this.mercoledì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 14, 0, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 14, 29, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_5 = 5;
-            }
-            else {
-                _this.mercoledì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 14, 30, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 14, 59, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_6 = 5;
-            }
-            else {
-                _this.mercoledì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-        if (4 > giornoSettimana) {
-            var offset = 7;
-        }
-        else {
-            var offset = 0;
-        }
-        var giovedì_corrente = new Date(settimana[3]);
-        var giovedì_scorso_b = new Date(giovedì_corrente.setDate(giovedì_corrente.getDate() - offset));
-        giovedì_corrente = new Date(settimana[3]);
-        var giovedì_scorso_e = new Date(giovedì_corrente.setDate(giovedì_corrente.getDate() - offset));
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 12, 0, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_1 = 5;
-            }
-            else {
-                _this.giovedì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 12, 30, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 12, 59, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_2 = 5;
-            }
-            else {
-                _this.giovedì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 13, 0, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 13, 29, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_3 = 5;
-            }
-            else {
-                _this.giovedì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 13, 30, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 13, 59, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_4 = 5;
-            }
-            else {
-                _this.giovedì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 14, 0, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 14, 29, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_5 = 5;
-            }
-            else {
-                _this.giovedì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 14, 30, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 14, 59, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_6 = 5;
-            }
-            else {
-                _this.giovedì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-        if (5 > giornoSettimana) {
-            var offset = 7;
-        }
-        else {
-            var offset = 0;
-        }
-        var venerdì_corrente = new Date(settimana[4]);
-        var venerdì_scorso_b = new Date(venerdì_corrente.setDate(venerdì_corrente.getDate() - offset));
-        venerdì_corrente = new Date(settimana[4]);
-        var venerdì_scorso_e = new Date(venerdì_corrente.setDate(venerdì_corrente.getDate() - offset));
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 12, 0, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_1 = 5;
-            }
-            else {
-                _this.venerdì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 12, 30, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 12, 59, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_2 = 5;
-            }
-            else {
-                _this.venerdì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 13, 0, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 13, 29, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_3 = 5;
-            }
-            else {
-                _this.venerdì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 13, 30, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 13, 59, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_4 = 5;
-            }
-            else {
-                _this.venerdì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 14, 0, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 14, 29, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_5 = 5;
-            }
-            else {
-                _this.venerdì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 14, 30, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 15, 0, 0);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_6 = 5;
-            }
-            else {
-                _this.venerdì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-    };
+    /** FUNZIONE DA IGNORARE. ERA QUALLA CHE STAVO USANDO ALL'INIZIO, MA A QUANTO PARE MEGLIO USARE 30
+     * VARIABILI GLOBALI
+     */
     HomePage.prototype.generateData = function (giorno) {
         var d = new Date();
         var n = d.getDay();
@@ -978,19 +426,70 @@ var HomePage = (function () {
         data.setSeconds(secondi);
         return data;
     };
+    HomePage.prototype.giornoSettimana = function () {
+        var oggi = new Date();
+        var giornoSettimana;
+        if (oggi.getDay() == 0) {
+            giornoSettimana = 7;
+        }
+        else {
+            giornoSettimana = oggi.getDay();
+        }
+        return giornoSettimana;
+    };
+    HomePage.prototype.getOffset = function (i) {
+        var giornoSettimana = this.giornoSettimana();
+        var offset;
+        if (i > giornoSettimana) {
+            offset = 7;
+        }
+        else {
+            offset = 0;
+        }
+        return offset;
+    };
+    HomePage.prototype.getQueryTimestamp = function (indice, offset) {
+        var settimana = this.getSettimana();
+        var giorno_corrente = new Date(settimana[indice]);
+        var lunedì_scorso_b = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset));
+        giorno_corrente = new Date(settimana[0]);
+        var lunedì_scorso_e = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset));
+        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 12, 0, 0);
+        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 12, 29, 59);
+        var begin = this.getUnixTime(lunedì_scorso_b);
+        var end = this.getUnixTime(lunedì_scorso_e);
+        return [begin, end];
+    };
+    HomePage.prototype.getLunedi = function () {
+        var _this = this;
+        var offeset = this.getOffset(1);
+        var begin = this.getUnixTime(this.setOrario(new Date('7/9/2018'), 10, 0, 0));
+        var end = this.getUnixTime(this.setOrario(new Date('7/9/2018'), 13, 0, 0));
+        var i = 0;
+        this.mensaProvider.getDataQueueMinute(begin, end).subscribe(function (data) {
+            _this.rest = data.timeslots;
+            console.log(_this.rest);
+            var l = _this.rest.length;
+            for (var x = 0; x < l; x = x + 1) {
+                var v = _this.rest[x];
+                var j = v.aggregated_value;
+                _this.lunedi[i] = j;
+                i++;
+            }
+            console.log(_this.lunedi);
+        });
+        ;
+    };
     return HomePage;
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-home',template:/*ion-inline-start:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu">\n\n          UNISA Easy Mensa\n\n        </ion-icon>\n\n      </button>\n\n      <ion-title text-right>\n\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n\n      </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="common-bg">\n\n\n\n  <ion-grid>\n\n\n\n        <button ion-button (click)="testMensa()">\n\n            <ion-icon name="search"></ion-icon> Cerca\n\n        </button>\n\n        <ion-item>\n\n      <ion-label>{{mensa}}</ion-label>\n\n    </ion-item>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="card" padding *ngIf="todayDate">\n\n    <ion-list>\n\n    <ion-item>\n\n      <h1>\n\n        <strong> Enjoy your Time! </strong>\n\n      </h1>\n\n    </ion-item>\n\n    <ion-item>\n\n      <h2> L\'app di Ateneo consente di regolare e prevedere </h2>\n\n      <h2>l’affluenza in mensa. </h2>\n\n      <h2> Fatti furbo e pianifica il tuo pranzo.</h2>\n\n    </ion-item>\n\n    <ion-item>\n\n      <h1>\n\n        <strong>{{orario()}}</strong>\n\n      </h1>\n\n    </ion-item>\n\n  </ion-list>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="card" padding>\n\n    <ion-list>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <strong> Organizza la tua visita </strong>\n\n        </ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{realTimeCountPerson}}</ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{realTimeStimaTempo}} min</ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="alert"></ion-icon> Picco di attesa fino a\n\n          <strong>1h dalle 13:00 alle 14:00</strong>\n\n        </ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n          <ion-label>\n\n              <ion-icon name = \'ribbon\'></ion-icon><strong> Top Time on {{getDay()}} from 14:00 to 15:00 </strong>\n\n          </ion-label>\n\n        </ion-item>\n\n\n\n    </ion-list>\n\n  </ion-grid>\n\n\n\n\n\n  <ion-card>\n\n    <ion-slides pager="true" [initialSlide]="getGiorno()">\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n            <p>Lunedì</p>\n\n            <canvas baseChart  [datasets]="getValoriLunedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Martedì</p>\n\n            <canvas baseChart [datasets]="getValoriMartedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Mercoledì</p>\n\n            <canvas baseChart [datasets]="getValoriMercoledi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Giovedì</p>\n\n            <canvas baseChart [datasets]="getValoriGiovedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions"\n\n              [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Venerdì</p>\n\n            <canvas baseChart [datasets]="getValoriVenerdi()" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n    </ion-slides>\n\n  </ion-card>\n\n\n\n  <ion-grid class="card" padding>\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label>\n\n          <strong> Informazioni </strong>\n\n        </ion-label>\n\n      </ion-item>\n\n      <ion-item (click)=\'openMaps()\'> \n\n        <ion-label>\n\n          <ion-icon name="pin"></ion-icon> Via della Tecnica n. 1, 84084 Fisciano SA</ion-label>\n\n      </ion-item>\n\n      <ion-item *ngIf=\'aperto\'>\n\n        <ion-label>\n\n          <ion-icon name="time"></ion-icon>\n\n          <strong>Aperto</strong> chiude alle 15:00</ion-label>\n\n      </ion-item>\n\n      <ion-item *ngIf=\'!aperto\'>\n\n        <ion-label>\n\n          <ion-icon name="time"></ion-icon>\n\n          <strong>Chiuso</strong> riapre alle ore 12.00</ion-label>\n\n      </ion-item>\n\n    </ion-list>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu">\n\n          UNISA Easy Mensa\n\n        </ion-icon>\n\n      </button>\n\n      <ion-title text-right>\n\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n\n      </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="common-bg">\n\n\n\n  <ion-grid>\n\n\n\n        <button ion-button (click)="prova()">\n\n            <ion-icon name="search"></ion-icon> Cerca\n\n        </button>\n\n        <ion-item>\n\n      <ion-label>{{lunedi}}</ion-label>\n\n    </ion-item>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="card" padding *ngIf="todayDate">\n\n    <ion-list>\n\n    <ion-item>\n\n      <h1>\n\n        <strong> Enjoy your Time! </strong>\n\n      </h1>\n\n    </ion-item>\n\n    <ion-item>\n\n      <h2> L\'app di Ateneo consente di regolare e prevedere </h2>\n\n      <h2>l’affluenza in mensa. </h2>\n\n      <h2> Fatti furbo e pianifica il tuo pranzo.</h2>\n\n    </ion-item>\n\n    <ion-item>\n\n      <h1>\n\n        <strong>{{orario()}}</strong>\n\n      </h1>\n\n    </ion-item>\n\n  </ion-list>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="card" padding>\n\n    <ion-list>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <strong> Organizza la tua visita </strong>\n\n        </ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{realTimeCountPerson}}</ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{realTimeStimaTempo}} min</ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="alert"></ion-icon> Picco di attesa fino a\n\n          <strong>1h dalle 13:00 alle 14:00</strong>\n\n        </ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n          <ion-label>\n\n              <ion-icon name = \'ribbon\'></ion-icon><strong> Top Time on {{getDay()}} from 14:00 to 15:00 </strong>\n\n          </ion-label>\n\n        </ion-item>\n\n\n\n    </ion-list>\n\n  </ion-grid>\n\n\n\n\n\n  <ion-card>\n\n    <ion-slides pager="true" [initialSlide]="getGiorno()">\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n            <p>Lunedì</p>\n\n            <canvas baseChart  [datasets]="getValoriLunedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Martedì</p>\n\n            <canvas baseChart [datasets]="getValoriMartedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Mercoledì</p>\n\n            <canvas baseChart [datasets]="getValoriMercoledi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Giovedì</p>\n\n            <canvas baseChart [datasets]="getValoriGiovedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions"\n\n              [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Venerdì</p>\n\n            <canvas baseChart [datasets]="getValoriVenerdi()" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n    </ion-slides>\n\n  </ion-card>\n\n\n\n  <ion-grid class="card" padding>\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label>\n\n          <strong> Informazioni </strong>\n\n        </ion-label>\n\n      </ion-item>\n\n      <ion-item (click)=\'openMaps()\'> \n\n        <ion-label>\n\n          <ion-icon name="pin"></ion-icon> Via della Tecnica n. 1, 84084 Fisciano SA</ion-label>\n\n      </ion-item>\n\n      <ion-item *ngIf=\'aperto\'>\n\n        <ion-label>\n\n          <ion-icon name="time"></ion-icon>\n\n          <strong>Aperto</strong> chiude alle 15:00</ion-label>\n\n      </ion-item>\n\n      <ion-item *ngIf=\'!aperto\'>\n\n        <ion-label>\n\n          <ion-icon name="time"></ion-icon>\n\n          <strong>Chiuso</strong> riapre alle ore 12.00</ion-label>\n\n      </ion-item>\n\n    </ion-list>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\home\home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_servermensa_servermensa__["a" /* ServermensaProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_launch_navigator__["a" /* LaunchNavigator */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__providers_servermensa_servermensa__["a" /* ServermensaProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_servermensa_servermensa__["a" /* ServermensaProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_launch_navigator__["a" /* LaunchNavigator */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_launch_navigator__["a" /* LaunchNavigator */]) === "function" && _e || Object])
 ], HomePage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=home.js.map
 
 /***/ }),

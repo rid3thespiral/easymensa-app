@@ -11,8 +11,8 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class ServermensaProvider {
-  apiKey = '2487fadc0b46b34cc4c41359ad98b76627e95206';
-  url: string = 'https://cors.io/?http://dashpro.aitech.vision/dashboard/api/devices/mensa/';
+  apiKey = 'e5d2771d89306c93c264abd203751bd413d6cf28';
+  url: string = 'https://cors.io/?http://dashpro.aitech.vision/dashboard/api/devices/mensa10/';
   log: Observable<any>;
 
   constructor(public http: HttpClient) {
@@ -27,15 +27,32 @@ export class ServermensaProvider {
     return this.http.get(this.url+'sensors/'+this.apiKey);
   }
 
-  public getDataEnter(begin,end){
-    console.log(this.url+'sensors/2/events/'+this.apiKey+'/?type=14&begin='+begin+'&end='+end)
-    return this.http.get(this.url+'sensors/2/events/'+this.apiKey+'/?type=14&begin='+begin+'&end='+end);
+  public getDataQueue(begin,end){
+    console.log(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end)
+    return this.http.get(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end);
   }
 
-  public getDataExit(begin,end){
-    console.log(this.url+'sensors/33/events/'+this.apiKey+'/?type=14&begin='+begin+'&end='+end)
-    return this.http.get(this.url+'sensors/33/events/'+this.apiKey+'/?type=14&begin='+begin+'&end='+end);
+  public getDataQueueMinute(begin,end){
+    console.log(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end)
+    return this.http.get(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end+'&aggregation_mode=by_minute');
   }
+
+
+  public getDataQueueHour(begin,end){
+    console.log(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end)
+    return this.http.get(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end+'&aggregation_mode=by_hour');
+  }
+
+  public getDataQueueDay(begin,end){
+    console.log(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end)
+    return this.http.get(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end+'&aggregation_mode=by_day');
+  }
+
+  public getDataQueueWeek(begin,end){
+    console.log(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end)
+    return this.http.get(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end+'&aggregation_mode=by_week');
+  }
+
 
 
 }

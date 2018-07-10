@@ -27,9 +27,11 @@ export class HomePage {
   ionViewWillEnter() {
     this.utcTime();
     this.getWeather();
+    this.inizializzaGrafi();
+    this.getGrafoMeseScorso();
   }
 
-  
+
 
   ////////////////////////////////////////////////////////////////////////
   //FUNZIONI PER GENERARE ORARIO REAL TIME
@@ -72,41 +74,12 @@ export class HomePage {
   public stimaTempoUnaPeronsa = 5;
   public realTimeCountPerson;
   public realTimeStimaTempo;
-  /** Variabili globali inevitabili a quanto pare. Corrispondono agli intervalli di tempo di ogni giorno
-   * Es. In Lunedì_1 ci andrà il valore corrispondente all'intervallo 12.00 - 12.30
-   */
-  public lunedì_1;
-  public lunedì_2;
-  public lunedì_3;
-  public lunedì_4;
-  public lunedì_5;
-  public lunedì_6;
-  public martedì_1;
-  public martedì_2;
-  public martedì_3;
-  public martedì_4;
-  public martedì_5;
-  public martedì_6;
-  public mercoledì_1;
-  public mercoledì_2;
-  public mercoledì_3;
-  public mercoledì_4;
-  public mercoledì_5;
-  public mercoledì_6;
-  public giovedì_1;
-  public giovedì_2;
-  public giovedì_3;
-  public giovedì_4;
-  public giovedì_5;
-  public giovedì_6;
-  public venerdì_1;
-  public venerdì_2;
-  public venerdì_3;
-  public venerdì_4;
-  public venerdì_5;
-  public venerdì_6;
 
-
+  public lunedi: any[] = [0, 0, 0, 0, 0, 0];
+  public martedi: any[] = [0, 0, 0, 0, 0, 0];
+  public mercoledi: any[] = [0, 0, 0, 0, 0, 0];
+  public giovedi: any[] = [0, 0, 0, 0, 0, 0];
+  public venerdi: any[] = [0, 0, 0, 0, 0, 0];
 
   public maxAttesa(): any {
 
@@ -162,45 +135,45 @@ export class HomePage {
     responsive: true
   };
 
-  public barChartLabels: string[] = ['12.00', '12.30', '13.00', '13.30', '14.00', '14.30'];
+  public barChartLabels: string[] = ['12.00 - 12.30', '12.30 - 13.00', '13.00 - 13.00', '13.30 - 14.00', '14.00 - 14.30', '14.30 - 15.00'];
   public barChartType: string = 'bar';
   public barChartLegend: boolean = true;
   /** Funzioni che uso nel file 'home.html' */
-  public getValoriLunedi(){
+  public getValoriLunedi() {
     var barChartData1: any[] = [
-      { data: [this.lunedì_1,this.lunedì_2,this.lunedì_3,this.lunedì_4,this.lunedì_5,this.lunedì_6], label: 'Tempo di attesa stimato' },
-      { data: this.generateData(1), label: 'Media di questo mese' }
+      { data: this.lunedi, label: 'Tempo di attesa stimato' },
+      { data: this.getDatiMeseScorso(1), label: 'Media di questo mese' }
     ];
     return barChartData1;
   }
 
-  public getValoriMartedi(){
+  public getValoriMartedi() {
     var barChartData2: any[] = [
-      { data: [this.martedì_1,this.martedì_2,this.martedì_3,this.martedì_4,this.martedì_5,this.martedì_6], label: 'Tempo di attesa stimato' },
-      { data: this.generateData(2), label: 'Media di questo mese' }
+      { data: this.martedi, label: 'Tempo di attesa stimato' },
+      { data: this.getDatiMeseScorso(2), label: 'Media di questo mese' }
     ];
     return barChartData2;
   }
-  public getValoriMercoledi(){
+  public getValoriMercoledi() {
     var barChartData3: any[] = [
-      { data: [this.mercoledì_1,this.mercoledì_2,this.mercoledì_3,this.mercoledì_4,this.mercoledì_5,this.mercoledì_6], label: 'Tempo di attesa stimato' },
-      { data: this.generateData(3), label: 'Media di questo mese' }
+      { data: this.mercoledi, label: 'Tempo di attesa stimato' },
+      { data: this.getDatiMeseScorso(3), label: 'Media di questo mese' }
     ];
     return barChartData3;
   }
 
-  public getValoriGiovedi(){
+  public getValoriGiovedi() {
     var barChartData4: any[] = [
-      { data: [this.giovedì_1,this.giovedì_2,this.giovedì_3,this.giovedì_4,this.giovedì_5], label: 'Tempo di attesa stimato' },
-      { data: this.generateData(4), label: 'Media di questo mese' }
+      { data: this.giovedi, label: 'Tempo di attesa stimato' },
+      { data: this.getDatiMeseScorso(4), label: 'Media di questo mese' }
     ];
     return barChartData4;
   }
 
-  public getValoriVenerdi(){
+  public getValoriVenerdi() {
     var barChartData5: any[] = [
-      { data: [this.venerdì_1,this.venerdì_2,this.venerdì_3,this.venerdì_4,this.venerdì_5], label: 'Tempo di attesa stimato' },
-      { data: this.generateData(5), label: 'Media di questo mese' }
+      { data: this.venerdi, label: 'Tempo di attesa stimato' },
+      { data: this.getDatiMeseScorso(5), label: 'Media di questo mese' }
     ];
     return barChartData5;
   }
@@ -231,21 +204,60 @@ export class HomePage {
 
   public valore;
   public cosa;
+  public valoriMeseScorso: any[] = [0, 0, 0, 0, 0, 0];
+  public m1;
+  public m2;
+  public m3;
+  public m4;
+  public m5;
+  public m6;
+  public json;
 
   /** FUNZIONE DA IGNORARE. ERA QUALLA CHE STAVO USANDO ALL'INIZIO, MA A QUANTO PARE MEGLIO USARE 30
    * VARIABILI GLOBALI
    */
 
-  public generateData(giorno: any): any[] {
+  public getDatiMeseScorso(giorno:any) : any[]{
     var d = new Date();
     var n = d.getDay()
     if (n == giorno) {
-      return [5, 5, 15, 20, 15, 25];
-    }
-    else {
-      return [0, 0, 0, 0, 0, 0];
-    }
+      var l=this.getMeseScorso().length
+      for(var i=0;i<this.valoriMeseScorso.length;i++){
+        this.valoriMeseScorso[i] = Math.ceil(this.valoriMeseScorso[i] / l)
+      }
+      return this.valoriMeseScorso
   }
+  else{
+    return[0,0,0,0,0,0]
+  }
+}
+
+  public getGrafoMeseScorso(){
+      var meseScorso=this.getMeseScorso()
+      for(var i=0;i<meseScorso.length;i++){
+        console.log(meseScorso[i])
+        var begin=this.getUnixTime(new Date(this.setOrario(meseScorso[i],10,0,0)))
+        var end=this.getUnixTime(new Date(this.setOrario(meseScorso[i],13,0,0)))
+        this.mensaProvider.getDataQueueMinute(begin,end).subscribe((data: any) => {
+          this.json = data.timeslots
+          let l = this.json.length
+          var passo = Math.floor(l / 6)
+          if (l < passo) {
+            this.valoriMeseScorso[i] =this.valoriMeseScorso[indice] + 0
+          }
+          else {
+            var indice=0
+            for (let x = 0; x < l; x = x + passo) {
+              let v = this.json[x]
+              let j = v.aggregated_value;
+              this.valoriMeseScorso[indice] = this.valoriMeseScorso[indice] + j
+              indice++
+            }
+          }
+        });;
+      }
+  }
+
   public chartClicked(e: any): void {
     if (e.active.length > 0) {
       const chart = e.active[0]._chart;
@@ -294,7 +306,7 @@ export class HomePage {
     return data
   }
 
-  public giornoSettimana():any{
+  public giornoSettimana(): any {
     var oggi = new Date()
     var giornoSettimana;
     if (oggi.getDay() == 0) {
@@ -306,10 +318,10 @@ export class HomePage {
     return giornoSettimana
   }
 
-  public getOffset(i):any{
-    var giornoSettimana=this.giornoSettimana()
+  public getOffset(i): any {
+    var giornoSettimana = this.giornoSettimana()
     var offset
-    if (i > giornoSettimana) {
+    if (i >= giornoSettimana) {
       offset = 7
     }
     else {
@@ -318,42 +330,162 @@ export class HomePage {
     return offset
   }
 
-  public getQueryTimestamp(indice,offset): string[]{
+
+  public getQueryTimestamp(indice, offset): string[] {
     var settimana = this.getSettimana()
     var giorno_corrente = new Date(settimana[indice])
-    var lunedì_scorso_b = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset))
-    giorno_corrente = new Date(settimana[0])
-    var lunedì_scorso_e = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset))
-    lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 12, 0, 0)
-    lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 12, 29, 59)
-    var begin = this.getUnixTime(lunedì_scorso_b)
-    var end = this.getUnixTime(lunedì_scorso_e)
-    return [begin,end]
+    var giorno_scorso_b = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset))
+    giorno_corrente = new Date(settimana[indice])
+    var giorno_scorso_e = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset))
+    giorno_scorso_b = this.setOrario(giorno_scorso_b, 10, 0, 0)
+    giorno_scorso_e = this.setOrario(giorno_scorso_e, 13, 0, 0)
+    var begin = this.getUnixTime(giorno_scorso_b)
+    var end = this.getUnixTime(giorno_scorso_e)
+    return [begin, end]
   }
-
-  public lunedi:any[]=[0,0,0,0,0,0];
-  public app;
   public rest;
-  public getLunedi(){
-    var offeset=this.getOffset(1)
-    var begin=this.getUnixTime(this.setOrario(new Date('7/9/2018'),10,0,0))
-    var end=this.getUnixTime(this.setOrario(new Date('7/9/2018'),13,0,0))
-    var i=0;
-    this.mensaProvider.getDataQueueMinute(begin, end).subscribe((data: any) => {
-      this.rest=data.timeslots
-      console.log(this.rest)
-      let l =this.rest.length
-      for (let x=0; x<l;x=x+1){
-        let v=this.rest[x]
-        let j =v.aggregated_value;
-        this.lunedi[i]=j
-        i++
+
+  public getLunedi() {
+    var offset = this.getOffset(1)
+    var estremi = this.getQueryTimestamp(0, offset);
+    var i = 0;
+    this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe((data: any) => {
+      this.rest = data.timeslots
+      let l = this.rest.length
+      var passo = Math.floor(l / 6)
+      console.log(passo)
+      if (l < passo) {
+        this.mercoledi = [0, 0, 0, 0, 0, 0]
       }
-      console.log(this.lunedi)
-
-
+      else {
+        for (let x = 0; x < l; x = x + passo) {
+          let v = this.rest[x]
+          let j = v.aggregated_value;
+          this.lunedi[i] = j
+          i++
+        }
+      }
     });;
-
   }
+
+  public getMartedi() {
+    var offset = this.getOffset(2)
+    var estremi = this.getQueryTimestamp(1, offset);
+    var i = 0;
+    this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe((data: any) => {
+      this.rest = data.timeslots
+      let l = this.rest.length
+      var passo = Math.floor(l / 6)
+      if (l < passo) {
+        this.martedi = [0, 0, 0, 0, 0, 0]
+      }
+      else {
+        for (let x = 0; x < l; x = x + passo) {
+          let v = this.rest[x]
+          let j = v.aggregated_value;
+          this.martedi[i] = j
+          i++
+        }
+      }
+    });;
+  }
+
+  public getMercoledi() {
+    var offset = this.getOffset(3)
+    var estremi = this.getQueryTimestamp(2, offset);
+    var i = 0;
+    this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe((data: any) => {
+      this.rest = data.timeslots
+      let l = this.rest.length
+      var passo = Math.floor(l / 6)
+      if (l < passo) {
+        this.mercoledi = [0, 0, 0, 0, 0, 0]
+      }
+      else {
+        for (let x = 0; x < l; x = x + passo) {
+          let v = this.rest[x]
+          let j = v.aggregated_value;
+          this.mercoledi[i] = j
+          i++
+        }
+      }
+    });;
+  }
+
+  public getGiovedi() {
+    var offset = this.getOffset(4)
+    var estremi = this.getQueryTimestamp(3, offset);
+    var i = 0;
+    this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe((data: any) => {
+      this.rest = data.timeslots
+      let l = this.rest.length
+      var passo = Math.floor(l / 6)
+      if (l < passo) {
+        this.giovedi = [0, 0, 0, 0, 0, 0]
+      }
+      else {
+        for (let x = 0; x < l; x = x + passo) {
+          let v = this.rest[x]
+          let j = v.aggregated_value;
+          this.giovedi[i] = j
+          i++
+        }
+      }
+    });;
+  }
+
+  public getVenerdi() {
+    var offset = this.getOffset(5)
+    var estremi = this.getQueryTimestamp(4, offset);
+    var i = 0;
+    this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe((data: any) => {
+      this.rest = data.timeslots
+      let l = this.rest.length
+      var passo = Math.floor(l / 6)
+      if (l < passo) {
+        this.venerdi = [0, 0, 0, 0, 0, 0]
+      }
+      else {
+        for (let x = 0; x < l; x = x + passo) {
+          let v = this.rest[x]
+          let j = v.aggregated_value;
+          this.venerdi[i] = j
+          i++
+        }
+      }
+    });;
+  }
+
+  public getMeseScorso(): Date[] {
+    var oggi = new Date()
+    var giorno = oggi.getDay()
+    var meseScorso = oggi.getMonth() - 1
+    if (oggi.getMonth() == 0) { /** Se siamo a Gennaio il mese scorso è Dicembre dell'anno prima */
+      var anno = oggi.getFullYear() - 1
+      var meseScorso = 11
+    }
+    else { /** Altrimenti il mese scorso è il mese corrente -2, perchè Gennaio è 0 */
+      var meseScorso = oggi.getMonth() - 1
+      var anno = oggi.getFullYear()
+    }
+    var date = new Date(anno, meseScorso, 1);/** Parto dal primo giorno del mese */
+    var days = [];
+    while (date.getMonth() === meseScorso) { /** Controllo se fa parte ancora del mese che mi interessa */
+      if (date.getDay() == giorno) { /** Se è dello stesso giorno di oggi la salvo nel vettore */
+        days.push(new Date(date));
+      }
+      date.setDate(date.getDate() + 1); /** Passo al giorno successivo */
+    }
+    return days;
+  }
+
+  public inizializzaGrafi() {
+    this.getLunedi();
+    this.getMartedi();
+    this.getMercoledi();
+    this.getGiovedi();
+    this.getVenerdi();
+  }
+
 }
 

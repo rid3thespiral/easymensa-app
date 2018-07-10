@@ -33,7 +33,7 @@ export class ServermensaProvider {
   }
 
   public getDataQueueMinute(begin,end){
-    console.log(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end)
+    console.log(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end+'&aggregation_mode=by_minute')
     return this.http.get(this.url+'sensors/129/events/'+this.apiKey+'/?type=11&begin='+begin+'&end='+end+'&aggregation_mode=by_minute');
   }
 

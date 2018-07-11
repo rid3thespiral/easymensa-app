@@ -18,7 +18,7 @@ export class HomePage {
     private weatherProvider: WeatherProvider,
     private mensaProvider: ServermensaProvider,
     private alertController: AlertController,
-    private launchnavigator: LaunchNavigator
+    private launchnavigator: LaunchNavigator,
   ) {
   }
 
@@ -29,6 +29,8 @@ export class HomePage {
     this.getWeather();
     this.inizializzaGrafi();
     this.getGrafoMeseScorso();
+    this.maxAttesa();
+    this.getTimeConsigliato();
   }
 
   ////////////////////////////////////////////////////////////////////////
@@ -36,15 +38,51 @@ export class HomePage {
   public todayDate: Date;
   public aperto = false;
 
+  public realTimeCountPerson;
+  public realTimeStimaTempo;
+
+  public tempoConsigliato;
+  public tempoMassimo;
+  public oraTempoMassimo;
+
   public utcTime() {
     setInterval(() => {
       this.todayDate = new Date();
+
       let ora = this.todayDate.getHours();
-      if (ora > 11 && ora <15)
+      if (ora > 11 && ora < 15)
         this.aperto = true;
       else
         this.aperto = false;
-    }, 1000);
+
+      //Query calcolo stima tempo e numero persone in real time
+
+      let begin = this.getUnixTimeGTM(this.todayDate, 10, 0, 0);
+      let end = this.getUnixTimeGTM(this.todayDate, 13, 0, 0)
+
+      this.mensaProvider.getDataQueueWeek(begin, end).subscribe((json: any) => {
+
+        this.query = json.timeslots;
+
+        if (json == NaN) {
+
+          this.realTimeCountPerson = 0;
+          this.realTimeStimaTempo = 0;
+
+        } else {
+          let len = this.query.length;
+          let aggregated_value = this.query[len - 1].aggregated_value;
+
+          this.realTimeCountPerson = aggregated_value;
+          this.realTimeStimaTempo = this.getTempoAttesa(Math.ceil(aggregated_value));
+        }
+      });;
+
+      //Query calcolo tempo massimo e tempo consigliato
+
+
+
+    }, 10000);
   }
 
   ////////////////////////////////////////////////////////////////////////
@@ -64,26 +102,38 @@ export class HomePage {
 
   ////////////////////////////////////////////////////////////////////////
   // FUNZIONI CARD ORGANIZZA LA TUA VISITA
+  public query: any;
 
-  public vettore;
-  public enter;
-  public exit;
-  public stimaTempoUnaPeronsa = 5;
-  public realTimeCountPerson;
-  public realTimeStimaTempo;
+  public tempoSpesoSingolaPersona: number = 5;
+  public personeAltriReparti: number = 5;
 
-  public lunedi: any[] = [0, 0, 0, 0, 0, 0];
-  public martedi: any[] = [0, 0, 0, 0, 0, 0];
-  public mercoledi: any[] = [0, 0, 0, 0, 0, 0];
-  public giovedi: any[] = [0, 0, 0, 0, 0, 0];
-  public venerdi: any[] = [0, 0, 0, 0, 0, 0];
 
-  public maxAttesa(): any {
+  public getUnixTimeGTM(data: Date, ora, minuti, secondi): string {
+    data.setHours(ora)
+    data.setMinutes(minuti)
+    data.setSeconds(secondi)
+    return (Math.ceil(data.getTime() / 1000)).toString()
+  }
+
+  public getTempoAttesa(numeroPersone): any {
+    if (numeroPersone < 6)
+      return (numeroPersone) * this.tempoSpesoSingolaPersona
+    else
+      return (numeroPersone - this.personeAltriReparti) * this.tempoSpesoSingolaPersona;
 
   }
 
 
-  public getTopTime(): any {
+  public maxAttesa(): any {
+
+    return 1;
+
+  }
+
+
+  public getTimeConsigliato(): any {
+
+    return 1;
 
   }
 
@@ -106,8 +156,18 @@ export class HomePage {
     return weekday[d.getDay()];
   }
 
+
   ////////////////////////////////////////////////////////////////////////
   // FUNZIONI GRAFICO 
+
+  public vettore;
+  public enter;
+  public exit;
+  public lunedi: any[] = [0, 0, 0, 0, 0, 0];
+  public martedi: any[] = [0, 0, 0, 0, 0, 0];
+  public mercoledi: any[] = [0, 0, 0, 0, 0, 0];
+  public giovedi: any[] = [0, 0, 0, 0, 0, 0];
+  public venerdi: any[] = [0, 0, 0, 0, 0, 0];
   public chartColors: Array<any> = [
     { // first color
       backgroundColor: 'rgba(0,0,255,0.6)',
@@ -214,45 +274,45 @@ export class HomePage {
    * VARIABILI GLOBALI
    */
 
-  public getDatiMeseScorso(giorno:any) : any[]{
+  public getDatiMeseScorso(giorno: any): any[] {
     var d = new Date();
     var n = d.getDay()
     if (n == giorno) {
-      var l=this.getMeseScorso().length
-      for(var i=0;i<this.valoriMeseScorso.length;i++){
+      var l = this.getMeseScorso().length
+      for (var i = 0; i < this.valoriMeseScorso.length; i++) {
         this.valoriMeseScorso[i] = Math.ceil(this.valoriMeseScorso[i] / l)
       }
       return this.valoriMeseScorso
+    }
+    else {
+      return [0, 0, 0, 0, 0, 0]
+    }
   }
-  else{
-    return[0,0,0,0,0,0]
-  }
-}
 
-  public getGrafoMeseScorso(){
-      var meseScorso=this.getMeseScorso()
-      for(var i=0;i<meseScorso.length;i++){
-        console.log(meseScorso[i])
-        var begin=this.getUnixTime(new Date(this.setOrario(meseScorso[i],10,0,0)))
-        var end=this.getUnixTime(new Date(this.setOrario(meseScorso[i],13,0,0)))
-        this.mensaProvider.getDataQueueMinute(begin,end).subscribe((data: any) => {
-          this.json = data.timeslots
-          let l = this.json.length
-          var passo = Math.floor(l / 6)
-          if (l < passo) {
-            this.valoriMeseScorso[i] =this.valoriMeseScorso[indice] + 0
+  public getGrafoMeseScorso() {
+    var meseScorso = this.getMeseScorso()
+    for (var i = 0; i < meseScorso.length; i++) {
+      console.log(meseScorso[i])
+      var begin = this.getUnixTime(new Date(this.setOrario(meseScorso[i], 10, 0, 0)))
+      var end = this.getUnixTime(new Date(this.setOrario(meseScorso[i], 13, 0, 0)))
+      this.mensaProvider.getDataQueueMinute(begin, end).subscribe((data: any) => {
+        this.json = data.timeslots
+        let l = this.json.length
+        var passo = Math.floor(l / 6)
+        if (l < passo) {
+          this.valoriMeseScorso[i] = this.valoriMeseScorso[indice] + 0
+        }
+        else {
+          var indice = 0
+          for (let x = 0; x < l; x = x + passo) {
+            let v = this.json[x]
+            let j = v.aggregated_value;
+            this.valoriMeseScorso[indice] = this.valoriMeseScorso[indice] + j
+            indice++
           }
-          else {
-            var indice=0
-            for (let x = 0; x < l; x = x + passo) {
-              let v = this.json[x]
-              let j = v.aggregated_value;
-              this.valoriMeseScorso[indice] = this.valoriMeseScorso[indice] + j
-              indice++
-            }
-          }
-        });;
-      }
+        }
+      });;
+    }
   }
 
   public chartClicked(e: any): void {

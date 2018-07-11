@@ -53,7 +53,7 @@
         <ion-list>
           <ion-item>
             <ion-label>
-              <ion-icon name="person"> <strong>14</strong> </ion-icon>  {{realTimeCountPerson}}</ion-label>
+              <ion-icon name="person"> <strong>{{realTimeCountPerson}}</strong> </ion-icon>  </ion-label>
           </ion-item>
           <ion-item>
             Persone in coda
@@ -64,7 +64,7 @@
         <ion-list>
           <ion-item>
             <ion-label>
-              <ion-icon name="alarm"> <strong>15 min</strong></ion-icon> {{realTimeStimaTempo}} </ion-label>
+              <ion-icon name="alarm"> <strong>{{realTimeStimaTempo}} min</strong></ion-icon> </ion-label>
           </ion-item>
           <ion-item>
             Tempo di attesa
@@ -80,10 +80,10 @@
           <ion-list>
             <ion-item>
               <ion-label class="my-font">
-                <ion-icon name="alert"> <strong>1 ora</strong> </ion-icon>  {{realTimeCountPerson}}</ion-label>
+                <ion-icon name="alert"> <strong>{{tempoMassimo}}</strong> </ion-icon> </ion-label>
             </ion-item>
             <ion-item>
-                Picco di attesa dalle 13:00 alle 14:00
+                Picco di attesa alle {{oraTempoMassimo}}
             </ion-item>
           </ion-list>
         </ion-col>
@@ -91,10 +91,10 @@
           <ion-list>
             <ion-item>
               <ion-label>
-                <ion-icon name="ribbon"> <strong>14:00 to 15:00 </strong></ion-icon> {{realTimeStimaTempo}} </ion-label>
+                <ion-icon name="ribbon"> <strong> {{tempoConsigliato}} </strong></ion-icon> </ion-label>
             </ion-item>
             <ion-item>
-                <strong> Orario consigliato {{getDay()}}</strong>
+                <strong> Orario consigliato per {{getDay()}}</strong>
             </ion-item>
           </ion-list>
         </ion-col>

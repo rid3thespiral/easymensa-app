@@ -506,16 +506,19 @@ var HomePage = (function () {
             _this.rest = data.timeslots;
             var l = _this.rest.length;
             var passo = Math.floor(l / 6);
-            console.log(passo);
             if (l < passo) {
                 _this.mercoledi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                for (var x = 0; x < l; x = x + passo) {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
                     var v = _this.rest[x];
-                    var j = v.aggregated_value;
-                    _this.lunedi[i] = j;
-                    i++;
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.lunedi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
                 }
             }
         });
@@ -534,11 +537,15 @@ var HomePage = (function () {
                 _this.martedi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                for (var x = 0; x < l; x = x + passo) {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
                     var v = _this.rest[x];
-                    var j = v.aggregated_value;
-                    _this.martedi[i] = j;
-                    i++;
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.martedi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
                 }
             }
         });
@@ -557,11 +564,15 @@ var HomePage = (function () {
                 _this.mercoledi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                for (var x = 0; x < l; x = x + passo) {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
                     var v = _this.rest[x];
-                    var j = v.aggregated_value;
-                    _this.mercoledi[i] = j;
-                    i++;
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.mercoledi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
                 }
             }
         });
@@ -580,11 +591,15 @@ var HomePage = (function () {
                 _this.giovedi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                for (var x = 0; x < l; x = x + passo) {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
                     var v = _this.rest[x];
-                    var j = v.aggregated_value;
-                    _this.giovedi[i] = j;
-                    i++;
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.giovedi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
                 }
             }
         });
@@ -603,11 +618,15 @@ var HomePage = (function () {
                 _this.venerdi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                for (var x = 0; x < l; x = x + passo) {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
                     var v = _this.rest[x];
-                    var j = v.aggregated_value;
-                    _this.venerdi[i] = j;
-                    i++;
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.venerdi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
                 }
             }
         });

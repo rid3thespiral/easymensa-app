@@ -353,16 +353,18 @@ export class HomePage {
       this.rest = data.timeslots
       let l = this.rest.length
       var passo = Math.floor(l / 6)
-      console.log(passo)
       if (l < passo) {
         this.mercoledi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.lunedi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.lunedi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;
@@ -380,11 +382,14 @@ export class HomePage {
         this.martedi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.martedi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.martedi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;
@@ -402,11 +407,14 @@ export class HomePage {
         this.mercoledi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.mercoledi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.mercoledi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;
@@ -424,11 +432,14 @@ export class HomePage {
         this.giovedi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.giovedi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.giovedi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;
@@ -446,11 +457,14 @@ export class HomePage {
         this.venerdi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.venerdi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.venerdi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;

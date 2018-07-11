@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ServermensaProvider } from '../../providers/servermensa/servermensa'
+
 
 
 /**
@@ -46,6 +47,7 @@ export class StatistichePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public mensaProvider: ServermensaProvider,
+    public loadingController:LoadingController,
   ) {
   }
 
@@ -127,6 +129,8 @@ export class StatistichePage {
         let begin = this.getUnixTime(new Date('1/1/' + mydate), 10, 0, 0)
         let end = this.getUnixTime(new Date('12/31/' + mydate), 13, 0, 0)
 
+        let loading = this.loadingController.create({content : "please wait..."});
+        loading.present();
         this.mensaProvider.getDataQueueWeek(begin, end).subscribe((json: any) => {
 
           let index = 0;
@@ -154,6 +158,7 @@ export class StatistichePage {
             this.lineChartData[0].label = 'Numero di persone'
           
           this.ready = true;
+          loading.dismiss();
 
         });;
 
@@ -168,6 +173,8 @@ export class StatistichePage {
         let begin = this.getUnixTime(new Date(mese + '/1/' + anno), 10, 0, 0)
         let end = this.getUnixTime(new Date(mese + '/31/' + anno), 13, 0, 0)
 
+        let loading = this.loadingController.create({content : "please wait..."});
+        loading.present();
         this.mensaProvider.getDataQueueDay(begin, end).subscribe((json: any) => {
 
           let index = 0;
@@ -194,6 +201,8 @@ export class StatistichePage {
             this.lineChartData[0].label = 'Numero di persone'
 
           this.ready = true;
+          loading.dismiss();
+
 
         });;
 
@@ -211,6 +220,8 @@ export class StatistichePage {
         let begin = this.getUnixTime(new Date(mese + '/'+ giorno+'/' + anno), 10, 0, 0)
         let end = this.getUnixTime(new Date(mese + '/'+ giorno+'/' + anno), 13, 0, 0)
 
+        let loading = this.loadingController.create({content : "please wait..."});
+        loading.present();
         this.mensaProvider.getDataQueueMinute(begin, end).subscribe((json: any) => {
 
           let index = 0;
@@ -246,6 +257,8 @@ export class StatistichePage {
             this.lineChartData[0].label = 'Numero di persone'
 
           this.ready = true;
+          loading.dismiss();
+
 
         });;
 

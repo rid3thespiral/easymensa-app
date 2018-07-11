@@ -76,11 +76,11 @@
   </ion-grid>
 
   <ion-grid *ngIf = 'ready' class="card" padding>
-    <ion-row>
-      <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+    <ion-item>
+      <canvas baseChart width="300" height="200" [datasets]="getValori()" [labels]="getLabel()" [options]="lineChartOptions"
         [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
         (chartClick)="chartClicked($event)"></canvas>
-    </ion-row>
+    </ion-item>
   </ion-grid>
 
 </ion-content>

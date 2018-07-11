@@ -314,22 +314,77 @@ var HomePage = (function () {
             ;
             //Query calcolo tempo massimo e tempo consigliato    
             _this.valoriMeseScorsoRT = _this.valoriMeseScorso;
+            console.log(_this.valoriMeseScorsoRT);
             var l = _this.getMeseScorso().length;
             var indiceMin = 0;
-            var min = _this.valoriMeseScorsoRT[0];
+            var min = _this.valoriMeseScorsoRT[0] / l;
             for (var i = 1; i < _this.valoriMeseScorsoRT.length; i++) {
-                if ((Math.floor(_this.valoriMeseScorsoRT[i] / _this.len)) < min) {
-                    min = Math.floor(_this.valoriMeseScorsoRT[i] / _this.len);
+                if ((Math.floor(_this.valoriMeseScorsoRT[i] / l)) < min) {
+                    min = Math.floor(_this.valoriMeseScorsoRT[i] / l);
                     indiceMin = i;
                 }
             }
             switch (indiceMin) {
-                case 0: _this.tempoConsigliato = "12.00-12.30";
-                case 1: _this.tempoConsigliato = "12.30-13.00";
-                case 2: _this.tempoConsigliato = "13.00-13.30";
-                case 3: _this.tempoConsigliato = "14.00-14.30";
-                case 4: _this.tempoConsigliato = "14.30-15.00";
+                case 0: {
+                    _this.tempoConsigliato = "12.00-12.30";
+                    break;
+                }
+                case 1: {
+                    _this.tempoConsigliato = "12.30-13.00";
+                    break;
+                }
+                case 2: {
+                    _this.tempoConsigliato = "13.00-13.30";
+                    break;
+                }
+                case 3: {
+                    _this.tempoConsigliato = "13.30-14.00";
+                    break;
+                }
+                case 4: {
+                    _this.tempoConsigliato = "14.00-14.30";
+                    break;
+                }
+                case 5: {
+                    _this.tempoConsigliato = "14.30-15.00";
+                    break;
+                }
             }
+            var indiceMax = 0;
+            var max = _this.valoriMeseScorsoRT[0] / l;
+            for (var i = 1; i < _this.valoriMeseScorsoRT.length; i++) {
+                if ((Math.floor(_this.valoriMeseScorsoRT[i] / l)) > max) {
+                    max = Math.floor(_this.valoriMeseScorsoRT[i] / l);
+                    indiceMax = i;
+                }
+            }
+            switch (indiceMax) {
+                case 0: {
+                    _this.oraTempoMassimo = "12.00-12.30";
+                    break;
+                }
+                case 1: {
+                    _this.oraTempoMassimo = "12.30-13.00";
+                    break;
+                }
+                case 2: {
+                    _this.oraTempoMassimo = "13.00-13.30";
+                    break;
+                }
+                case 3: {
+                    _this.oraTempoMassimo = "13.30-14.00";
+                    break;
+                }
+                case 4: {
+                    _this.oraTempoMassimo = "14.00-14.30";
+                    break;
+                }
+                case 5: {
+                    _this.oraTempoMassimo = "14.30-15.00";
+                    break;
+                }
+            }
+            _this.tempoMassimo = max * 1.5;
         }, 10000);
     };
     HomePage.prototype.getWeather = function () {
@@ -453,7 +508,6 @@ var HomePage = (function () {
     HomePage.prototype.getGrafoMeseScorso = function () {
         var _this = this;
         var meseScorso = this.getMeseScorso();
-        this.len = meseScorso.length;
         for (var i = 0; i < meseScorso.length; i++) {
             console.log(meseScorso[i]);
             var begin = this.getUnixTime(new Date(this.setOrario(meseScorso[i], 10, 0, 0)));

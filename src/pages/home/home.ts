@@ -44,7 +44,6 @@ export class HomePage {
   public tempoConsigliato;
   public tempoMassimo;
   public oraTempoMassimo;
-  public len;
 
   public valoriMeseScorsoRT: any[] = [0, 0, 0, 0, 0, 0];
 
@@ -74,22 +73,55 @@ export class HomePage {
       });;
       //Query calcolo tempo massimo e tempo consigliato    
       this.valoriMeseScorsoRT=this.valoriMeseScorso
+      console.log(this.valoriMeseScorsoRT)
       var l = this.getMeseScorso().length
       var indiceMin=0
-      var min=this.valoriMeseScorsoRT[0]
+      var min=this.valoriMeseScorsoRT[0]/l
       for (var i = 1; i < this.valoriMeseScorsoRT.length; i++) {
-        if((Math.floor(this.valoriMeseScorsoRT[i]/this.len))<min){
-          min=Math.floor(this.valoriMeseScorsoRT[i]/this.len)
+        if((Math.floor(this.valoriMeseScorsoRT[i]/l))<min){
+          min=Math.floor(this.valoriMeseScorsoRT[i]/l)
           indiceMin=i
         }
       }
       switch(indiceMin){
-        case 0 : this.tempoConsigliato="12.00-12.30"
-        case 1 : this.tempoConsigliato="12.30-13.00"
-        case 2 : this.tempoConsigliato="13.00-13.30"
-        case 3 : this.tempoConsigliato="14.00-14.30"
-        case 4 : this.tempoConsigliato="14.30-15.00"
+        case 0 : {this.tempoConsigliato="12.00-12.30"
+        break;}
+        case 1 : {this.tempoConsigliato="12.30-13.00"
+        break;}
+        case 2 : {this.tempoConsigliato="13.00-13.30"
+        break;}
+        case 3 : {this.tempoConsigliato="13.30-14.00"
+        break;}
+        case 4 : {this.tempoConsigliato="14.00-14.30"
+        break;}
+        case 5 : {this.tempoConsigliato="14.30-15.00"
+        break;}
+
       }
+      var indiceMax=0
+      var max=this.valoriMeseScorsoRT[0]/l
+      for (var i = 1; i < this.valoriMeseScorsoRT.length; i++) {
+        if((Math.floor(this.valoriMeseScorsoRT[i]/l))>max){
+          max=Math.floor(this.valoriMeseScorsoRT[i]/l)
+          indiceMax=i
+        }
+      }
+      switch(indiceMax){
+        case 0 : {this.oraTempoMassimo="12.00-12.30"
+        break;}
+        case 1 : {this.oraTempoMassimo="12.30-13.00"
+        break;}
+        case 2 : {this.oraTempoMassimo="13.00-13.30"
+        break;}
+        case 3 : {this.oraTempoMassimo="13.30-14.00"
+        break;}
+        case 4 : {this.oraTempoMassimo="14.00-14.30"
+        break;}
+        case 5 : {this.oraTempoMassimo="14.30-15.00"
+        break;}
+
+      }
+      this.tempoMassimo=max*1.5
     }, 10000);
   }
 
@@ -293,7 +325,6 @@ export class HomePage {
 
   public getGrafoMeseScorso() {
     var meseScorso = this.getMeseScorso()
-    this.len=meseScorso.length
     for (var i = 0; i < meseScorso.length; i++) {
       console.log(meseScorso[i])
       var begin = this.getUnixTime(new Date(this.setOrario(meseScorso[i], 10, 0, 0)))

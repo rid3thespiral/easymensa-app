@@ -31,23 +31,20 @@ export class HomePage {
     this.getGrafoMeseScorso();
   }
 
-
-
   ////////////////////////////////////////////////////////////////////////
   //FUNZIONI PER GENERARE ORARIO REAL TIME
   public todayDate: Date;
+  public aperto = false;
 
   public utcTime() {
     setInterval(() => {
       this.todayDate = new Date();
+      let ora = this.todayDate.getHours();
+      if (ora > 11 && ora <15)
+        this.aperto = true;
+      else
+        this.aperto = false;
     }, 1000);
-  }
-
-  public orario(): any {
-    let ora = this.todayDate.getHours().toLocaleString();
-    let minuti = this.todayDate.getMinutes().toLocaleString();
-    let secondi = this.todayDate.getSeconds().toLocaleString();
-    return ora + ":" + minuti + ":" + secondi;
   }
 
   ////////////////////////////////////////////////////////////////////////

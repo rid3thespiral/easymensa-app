@@ -25,10 +25,10 @@ export class HomePage {
   ////////////////////////////////////////////////////////////////////////
   // SET DI FUNZIONI CHE VENGONO ESEGUITE QUANDO SI ACCEDE ALLA PAGINA HOME
   ionViewWillEnter() {
-    this.utcTime();
     this.getWeather();
     this.inizializzaGrafi();
     this.getGrafoMeseScorso();
+    this.utcTime();
     this.maxAttesa();
     this.getTimeConsigliato();
   }
@@ -44,44 +44,52 @@ export class HomePage {
   public tempoConsigliato;
   public tempoMassimo;
   public oraTempoMassimo;
+  public len;
+
+  public valoriMeseScorsoRT: any[] = [0, 0, 0, 0, 0, 0];
 
   public utcTime() {
     setInterval(() => {
       this.todayDate = new Date();
-
       let ora = this.todayDate.getHours();
       if (ora > 11 && ora < 15)
         this.aperto = true;
       else
         this.aperto = false;
-
       //Query calcolo stima tempo e numero persone in real time
-
       let begin = this.getUnixTimeGTM(this.todayDate, 10, 0, 0);
       let end = this.getUnixTimeGTM(this.todayDate, 13, 0, 0)
 
       this.mensaProvider.getDataQueueWeek(begin, end).subscribe((json: any) => {
-
         this.query = json.timeslots;
-
         if (json == NaN) {
-
           this.realTimeCountPerson = 0;
           this.realTimeStimaTempo = 0;
-
         } else {
           let len = this.query.length;
           let aggregated_value = this.query[len - 1].aggregated_value;
-
           this.realTimeCountPerson = aggregated_value;
           this.realTimeStimaTempo = this.getTempoAttesa(Math.ceil(aggregated_value));
         }
       });;
-
-      //Query calcolo tempo massimo e tempo consigliato
-
-
-
+      //Query calcolo tempo massimo e tempo consigliato    
+      this.valoriMeseScorsoRT=this.valoriMeseScorso
+      var l = this.getMeseScorso().length
+      var indiceMin=0
+      var min=this.valoriMeseScorsoRT[0]
+      for (var i = 1; i < this.valoriMeseScorsoRT.length; i++) {
+        if((Math.floor(this.valoriMeseScorsoRT[i]/this.len))<min){
+          min=Math.floor(this.valoriMeseScorsoRT[i]/this.len)
+          indiceMin=i
+        }
+      }
+      switch(indiceMin){
+        case 0 : this.tempoConsigliato="12.00-12.30"
+        case 1 : this.tempoConsigliato="12.30-13.00"
+        case 2 : this.tempoConsigliato="13.00-13.30"
+        case 3 : this.tempoConsigliato="14.00-14.30"
+        case 4 : this.tempoConsigliato="14.30-15.00"
+      }
     }, 10000);
   }
 
@@ -259,15 +267,8 @@ export class HomePage {
     return [lunedì, martedì, mercoledì, giovedì, venerdì]
   }
 
-  public valore;
-  public cosa;
+
   public valoriMeseScorso: any[] = [0, 0, 0, 0, 0, 0];
-  public m1;
-  public m2;
-  public m3;
-  public m4;
-  public m5;
-  public m6;
   public json;
 
   /** FUNZIONE DA IGNORARE. ERA QUALLA CHE STAVO USANDO ALL'INIZIO, MA A QUANTO PARE MEGLIO USARE 30
@@ -277,20 +278,22 @@ export class HomePage {
   public getDatiMeseScorso(giorno: any): any[] {
     var d = new Date();
     var n = d.getDay()
+    var data = [0,0,0,0,0,0]
     if (n == giorno) {
       var l = this.getMeseScorso().length
       for (var i = 0; i < this.valoriMeseScorso.length; i++) {
-        this.valoriMeseScorso[i] = Math.ceil(this.valoriMeseScorso[i] / l)
+        data[i] = Math.ceil(this.valoriMeseScorso[i] / l)
       }
-      return this.valoriMeseScorso
+      return data
     }
     else {
-      return [0, 0, 0, 0, 0, 0]
+      return [0,0,0,0,0,0]
     }
   }
 
   public getGrafoMeseScorso() {
     var meseScorso = this.getMeseScorso()
+    this.len=meseScorso.length
     for (var i = 0; i < meseScorso.length; i++) {
       console.log(meseScorso[i])
       var begin = this.getUnixTime(new Date(this.setOrario(meseScorso[i], 10, 0, 0)))
@@ -415,11 +418,14 @@ export class HomePage {
         this.mercoledi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.lunedi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.lunedi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;
@@ -437,11 +443,14 @@ export class HomePage {
         this.martedi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.martedi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.martedi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;
@@ -459,11 +468,14 @@ export class HomePage {
         this.mercoledi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.mercoledi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.mercoledi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;
@@ -481,11 +493,14 @@ export class HomePage {
         this.giovedi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.giovedi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.giovedi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;
@@ -503,11 +518,14 @@ export class HomePage {
         this.venerdi = [0, 0, 0, 0, 0, 0]
       }
       else {
-        for (let x = 0; x < l; x = x + passo) {
+        let j=0
+        for (let x = 0; x < l; x++) {
           let v = this.rest[x]
-          let j = v.aggregated_value;
-          this.venerdi[i] = j
-          i++
+          j = j +v.aggregated_value;
+          if(x==((i+1)*passo)-1){
+          this.venerdi[i] = Math.ceil(j/(passo))
+          j=0
+          i++}
         }
       }
     });;

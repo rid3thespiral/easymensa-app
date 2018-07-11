@@ -70,10 +70,9 @@ var ServermensaProvider = (function () {
 }());
 ServermensaProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
 ], ServermensaProvider);
 
-var _a;
 //# sourceMappingURL=servermensa.js.map
 
 /***/ }),
@@ -114,7 +113,7 @@ var InfoPage = (function () {
 }());
 InfoPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-info',template:/*ion-inline-start:"/Users/vincenzodauria/Desktop/easymensa-app/src/pages/info/info.html"*/'<!--\n  Generated template for the InfoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu">\n                UNISA Easy Mensa\n            </ion-icon>\n        </button>\n        <ion-title text-right>\n            <img alt="logo" width = 50 height= 50 src="assets/img/logo.png">\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="common-bg">\n\n    <ion-grid class="card" padding>\n        <ion-list>\n\n            <ion-item>\n                <ion-label>\n                    <strong> Info </strong>\n                </ion-label>\n            </ion-item>\n\n            <ion-item>\n                <ion-label>\n                    <h2 ion-text color="darker"><strong ion-text color="darker">UNISA Easy Mensa</strong> è un progetto <br>sviluppato interamente nell\'ambito <br>del corso di <strong>\n                        Mobile Programming</strong>\n                        <br>nell’Anno Accademico 2017-2018.\n                    </h2>\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n    </ion-grid>\n\n    <ion-grid class="card" padding>\n        <ion-list>\n\n            <ion-item>\n                <ion-label>\n                    <strong>  Sviluppatori </strong>\n                </ion-label>\n            </ion-item>\n\n            <ion-item>\n                <ion-label>\n                    Davide Battaglia\n                </ion-label>\n            </ion-item>\n            <ion-item>\n                <ion-label>\n                    Vincenzo D\'Auria\n                </ion-label>\n\n            </ion-item>\n            <ion-item>\n                <ion-label>\n                    Roberto Pepe\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n    </ion-grid>\n\n    <ion-grid class="card" padding>\n        <ion-list>\n\n            <ion-item>\n                <ion-label>\n                    <strong> Docente</strong>\n                </ion-label>\n            </ion-item>\n\n            <ion-item>\n                <ion-label>\n                    Prof. Alessia Saggese\n                </ion-label>\n            </ion-item>\n        </ion-list>\n    </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/vincenzodauria/Desktop/easymensa-app/src/pages/info/info.html"*/,
+        selector: 'page-info',template:/*ion-inline-start:"/Users/utente/Desktop/easymensa-app/src/pages/info/info.html"*/'<!--\n  Generated template for the InfoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu">\n                UNISA Easy Mensa\n            </ion-icon>\n        </button>\n        <ion-title text-right>\n            <img alt="logo" width = 50 height= 50 src="assets/img/logo.png">\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="common-bg">\n\n    <ion-grid class="card" padding>\n        <ion-list>\n\n            <ion-item>\n                <ion-label>\n                    <strong> Info </strong>\n                </ion-label>\n            </ion-item>\n\n            <ion-item>\n                <ion-label>\n                    <h2 ion-text color="darker"><strong ion-text color="darker">UNISA Easy Mensa</strong> è un progetto <br>sviluppato interamente nell\'ambito <br>del corso di <strong>\n                        Mobile Programming</strong>\n                        <br>nell’Anno Accademico 2017-2018.\n                    </h2>\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n    </ion-grid>\n\n    <ion-grid class="card" padding>\n        <ion-list>\n\n            <ion-item>\n                <ion-label>\n                    <strong>  Sviluppatori </strong>\n                </ion-label>\n            </ion-item>\n\n            <ion-item>\n                <ion-label>\n                    Davide Battaglia\n                </ion-label>\n            </ion-item>\n            <ion-item>\n                <ion-label>\n                    Vincenzo D\'Auria\n                </ion-label>\n\n            </ion-item>\n            <ion-item>\n                <ion-label>\n                    Roberto Pepe\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n    </ion-grid>\n\n    <ion-grid class="card" padding>\n        <ion-list>\n\n            <ion-item>\n                <ion-label>\n                    <strong> Docente</strong>\n                </ion-label>\n            </ion-item>\n\n            <ion-item>\n                <ion-label>\n                    Prof. Alessia Saggese\n                </ion-label>\n            </ion-item>\n        </ion-list>\n    </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/utente/Desktop/easymensa-app/src/pages/info/info.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
 ], InfoPage);
@@ -319,13 +318,13 @@ var HomePage = (function () {
     HomePage.prototype.getDay = function () {
         var d = new Date();
         var weekday = new Array(7);
-        weekday[0] = "Sunday";
-        weekday[1] = "Monday";
-        weekday[2] = "Tuesday";
-        weekday[3] = "Wednesday";
-        weekday[4] = "Thursday";
-        weekday[5] = "Friday";
-        weekday[6] = "Saturday";
+        weekday[0] = "Domenica";
+        weekday[1] = "Lunedì";
+        weekday[2] = "Martedì";
+        weekday[3] = "Mercoledì";
+        weekday[4] = "Giovedì";
+        weekday[5] = "Venerdì";
+        weekday[6] = "Sabato";
         return weekday[d.getDay()];
     };
     /** Funzioni che uso nel file 'home.html' */
@@ -512,19 +511,16 @@ var HomePage = (function () {
             _this.rest = data.timeslots;
             var l = _this.rest.length;
             var passo = Math.floor(l / 6);
+            console.log(passo);
             if (l < passo) {
                 _this.mercoledi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                var j = 0;
-                for (var x = 0; x < l; x++) {
+                for (var x = 0; x < l; x = x + passo) {
                     var v = _this.rest[x];
-                    j = j + v.aggregated_value;
-                    if (x == ((i + 1) * passo) - 1) {
-                        _this.lunedi[i] = Math.ceil(j / (passo));
-                        j = 0;
-                        i++;
-                    }
+                    var j = v.aggregated_value;
+                    _this.lunedi[i] = j;
+                    i++;
                 }
             }
         });
@@ -543,15 +539,11 @@ var HomePage = (function () {
                 _this.martedi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                var j = 0;
-                for (var x = 0; x < l; x++) {
+                for (var x = 0; x < l; x = x + passo) {
                     var v = _this.rest[x];
-                    j = j + v.aggregated_value;
-                    if (x == ((i + 1) * passo) - 1) {
-                        _this.martedi[i] = Math.ceil(j / (passo));
-                        j = 0;
-                        i++;
-                    }
+                    var j = v.aggregated_value;
+                    _this.martedi[i] = j;
+                    i++;
                 }
             }
         });
@@ -570,15 +562,11 @@ var HomePage = (function () {
                 _this.mercoledi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                var j = 0;
-                for (var x = 0; x < l; x++) {
+                for (var x = 0; x < l; x = x + passo) {
                     var v = _this.rest[x];
-                    j = j + v.aggregated_value;
-                    if (x == ((i + 1) * passo) - 1) {
-                        _this.mercoledi[i] = Math.ceil(j / (passo));
-                        j = 0;
-                        i++;
-                    }
+                    var j = v.aggregated_value;
+                    _this.mercoledi[i] = j;
+                    i++;
                 }
             }
         });
@@ -597,15 +585,11 @@ var HomePage = (function () {
                 _this.giovedi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                var j = 0;
-                for (var x = 0; x < l; x++) {
+                for (var x = 0; x < l; x = x + passo) {
                     var v = _this.rest[x];
-                    j = j + v.aggregated_value;
-                    if (x == ((i + 1) * passo) - 1) {
-                        _this.giovedi[i] = Math.ceil(j / (passo));
-                        j = 0;
-                        i++;
-                    }
+                    var j = v.aggregated_value;
+                    _this.giovedi[i] = j;
+                    i++;
                 }
             }
         });
@@ -624,15 +608,11 @@ var HomePage = (function () {
                 _this.venerdi = [0, 0, 0, 0, 0, 0];
             }
             else {
-                var j = 0;
-                for (var x = 0; x < l; x++) {
+                for (var x = 0; x < l; x = x + passo) {
                     var v = _this.rest[x];
-                    j = j + v.aggregated_value;
-                    if (x == ((i + 1) * passo) - 1) {
-                        _this.venerdi[i] = Math.ceil(j / (passo));
-                        j = 0;
-                        i++;
-                    }
+                    var j = v.aggregated_value;
+                    _this.venerdi[i] = j;
+                    i++;
                 }
             }
         });
@@ -671,7 +651,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/vincenzodauria/Desktop/easymensa-app/src/pages/home/home.html"*/'<ion-header>\n    <ion-navbar color="primary">\n      <button ion-button menuToggle>\n        <ion-icon name="menu">\n          UNISA Easy Mensa\n        </ion-icon>\n      </button>\n      <ion-title text-right>\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n      </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding class="common-bg">\n\n  <ion-grid>\n\n        <button ion-button (click)="prova()">\n            <ion-icon name="search"></ion-icon> Cerca\n        </button>\n        <ion-item>\n      <ion-label>{{lunedi}}</ion-label>\n    </ion-item>\n  </ion-grid>\n\n  <ion-grid class="card" padding *ngIf="todayDate">\n    <ion-list>\n    <ion-item>\n      <h1>\n        <strong> Enjoy your Time! </strong>\n      </h1>\n    </ion-item>\n    <ion-item>\n      <h2> L\'app di Ateneo consente di regolare e prevedere </h2>\n      <h2>l’affluenza in mensa. </h2>\n      <h2> Fatti furbo e pianifica il tuo pranzo.</h2>\n    </ion-item>\n    <ion-item>\n      <h1>\n        <strong>{{orario()}}</strong>\n      </h1>\n    </ion-item>\n  </ion-list>\n  </ion-grid>\n\n  <ion-grid class="card" padding>\n    <ion-list>\n\n      <ion-item>\n        <ion-label>\n          <strong> Organizza la tua visita </strong>\n        </ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>\n          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{realTimeCountPerson}}</ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>\n          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{realTimeStimaTempo}} min</ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>\n          <ion-icon name="alert"></ion-icon> Picco di attesa fino a\n          <strong>1h dalle 13:00 alle 14:00</strong>\n        </ion-label>\n      </ion-item>\n\n      <ion-item>\n          <ion-label>\n              <ion-icon name = \'ribbon\'></ion-icon><strong> Top Time on {{getDay()}} from 14:00 to 15:00 </strong>\n          </ion-label>\n        </ion-item>\n\n    </ion-list>\n  </ion-grid>\n\n\n  <ion-card>\n    <ion-slides pager="true" [initialSlide]="getGiorno()">\n      <ion-slide>\n        <div>\n          <div style="display: block">\n            <p>Lunedì</p>\n            <canvas baseChart  [datasets]="getValoriLunedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Martedì</p>\n            <canvas baseChart [datasets]="getValoriMartedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Mercoledì</p>\n            <canvas baseChart [datasets]="getValoriMercoledi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Giovedì</p>\n            <canvas baseChart [datasets]="getValoriGiovedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions"\n              [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Venerdì</p>\n            <canvas baseChart [datasets]="getValoriVenerdi()" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n    </ion-slides>\n  </ion-card>\n\n  <ion-grid class="card" padding>\n    <ion-list>\n      <ion-item>\n        <ion-label>\n          <strong> Informazioni </strong>\n        </ion-label>\n      </ion-item>\n      <ion-item (click)=\'openMaps()\'> \n        <ion-label>\n          <ion-icon name="pin"></ion-icon> Via della Tecnica n. 1, 84084 Fisciano SA</ion-label>\n      </ion-item>\n      <ion-item *ngIf=\'aperto\'>\n        <ion-label>\n          <ion-icon name="time"></ion-icon>\n          <strong>Aperto</strong> chiude alle 15:00</ion-label>\n      </ion-item>\n      <ion-item *ngIf=\'!aperto\'>\n        <ion-label>\n          <ion-icon name="time"></ion-icon>\n          <strong>Chiuso</strong> riapre alle ore 12.00</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/vincenzodauria/Desktop/easymensa-app/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/utente/Desktop/easymensa-app/src/pages/home/home.html"*/'<ion-header>\n    <ion-navbar color="primary">\n      <button ion-button menuToggle>\n        <ion-icon name="menu">\n          UNISA Easy Mensa\n        </ion-icon>\n      </button>\n      <ion-title text-right>\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n      </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding class="common-bg">\n\n  <ion-grid>\n\n        <button ion-button (click)="getLunedi()">\n            <ion-icon name="search"></ion-icon> Cerca\n        </button>\n        <ion-item>\n      <ion-label> {{lunedi}}</ion-label>\n    </ion-item>\n  </ion-grid>\n\n  <ion-grid class="card" padding *ngIf="todayDate">\n    <ion-row>\n        <ion-col col-12>\n    <ion-list>\n        <ion-item *ngIf=\'aperto\'>\n            <ion-label>\n              <ion-icon name="pizza"></ion-icon>\n              <strong>Aperto</strong></ion-label>\n          </ion-item>\n          <ion-item *ngIf=\'!aperto\'>\n              <ion-icon name="close-circle"> <strong>Chiuso</strong> </ion-icon> \n          </ion-item>\n      \n      \n\n\n      <ion-item *ngIf=\'aperto\'>\n          <ion-label>\n            <ion-icon name="time"></ion-icon>\n            Chiude alle 15:00</ion-label>\n        </ion-item>\n        <ion-item *ngIf=\'!aperto\'>\n          <ion-label>\n            Riapre alle ore 12.00</ion-label>\n        </ion-item>\n  </ion-list>\n  </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  \n\n\n\n  <ion-grid class="card" padding>\n    <ion-row>\n      <ion-col col-6>\n        <ion-list>\n          <ion-item>\n            <ion-label>\n              <ion-icon name="person"> <strong>14</strong> </ion-icon>  {{realTimeCountPerson}}</ion-label>\n          </ion-item>\n          <ion-item>\n            Persone in coda\n          </ion-item>\n        </ion-list>\n      </ion-col>\n      <ion-col col-6>\n        <ion-list>\n          <ion-item>\n            <ion-label>\n              <ion-icon name="alarm"> <strong>15 min</strong></ion-icon> {{realTimeStimaTempo}} </ion-label>\n          </ion-item>\n          <ion-item>\n            Tempo di attesa\n          </ion-item>\n        </ion-list>\n      </ion-col>\n  </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" padding>\n      <ion-row>\n        <ion-col col-12>\n          <ion-list>\n            <ion-item>\n              <ion-label class="my-font">\n                <ion-icon name="alert"> <strong>1 ora</strong> </ion-icon>  {{realTimeCountPerson}}</ion-label>\n            </ion-item>\n            <ion-item>\n                Picco di attesa dalle 13:00 alle 14:00\n            </ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-12>\n          <ion-list>\n            <ion-item>\n              <ion-label>\n                <ion-icon name="ribbon"> <strong>14:00 to 15:00 </strong></ion-icon> {{realTimeStimaTempo}} </ion-label>\n            </ion-item>\n            <ion-item>\n                <strong> Orario consigliato {{getDay()}}</strong>\n            </ion-item>\n          </ion-list>\n        </ion-col>\n    </ion-row>\n    </ion-grid>\n\n  <ion-card>\n    <ion-slides pager="true" [initialSlide]="getGiorno()">\n      <ion-slide>\n        <div>\n          <div style="display: block">\n            <p>Lunedì</p>\n            <canvas baseChart  [datasets]="getValoriLunedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Martedì</p>\n            <canvas baseChart [datasets]="getValoriMartedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Mercoledì</p>\n            <canvas baseChart [datasets]="getValoriMercoledi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Giovedì</p>\n            <canvas baseChart [datasets]="getValoriGiovedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions"\n              [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Venerdì</p>\n            <canvas baseChart [datasets]="getValoriVenerdi()" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n    </ion-slides>\n  </ion-card>\n\n  <ion-grid class="card" padding>\n    <ion-list>\n      <ion-item>\n        <ion-label>\n          <strong> Informazioni </strong>\n        </ion-label>\n      </ion-item>\n      <ion-item (click)=\'openMaps()\'> \n        <ion-label>\n          <ion-icon name="pin"></ion-icon> Via della Tecnica n°1, Fisciano (SA)</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/utente/Desktop/easymensa-app/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */],
@@ -907,13 +887,15 @@ var StatistichePage = (function () {
 }());
 StatistichePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-statistiche',template:/*ion-inline-start:"/Users/vincenzodauria/Desktop/easymensa-app/src/pages/statistiche/statistiche.html"*/'<!--\n  Generated template for the StatistichePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n      <button ion-button menuToggle>\n        <ion-icon name="menu">\n          UNISA Easy Mensa\n        </ion-icon>\n      </button>\n      <ion-title text-right>\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n      </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n  <h1>{{users}}</h1>\n\n  <ion-grid class="card">\n    <ion-list *ngIf = \'!ready\'>\n        <ion-item>\n            <ion-label>Personalizza il tipo di ricerca</ion-label>\n            <ion-select [(ngModel)]="value1">\n              <ion-option >Tempo d\'attesa</ion-option>\n              <ion-option>Numero di persone</ion-option>\n            </ion-select>\n          </ion-item>\n        <ion-item>\n            <ion-label>Seleziona tipo di ricerca</ion-label>\n            <ion-select [(ngModel)]="value">\n              <ion-option>Ricerca per anno</ion-option>\n              <ion-option>Ricerca per mese</ion-option>\n              <ion-option>Ricerca per giorno</ion-option>\n            </ion-select>\n          </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per anno\'">\n              <ion-label>Seleziona Anno</ion-label>\n              <ion-datetime displayFormat="YYYY" [(ngModel)]="myDate"></ion-datetime>\n      </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per mese\'">\n              <ion-label>Seleziona Mese</ion-label>\n              <ion-datetime displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="myDate"></ion-datetime>\n      </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per giorno\'">\n          <ion-label>Seleziona per giorno </ion-label>\n          <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="myDate" values = "YYYY"></ion-datetime>\n      </ion-item>\n    </ion-list>\n    <button ion-button *ngIf = \'!ready\' icon-start block no-margin color="primary" class="round" tappable (click)="doSearch(value1,value,myDate)">\n      <ion-icon name="search"></ion-icon> Cerca\n    </button>\n  </ion-grid>\n\n  <button ion-button *ngIf = \'ready\' tappable (click)="close()">\n    <ion-icon name="indietro"></ion-icon> Indietro \n  </button>\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n    <ion-list>\n      <ion-item>\n        <ion-label> {{value1}} </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label> {{value}} </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label> {{doDate(myDate,value)}} </ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-grid>\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n    <ion-item>\n      <canvas baseChart width="300" height="200" [datasets]="getValori()" [labels]="getLabel()" [options]="lineChartOptions"\n        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"\n        (chartClick)="chartClicked($event)"></canvas>\n    </ion-item>\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"/Users/vincenzodauria/Desktop/easymensa-app/src/pages/statistiche/statistiche.html"*/,
+        selector: 'page-statistiche',template:/*ion-inline-start:"/Users/utente/Desktop/easymensa-app/src/pages/statistiche/statistiche.html"*/'<!--\n  Generated template for the StatistichePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n      <button ion-button menuToggle>\n        <ion-icon name="menu">\n          UNISA Easy Mensa\n        </ion-icon>\n      </button>\n      <ion-title text-right>\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n      </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n  <h1>{{users}}</h1>\n\n  <ion-grid class="card">\n    <ion-list *ngIf = \'!ready\'>\n        <ion-item>\n            <ion-label>Personalizza il tipo di ricerca</ion-label>\n            <ion-select [(ngModel)]="value1">\n              <ion-option >Tempo d\'attesa</ion-option>\n              <ion-option>Numero di persone</ion-option>\n            </ion-select>\n          </ion-item>\n        <ion-item>\n            <ion-label>Seleziona tipo di ricerca</ion-label>\n            <ion-select [(ngModel)]="value">\n              <ion-option>Ricerca per anno</ion-option>\n              <ion-option>Ricerca per mese</ion-option>\n              <ion-option>Ricerca per giorno</ion-option>\n            </ion-select>\n          </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per anno\'">\n              <ion-label>Seleziona Anno</ion-label>\n              <ion-datetime displayFormat="YYYY" [(ngModel)]="myDate"></ion-datetime>\n      </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per mese\'">\n              <ion-label>Seleziona Mese</ion-label>\n              <ion-datetime displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="myDate"></ion-datetime>\n      </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per giorno\'">\n          <ion-label>Seleziona per giorno </ion-label>\n          <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="myDate" values = "YYYY"></ion-datetime>\n      </ion-item>\n    </ion-list>\n    <button ion-button *ngIf = \'!ready\' icon-start block no-margin color="primary" class="round" tappable (click)="doSearch(value1,value,myDate)">\n      <ion-icon name="search"></ion-icon> Cerca\n    </button>\n  </ion-grid>\n\n  <button ion-button *ngIf = \'ready\' tappable (click)="close()">\n    <ion-icon name="indietro"></ion-icon> Indietro \n  </button>\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n    <ion-list>\n      <ion-item>\n        <ion-label> {{value1}} </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label> {{value}} </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label> {{doDate(myDate,value)}} </ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-grid>\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n    <ion-item>\n      <canvas baseChart width="300" height="200" [datasets]="getValori()" [labels]="getLabel()" [options]="lineChartOptions"\n        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"\n        (chartClick)="chartClicked($event)"></canvas>\n    </ion-item>\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"/Users/utente/Desktop/easymensa-app/src/pages/statistiche/statistiche.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__["a" /* ServermensaProvider */]],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__["a" /* ServermensaProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__["a" /* ServermensaProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__["a" /* ServermensaProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]])
 ], StatistichePage);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=statistiche.js.map
 
 /***/ }),
@@ -1103,7 +1085,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/vincenzodauria/Desktop/easymensa-app/src/app/app.html"*/'<ion-menu side="left" id="authenticated" [content]="content">\n  <ion-header>\n    <ion-toolbar>\n            <ion-col width-50 offset-25>\n            <h3><img src="assets/img/logoMensa.jpeg"></h3>\n            </ion-col>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content color="primary">\n\n    <ion-list class="user-list">\n      <button ion-item menuClose class="text-1x" *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon" color="primary"></ion-icon>\n        <span ion-text color="primary">{{menuItem.title}}</span>\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/vincenzodauria/Desktop/easymensa-app/src/app/app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/utente/Desktop/easymensa-app/src/app/app.html"*/'<ion-menu side="left" id="authenticated" [content]="content">\n  <ion-header>\n    <ion-toolbar>\n            <ion-col width-50 offset-25>\n            <h3><img src="assets/img/logoMensa.jpeg"></h3>\n            </ion-col>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content color="primary">\n\n    <ion-list class="user-list">\n      <button ion-item menuClose class="text-1x" *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon" color="primary"></ion-icon>\n        <span ion-text color="primary">{{menuItem.title}}</span>\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/utente/Desktop/easymensa-app/src/app/app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */],
         __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],

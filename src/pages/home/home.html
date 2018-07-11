@@ -15,69 +15,101 @@
 
   <ion-grid>
 
-        <button ion-button (click)="prova()">
+        <button ion-button (click)="getLunedi()">
             <ion-icon name="search"></ion-icon> Cerca
         </button>
         <ion-item>
-      <ion-label>{{lunedi}}</ion-label>
+      <ion-label> {{lunedi}}</ion-label>
     </ion-item>
   </ion-grid>
 
   <ion-grid class="card" padding *ngIf="todayDate">
+    <ion-row>
+        <ion-col col-12>
     <ion-list>
-    <ion-item>
-      <h1>
-        <strong> Enjoy your Time! </strong>
-      </h1>
-    </ion-item>
-    <ion-item>
-      <h2> L'app di Ateneo consente di regolare e prevedere </h2>
-      <h2>l’affluenza in mensa. </h2>
-      <h2> Fatti furbo e pianifica il tuo pranzo.</h2>
-    </ion-item>
-    <ion-item>
-      <h1>
-        <strong>{{orario()}}</strong>
-      </h1>
-    </ion-item>
+        <ion-item *ngIf='aperto'>
+            <ion-label>
+              <ion-icon name="pizza"></ion-icon>
+              <strong>Aperto</strong></ion-label>
+          </ion-item>
+          <ion-item *ngIf='!aperto'>
+              <ion-icon name="close-circle"> <strong>Chiuso</strong> </ion-icon> 
+          </ion-item>
+      
+      
+
+
+      <ion-item *ngIf='aperto'>
+          <ion-label>
+            <ion-icon name="time"></ion-icon>
+            Chiude alle 15:00</ion-label>
+        </ion-item>
+        <ion-item *ngIf='!aperto'>
+          <ion-label>
+            Riapre alle ore 12.00</ion-label>
+        </ion-item>
   </ion-list>
+  </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+
+
+
+  <ion-grid class="card" padding>
+    <ion-row>
+      <ion-col col-6>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="person"> <strong>14</strong> </ion-icon>  {{realTimeCountPerson}}</ion-label>
+          </ion-item>
+          <ion-item>
+            Persone in coda
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col col-6>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="alarm"> <strong>15 min</strong></ion-icon> {{realTimeStimaTempo}} </ion-label>
+          </ion-item>
+          <ion-item>
+            Tempo di attesa
+          </ion-item>
+        </ion-list>
+      </ion-col>
+  </ion-row>
   </ion-grid>
 
   <ion-grid class="card" padding>
-    <ion-list>
-
-      <ion-item>
-        <ion-label>
-          <strong> Organizza la tua visita </strong>
-        </ion-label>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>
-          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{realTimeCountPerson}}</ion-label>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>
-          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{realTimeStimaTempo}} min</ion-label>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>
-          <ion-icon name="alert"></ion-icon> Picco di attesa fino a
-          <strong>1h dalle 13:00 alle 14:00</strong>
-        </ion-label>
-      </ion-item>
-
-      <ion-item>
-          <ion-label>
-              <ion-icon name = 'ribbon'></ion-icon><strong> Top Time on {{getDay()}} from 14:00 to 15:00 </strong>
-          </ion-label>
-        </ion-item>
-
-    </ion-list>
-  </ion-grid>
-
+      <ion-row>
+        <ion-col col-12>
+          <ion-list>
+            <ion-item>
+              <ion-label class="my-font">
+                <ion-icon name="alert"> <strong>1 ora</strong> </ion-icon>  {{realTimeCountPerson}}</ion-label>
+            </ion-item>
+            <ion-item>
+                Picco di attesa dalle 13:00 alle 14:00
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-12>
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                <ion-icon name="ribbon"> <strong>14:00 to 15:00 </strong></ion-icon> {{realTimeStimaTempo}} </ion-label>
+            </ion-item>
+            <ion-item>
+                <strong> Orario consigliato {{getDay()}}</strong>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+    </ion-row>
+    </ion-grid>
 
   <ion-card>
     <ion-slides pager="true" [initialSlide]="getGiorno()">
@@ -138,17 +170,7 @@
       </ion-item>
       <ion-item (click)='openMaps()'> 
         <ion-label>
-          <ion-icon name="pin"></ion-icon> Via della Tecnica n. 1, 84084 Fisciano SA</ion-label>
-      </ion-item>
-      <ion-item *ngIf='aperto'>
-        <ion-label>
-          <ion-icon name="time"></ion-icon>
-          <strong>Aperto</strong> chiude alle 15:00</ion-label>
-      </ion-item>
-      <ion-item *ngIf='!aperto'>
-        <ion-label>
-          <ion-icon name="time"></ion-icon>
-          <strong>Chiuso</strong> riapre alle ore 12.00</ion-label>
+          <ion-icon name="pin"></ion-icon> Via della Tecnica n°1, Fisciano (SA)</ion-label>
       </ion-item>
     </ion-list>
   </ion-grid>

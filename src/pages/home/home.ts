@@ -61,11 +61,11 @@ export class HomePage {
 
       this.mensaProvider.getDataQueueWeek(begin, end).subscribe((json: any) => {
         this.query = json.timeslots;
-        if (json == NaN) {
+        let len = this.query.length;
+        if (len <= 0) {
           this.realTimeCountPerson = 0;
           this.realTimeStimaTempo = 0;
         } else {
-          let len = this.query.length;
           let aggregated_value = this.query[len - 1].aggregated_value;
           this.realTimeCountPerson = aggregated_value;
           this.realTimeStimaTempo = this.getTempoAttesa(Math.ceil(aggregated_value));
@@ -98,7 +98,7 @@ export class HomePage {
         break;}
 
       }
-      var indiceMax=0
+      var indiceMax=2
       var max=this.valoriMeseScorsoRT[0]/l
       for (var i = 1; i < this.valoriMeseScorsoRT.length; i++) {
         if((Math.floor(this.valoriMeseScorsoRT[i]/l))>max){

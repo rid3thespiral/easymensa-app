@@ -30,24 +30,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ServermensaProvider = (function () {
     function ServermensaProvider(http) {
         this.http = http;
-        this.apiKey = '2487fadc0b46b34cc4c41359ad98b76627e95206';
-        this.url = 'https://cors.io/?http://dashpro.aitech.vision/dashboard/api/devices/mensa/';
+        this.apiKey = 'e5d2771d89306c93c264abd203751bd413d6cf28';
+        this.urlBase = 'https://cors.io/?http://dashpro.aitech.vision/dashboard/api/devices/mensa10/';
     }
     ServermensaProvider.prototype.getConfigurationMensa = function () {
-        console.log(this.url + 'configuration/' + this.apiKey);
-        return this.http.get(this.url + 'configuration/' + this.apiKey).map(function (res) { return res; });
+        console.log(this.urlBase + 'configuration/' + this.apiKey);
+        return this.http.get(this.urlBase + 'configuration/' + this.apiKey).map(function (res) { return res; });
     };
     ;
     ServermensaProvider.prototype.getSensorsMensa = function () {
-        return this.http.get(this.url + 'sensors/' + this.apiKey);
+        return this.http.get(this.urlBase + 'sensors/' + this.apiKey);
     };
-    ServermensaProvider.prototype.getDataEnter = function (begin, end) {
-        console.log(this.url + 'sensors/2/events/' + this.apiKey + '/?type=14&begin=' + begin + '&end=' + end);
-        return this.http.get(this.url + 'sensors/2/events/' + this.apiKey + '/?type=14&begin=' + begin + '&end=' + end);
+    ServermensaProvider.prototype.getDataQueue = function (begin, end) {
+        var url = this.urlBase + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end;
+        console.log(url);
+        return this.http.get(url);
     };
-    ServermensaProvider.prototype.getDataExit = function (begin, end) {
-        console.log(this.url + 'sensors/33/events/' + this.apiKey + '/?type=14&begin=' + begin + '&end=' + end);
-        return this.http.get(this.url + 'sensors/33/events/' + this.apiKey + '/?type=14&begin=' + begin + '&end=' + end);
+    ServermensaProvider.prototype.getDataQueueMinute = function (begin, end) {
+        var url = this.urlBase + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end + '&aggregation_mode=by_minute';
+        console.log(url);
+        return this.http.get(url);
+    };
+    ServermensaProvider.prototype.getDataQueueHour = function (begin, end) {
+        var url = this.urlBase + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end + '&aggregation_mode=by_hour';
+        console.log(url);
+        return this.http.get(url);
+    };
+    ServermensaProvider.prototype.getDataQueueDay = function (begin, end) {
+        var url = this.urlBase + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end + '&aggregation_mode=by_day';
+        console.log(url);
+        return this.http.get(url);
+    };
+    ServermensaProvider.prototype.getDataQueueWeek = function (begin, end) {
+        var url = this.urlBase + 'sensors/129/events/' + this.apiKey + '/?type=11&begin=' + begin + '&end=' + end + '&aggregation_mode=by_week';
+        console.log(url);
+        return this.http.get(url);
     };
     return ServermensaProvider;
 }());
@@ -96,9 +113,9 @@ var InfoPage = (function () {
 }());
 InfoPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-info',template:/*ion-inline-start:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\info\info.html"*/'<!--\n\n  Generated template for the InfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    <ion-navbar color="primary">\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu">\n\n                UNISA Easy Mensa\n\n            </ion-icon>\n\n        </button>\n\n        <ion-title text-right>\n\n            <img alt="logo" width = 50 height= 50 src="assets/img/logo.png">\n\n        </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="common-bg">\n\n\n\n    <ion-grid class="card" padding>\n\n        <ion-list>\n\n\n\n            <ion-item>\n\n                <ion-label>\n\n                    <strong> Info </strong>\n\n                </ion-label>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n                <ion-label>\n\n                    <h2 ion-text color="darker"><strong ion-text color="darker">UNISA Easy Mensa</strong> è un progetto <br>sviluppato interamente nell\'ambito <br>del corso di <strong>\n\n                        Mobile Programming</strong>\n\n                        <br>nell’Anno Accademico 2017-2018.\n\n                    </h2>\n\n                </ion-label>\n\n            </ion-item>\n\n\n\n        </ion-list>\n\n    </ion-grid>\n\n\n\n    <ion-grid class="card" padding>\n\n        <ion-list>\n\n\n\n            <ion-item>\n\n                <ion-label>\n\n                    <strong>  Sviluppatori </strong>\n\n                </ion-label>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n                <ion-label>\n\n                    Davide Battaglia\n\n                </ion-label>\n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-label>\n\n                    Vincenzo D\'Auria\n\n                </ion-label>\n\n\n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-label>\n\n                    Roberto Pepe\n\n                </ion-label>\n\n            </ion-item>\n\n\n\n        </ion-list>\n\n    </ion-grid>\n\n\n\n    <ion-grid class="card" padding>\n\n        <ion-list>\n\n\n\n            <ion-item>\n\n                <ion-label>\n\n                    <strong> Docente</strong>\n\n                </ion-label>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n                <ion-label>\n\n                    Prof. Alessia Saggese\n\n                </ion-label>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\info\info.html"*/,
+        selector: 'page-info',template:/*ion-inline-start:"/Users/utente/Desktop/easymensa-app-1/src/pages/info/info.html"*/'<!--\n  Generated template for the InfoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n        <button ion-button menuToggle>\n            <ion-icon name="menu">\n                UNISA Easy Mensa\n            </ion-icon>\n        </button>\n        <ion-title text-right>\n            <img alt="logo" width = 50 height= 50 src="assets/img/logo.png">\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="common-bg">\n\n    <ion-grid class="card" padding>\n        <ion-list>\n\n            <ion-item>\n                <ion-label>\n                    <strong> Info </strong>\n                </ion-label>\n            </ion-item>\n\n            <ion-item>\n                <ion-label>\n                    <h2 ion-text color="darker"><strong ion-text color="darker">UNISA Easy Mensa</strong> è un progetto <br>realizzato nell\'ambito <br>del corso di <strong>\n                        Mobile Programming</strong><br>di Ingegneria Informatica.\n                        <br>nell’Anno Accademico 2017-2018.\n                    </h2>\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n    </ion-grid>\n\n    <ion-grid class="card" padding>\n        <ion-list>\n\n            <ion-item>\n                <ion-label>\n                    <strong>  Credits </strong>\n                </ion-label>\n            </ion-item>\n\n            <ion-item>\n                <ion-label>\n                    Davide Battaglia\n                </ion-label>\n            </ion-item>\n            <ion-item>\n                <ion-label>\n                    Vincenzo D\'Auria\n                </ion-label>\n\n            </ion-item>\n            <ion-item>\n                <ion-label>\n                    Roberto Pepe\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n    </ion-grid>\n\n    <ion-grid class="card" padding>\n        <ion-list>\n\n            <ion-item>\n                <ion-label>\n                    <strong> Docente</strong>\n                </ion-label>\n            </ion-item>\n\n            <ion-item>\n                <ion-label>\n                    Prof. Alessia Saggese\n                </ion-label>\n            </ion-item>\n        </ion-list>\n    </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/utente/Desktop/easymensa-app-1/src/pages/info/info.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
 ], InfoPage);
 
 //# sourceMappingURL=info.js.map
@@ -221,9 +238,15 @@ var HomePage = (function () {
         this.mensaProvider = mensaProvider;
         this.alertController = alertController;
         this.launchnavigator = launchnavigator;
-        this.stimaTempoUnaPeronsa = 5;
-        ////////////////////////////////////////////////////////////////////////
-        // FUNZIONI GRAFICO 
+        this.aperto = false;
+        this.valoriMeseScorsoRT = [0, 0, 0, 0, 0, 0];
+        this.tempoSpesoSingolaPersona = 5;
+        this.personeAltriReparti = 5;
+        this.lunedi = [0, 0, 0, 0, 0, 0];
+        this.martedi = [0, 0, 0, 0, 0, 0];
+        this.mercoledi = [0, 0, 0, 0, 0, 0];
+        this.giovedi = [0, 0, 0, 0, 0, 0];
+        this.venerdi = [0, 0, 0, 0, 0, 0];
         this.chartColors = [
             {
                 backgroundColor: 'rgba(0,0,255,0.6)',
@@ -251,26 +274,118 @@ var HomePage = (function () {
         this.barChartLabels = ['12.00', '12.30', '13.00', '13.30', '14.00', '14.30'];
         this.barChartType = 'bar';
         this.barChartLegend = true;
+        this.valoriMeseScorso = [0, 0, 0, 0, 0, 0];
     }
     ////////////////////////////////////////////////////////////////////////
     // SET DI FUNZIONI CHE VENGONO ESEGUITE QUANDO SI ACCEDE ALLA PAGINA HOME
     HomePage.prototype.ionViewWillEnter = function () {
-        this.createVettore();
-        this.utcTime();
         this.getWeather();
-        this.getNumeroPersone();
+        this.inizializzaGrafi();
+        this.getGrafoMeseScorso();
+        this.utcTime();
+        this.maxAttesa();
+        this.getTimeConsigliato();
     };
     HomePage.prototype.utcTime = function () {
         var _this = this;
         setInterval(function () {
             _this.todayDate = new Date();
-        }, 1000);
-    };
-    HomePage.prototype.orario = function () {
-        var ora = this.todayDate.getHours().toLocaleString();
-        var minuti = this.todayDate.getMinutes().toLocaleString();
-        var secondi = this.todayDate.getSeconds().toLocaleString();
-        return ora + ":" + minuti + ":" + secondi;
+            var ora = _this.todayDate.getHours();
+            if (ora > 11 && ora < 15)
+                _this.aperto = true;
+            else
+                _this.aperto = false;
+            //Query calcolo stima tempo e numero persone in real time
+            var begin = _this.getUnixTimeGTM(_this.todayDate, 10, 0, 0);
+            var end = _this.getUnixTimeGTM(_this.todayDate, 13, 0, 0);
+            _this.mensaProvider.getDataQueueWeek(begin, end).subscribe(function (json) {
+                _this.query = json.timeslots;
+                var len = _this.query.length;
+                if (len <= 0) {
+                    _this.realTimeCountPerson = 0;
+                    _this.realTimeStimaTempo = 0;
+                }
+                else {
+                    var aggregated_value = _this.query[len - 1].aggregated_value;
+                    _this.realTimeCountPerson = aggregated_value;
+                    _this.realTimeStimaTempo = _this.getTempoAttesa(Math.ceil(aggregated_value));
+                }
+            });
+            ;
+            //Query calcolo tempo massimo e tempo consigliato    
+            _this.valoriMeseScorsoRT = _this.valoriMeseScorso;
+            console.log(_this.valoriMeseScorsoRT);
+            var l = _this.getMeseScorso().length;
+            var indiceMin = 0;
+            var min = _this.valoriMeseScorsoRT[0] / l;
+            for (var i = 1; i < _this.valoriMeseScorsoRT.length; i++) {
+                if ((Math.floor(_this.valoriMeseScorsoRT[i] / l)) < min) {
+                    min = Math.floor(_this.valoriMeseScorsoRT[i] / l);
+                    indiceMin = i;
+                }
+            }
+            switch (indiceMin) {
+                case 0: {
+                    _this.tempoConsigliato = "12.00-12.30";
+                    break;
+                }
+                case 1: {
+                    _this.tempoConsigliato = "12.30-13.00";
+                    break;
+                }
+                case 2: {
+                    _this.tempoConsigliato = "13.00-13.30";
+                    break;
+                }
+                case 3: {
+                    _this.tempoConsigliato = "13.30-14.00";
+                    break;
+                }
+                case 4: {
+                    _this.tempoConsigliato = "14.00-14.30";
+                    break;
+                }
+                case 5: {
+                    _this.tempoConsigliato = "14.30-15.00";
+                    break;
+                }
+            }
+            var indiceMax = 2;
+            var max = _this.valoriMeseScorsoRT[0] / l;
+            for (var i = 1; i < _this.valoriMeseScorsoRT.length; i++) {
+                if ((Math.floor(_this.valoriMeseScorsoRT[i] / l)) > max) {
+                    max = Math.floor(_this.valoriMeseScorsoRT[i] / l);
+                    indiceMax = i;
+                }
+            }
+            switch (indiceMax) {
+                case 0: {
+                    _this.oraTempoMassimo = "12.00-12.30";
+                    break;
+                }
+                case 1: {
+                    _this.oraTempoMassimo = "12.30-13.00";
+                    break;
+                }
+                case 2: {
+                    _this.oraTempoMassimo = "13.00-13.30";
+                    break;
+                }
+                case 3: {
+                    _this.oraTempoMassimo = "13.30-14.00";
+                    break;
+                }
+                case 4: {
+                    _this.oraTempoMassimo = "14.00-14.30";
+                    break;
+                }
+                case 5: {
+                    _this.oraTempoMassimo = "14.30-15.00";
+                    break;
+                }
+            }
+            _this.tempoMassimo = max * 1.5;
+        }, 10000);
     };
     HomePage.prototype.getWeather = function () {
         var _this = this;
@@ -283,35 +398,23 @@ var HomePage = (function () {
     HomePage.prototype.openMaps = function () {
         this.launchnavigator.navigate("Via della Tecnica n. 1, 84084 Fisciano SA");
     };
-    HomePage.prototype.getNumeroPersone = function () {
-        var _this = this;
-        var d = new Date('7/6/2018');
-        var ora = d.getHours();
-        var minuti = d.getMinutes();
-        var secondi = d.getSeconds();
-        var end = this.getUnixTime(d);
-        var begin;
-        if (minuti > 10)
-            begin = this.getUnixTime(this.setOrario(d, ora, minuti - 1, secondi));
+    HomePage.prototype.getUnixTimeGTM = function (data, ora, minuti, secondi) {
+        data.setHours(ora);
+        data.setMinutes(minuti);
+        data.setSeconds(secondi);
+        return (Math.ceil(data.getTime() / 1000)).toString();
+    };
+    HomePage.prototype.getTempoAttesa = function (numeroPersone) {
+        if (numeroPersone < 6)
+            return (numeroPersone) * this.tempoSpesoSingolaPersona;
         else
-            begin = this.getUnixTime(this.setOrario(d, ora - 1, 10 + minuti, secondi));
-        begin = this.getUnixTime(this.setOrario(new Date('7/4/2018'), 13, 15, 0));
-        end = this.getUnixTime(this.setOrario(new Date('7/4/2018'), 14, 16, 0));
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.realTimeCountPerson = data.events[data.events.length - 1].actual_count;
-            _this.realTimeStimaTempo = _this.realTimeCountPerson * _this.stimaTempoUnaPeronsa;
-        });
-        ;
-        /*
-    this.mensaProvider.getDataExit(begin,end).subscribe((data2: any) => {
-      console.log(data2.events)
-      this.realTimeCountPerson = this.realTimeCountPerson - data2.events[data2.events.length-1].actual_count;
-      this.realTimeStimaTempo = this.realTimeCountPerson*this.stimaTempoUnaPeronsa;
-    });;*/
+            return (numeroPersone - this.personeAltriReparti) * this.tempoSpesoSingolaPersona;
     };
     HomePage.prototype.maxAttesa = function () {
+        return 1;
     };
-    HomePage.prototype.getTopTime = function () {
+    HomePage.prototype.getTimeConsigliato = function () {
+        return 1;
     };
     HomePage.prototype.getGiorno = function () {
         var d = new Date();
@@ -321,47 +424,43 @@ var HomePage = (function () {
     HomePage.prototype.getDay = function () {
         var d = new Date();
         var weekday = new Array(7);
-        weekday[0] = "Sunday";
-        weekday[1] = "Monday";
-        weekday[2] = "Tuesday";
-        weekday[3] = "Wednesday";
-        weekday[4] = "Thursday";
-        weekday[5] = "Friday";
-        weekday[6] = "Saturday";
+        weekday[0] = "Domenica";
+        weekday[1] = "Lunedì";
+        weekday[2] = "Martedì";
+        weekday[3] = "Mercoledì";
+        weekday[4] = "Giovedì";
+        weekday[5] = "Venerdì";
+        weekday[6] = "Sabato";
         return weekday[d.getDay()];
     };
+    /** Funzioni che uso nel file 'home.html' */
     HomePage.prototype.getValoriLunedi = function () {
         var barChartData1 = [
-            { data: [this.lunedì_1, this.lunedì_2, this.lunedì_3, this.lunedì_4, this.lunedì_5, this.lunedì_6], label: 'Tempo di attesa stimato' },
-            { data: this.generateData(1), label: 'Media di questo mese' }
+            { data: this.lunedi, label: 'Tempo di attesa stimato' }
         ];
         return barChartData1;
     };
     HomePage.prototype.getValoriMartedi = function () {
         var barChartData2 = [
-            { data: [this.martedì_1, this.martedì_2, this.martedì_3, this.martedì_4, this.martedì_5, this.martedì_6], label: 'Tempo di attesa stimato' },
-            { data: this.generateData(2), label: 'Media di questo mese' }
+            { data: this.martedi, label: 'Tempo di attesa stimato' }
         ];
         return barChartData2;
     };
     HomePage.prototype.getValoriMercoledi = function () {
         var barChartData3 = [
-            { data: [this.mercoledì_1, this.mercoledì_2, this.mercoledì_3, this.mercoledì_4, this.mercoledì_5, this.mercoledì_6], label: 'Tempo di attesa stimato' },
-            { data: this.generateData(3), label: 'Media di questo mese' }
+            { data: this.mercoledi, label: 'Tempo di attesa stimato' }
         ];
         return barChartData3;
     };
     HomePage.prototype.getValoriGiovedi = function () {
         var barChartData4 = [
-            { data: [this.giovedì_1, this.giovedì_2, this.giovedì_3, this.giovedì_4, this.giovedì_5], label: 'Tempo di attesa stimato' },
-            { data: this.generateData(4), label: 'Media di questo mese' }
+            { data: this.giovedi, label: 'Tempo di attesa stimato' }
         ];
         return barChartData4;
     };
     HomePage.prototype.getValoriVenerdi = function () {
         var barChartData5 = [
-            { data: [this.venerdì_1, this.venerdì_2, this.venerdì_3, this.venerdì_4, this.venerdì_5], label: 'Tempo di attesa stimato' },
-            { data: this.generateData(5), label: 'Media di questo mese' }
+            { data: this.venerdi, label: 'Tempo di attesa stimato' }
         ];
         return barChartData5;
     };
@@ -383,556 +482,49 @@ var HomePage = (function () {
         var venerdì = new Date(oggi.setDate(dataIniziale + 4));
         return [lunedì, martedì, mercoledì, giovedì, venerdì];
     };
-    HomePage.prototype.getValori = function (i, ora_b, minuti_b, secondi_b, ora_e, minuti_e, secondi_e) {
-        var _this = this;
-        var oggi = new Date();
-        if (oggi.getDay() == 0) {
-            var giornoSettimana = 7;
-        }
-        else {
-            var giornoSettimana = oggi.getDay();
-        }
-        if (i < giornoSettimana) {
-            var offset = 0;
-        }
-        else {
-            var offset = 7;
-        }
-        var giorno = this.getSettimana()[i];
-        var giornoScorso_b = new Date(giorno);
-        var giornoScorso_e = new Date(giorno);
-        giornoScorso_b = new Date(giornoScorso_b.setDate(giornoScorso_b.getDate() - offset));
-        giornoScorso_e = new Date(giornoScorso_e.setDate(giornoScorso_e.getDate() - offset));
-        giornoScorso_b = this.setOrario(giornoScorso_b, ora_b, minuti_b, secondi_b);
-        giornoScorso_e = this.setOrario(giornoScorso_e, ora_e, minuti_e, secondi_e);
-        var Unix_giornoScorso_b = this.getUnixTime(giornoScorso_b);
-        var Unix_giornoScorso_e = this.getUnixTime(giornoScorso_e);
-        this.mensaProvider.getDataEnter(Unix_giornoScorso_b, Unix_giornoScorso_e).subscribe(function (data) {
-            _this.valore = data.events;
-        });
-        ;
-        return this.valore;
-    };
-    HomePage.prototype.createVettore = function () {
-        var _this = this;
-        var oggi = new Date();
-        if (oggi.getDay() == 0) {
-            var giornoSettimana = 7;
-        }
-        else {
-            var giornoSettimana = oggi.getDay();
-        }
-        if (1 > giornoSettimana) {
-            var offset = 7;
-        }
-        else {
-            var offset = 0;
-        }
-        var settimana = this.getSettimana();
-        var lunedì_corrente = new Date(settimana[0]);
-        var lunedì_scorso_b = new Date(lunedì_corrente.setDate(lunedì_corrente.getDate() - offset));
-        lunedì_corrente = new Date(settimana[0]);
-        var lunedì_scorso_e = new Date(lunedì_corrente.setDate(lunedì_corrente.getDate() - offset));
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 12, 0, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(lunedì_scorso_b);
-        var end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_1 = 5;
-            }
-            else {
-                _this.lunedì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 12, 30, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 12, 59, 59);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_2 = 5;
-            }
-            else {
-                _this.lunedì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 13, 0, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 13, 29, 59);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_3 = 5;
-            }
-            else {
-                _this.lunedì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 13, 30, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 13, 59, 59);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_4 = 5;
-            }
-            else {
-                _this.lunedì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 14, 0, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 14, 29, 59);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_5 = 5;
-            }
-            else {
-                _this.lunedì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        lunedì_scorso_b = this.setOrario(lunedì_scorso_b, 14, 30, 0);
-        lunedì_scorso_e = this.setOrario(lunedì_scorso_e, 15, 0, 0);
-        begin = this.getUnixTime(lunedì_scorso_b);
-        end = this.getUnixTime(lunedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.lunedì_6 = 5;
-            }
-            else {
-                _this.lunedì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-        if (2 > giornoSettimana) {
-            offset = 7;
-        }
-        else {
-            offset = 0;
-        }
-        var settimana = this.getSettimana();
-        var martedì_corrente = new Date(settimana[1]);
-        var martedì_scorso_b = new Date(martedì_corrente.setDate(martedì_corrente.getDate() - offset));
-        martedì_corrente = new Date(settimana[1]);
-        var martedì_scorso_e = new Date(martedì_corrente.setDate(martedì_corrente.getDate() - offset));
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 12, 0, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(martedì_scorso_b);
-        var end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_1 = 5;
-            }
-            else {
-                _this.martedì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 12, 30, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 12, 59, 59);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_2 = 5;
-            }
-            else {
-                _this.martedì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 13, 0, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 13, 29, 59);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_3 = 5;
-            }
-            else {
-                _this.martedì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 13, 30, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 13, 59, 59);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_4 = 5;
-            }
-            else {
-                _this.martedì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 14, 0, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 14, 29, 59);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_5 = 5;
-            }
-            else {
-                _this.martedì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        martedì_scorso_b = this.setOrario(martedì_scorso_b, 14, 30, 0);
-        martedì_scorso_e = this.setOrario(martedì_scorso_e, 15, 0, 0);
-        begin = this.getUnixTime(martedì_scorso_b);
-        end = this.getUnixTime(martedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.martedì_6 = 5;
-            }
-            else {
-                _this.martedì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-        if (3 > giornoSettimana) {
-            var offset = 7;
-        }
-        else {
-            var offset = 0;
-        }
-        var mercoledì_corrente = new Date(settimana[2]);
-        var mercoledì_scorso_b = new Date(mercoledì_corrente.setDate(mercoledì_corrente.getDate() - offset));
-        mercoledì_corrente = new Date(settimana[2]);
-        var mercoledì_scorso_e = new Date(mercoledì_corrente.setDate(mercoledì_corrente.getDate() - offset));
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 12, 0, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_1 = 5;
-            }
-            else {
-                _this.mercoledì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 12, 30, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 12, 59, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_2 = 5;
-            }
-            else {
-                _this.mercoledì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 13, 0, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 13, 29, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_3 = 5;
-            }
-            else {
-                _this.mercoledì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 13, 30, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 13, 59, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_4 = 5;
-            }
-            else {
-                _this.mercoledì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 14, 0, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 14, 29, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_5 = 5;
-            }
-            else {
-                _this.mercoledì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        mercoledì_scorso_b = this.setOrario(mercoledì_scorso_b, 14, 30, 0);
-        mercoledì_scorso_e = this.setOrario(mercoledì_scorso_e, 14, 59, 59);
-        var begin = this.getUnixTime(mercoledì_scorso_b);
-        var end = this.getUnixTime(mercoledì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.mercoledì_6 = 5;
-            }
-            else {
-                _this.mercoledì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-        if (4 > giornoSettimana) {
-            var offset = 7;
-        }
-        else {
-            var offset = 0;
-        }
-        var giovedì_corrente = new Date(settimana[3]);
-        var giovedì_scorso_b = new Date(giovedì_corrente.setDate(giovedì_corrente.getDate() - offset));
-        giovedì_corrente = new Date(settimana[3]);
-        var giovedì_scorso_e = new Date(giovedì_corrente.setDate(giovedì_corrente.getDate() - offset));
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 12, 0, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_1 = 5;
-            }
-            else {
-                _this.giovedì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 12, 30, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 12, 59, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_2 = 5;
-            }
-            else {
-                _this.giovedì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 13, 0, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 13, 29, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_3 = 5;
-            }
-            else {
-                _this.giovedì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 13, 30, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 13, 59, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_4 = 5;
-            }
-            else {
-                _this.giovedì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 14, 0, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 14, 29, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_5 = 5;
-            }
-            else {
-                _this.giovedì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        giovedì_scorso_b = this.setOrario(giovedì_scorso_b, 14, 30, 0);
-        giovedì_scorso_e = this.setOrario(giovedì_scorso_e, 14, 59, 59);
-        var begin = this.getUnixTime(giovedì_scorso_b);
-        var end = this.getUnixTime(giovedì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.giovedì_6 = 5;
-            }
-            else {
-                _this.giovedì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-        if (5 > giornoSettimana) {
-            var offset = 7;
-        }
-        else {
-            var offset = 0;
-        }
-        var venerdì_corrente = new Date(settimana[4]);
-        var venerdì_scorso_b = new Date(venerdì_corrente.setDate(venerdì_corrente.getDate() - offset));
-        venerdì_corrente = new Date(settimana[4]);
-        var venerdì_scorso_e = new Date(venerdì_corrente.setDate(venerdì_corrente.getDate() - offset));
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 12, 0, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 12, 29, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_1 = 5;
-            }
-            else {
-                _this.venerdì_1 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 12, 30, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 12, 59, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_2 = 5;
-            }
-            else {
-                _this.venerdì_2 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 13, 0, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 13, 29, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_3 = 5;
-            }
-            else {
-                _this.venerdì_3 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 13, 30, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 13, 59, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_4 = 5;
-            }
-            else {
-                _this.venerdì_4 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 14, 0, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 14, 29, 59);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_5 = 5;
-            }
-            else {
-                _this.venerdì_5 = data.events[0].actual_count;
-            }
-        });
-        ;
-        venerdì_scorso_b = this.setOrario(venerdì_scorso_b, 14, 30, 0);
-        venerdì_scorso_e = this.setOrario(venerdì_scorso_e, 15, 0, 0);
-        var begin = this.getUnixTime(venerdì_scorso_b);
-        var end = this.getUnixTime(venerdì_scorso_e);
-        console.log("begin : " + begin + " end : " + end);
-        this.mensaProvider.getDataEnter(begin, end).subscribe(function (data) {
-            _this.vettore = data.events;
-            if (_this.vettore.length == 0) {
-                _this.venerdì_6 = 5;
-            }
-            else {
-                _this.venerdì_6 = data.events[0].actual_count;
-            }
-        });
-        ;
-    };
-    HomePage.prototype.generateData = function (giorno) {
+    /** FUNZIONE DA IGNORARE. ERA QUALLA CHE STAVO USANDO ALL'INIZIO, MA A QUANTO PARE MEGLIO USARE 30
+     * VARIABILI GLOBALI
+     */
+    HomePage.prototype.getDatiMeseScorso = function (giorno) {
         var d = new Date();
         var n = d.getDay();
+        var data = [0, 0, 0, 0, 0, 0];
         if (n == giorno) {
-            return [5, 5, 15, 20, 15, 25];
+            var l = this.getMeseScorso().length;
+            for (var i = 0; i < this.valoriMeseScorso.length; i++) {
+                data[i] = Math.ceil(this.valoriMeseScorso[i] / l);
+            }
+            return data;
         }
         else {
             return [0, 0, 0, 0, 0, 0];
+        }
+    };
+    HomePage.prototype.getGrafoMeseScorso = function () {
+        var _this = this;
+        var meseScorso = this.getMeseScorso();
+        for (var i = 0; i < meseScorso.length; i++) {
+            console.log(meseScorso[i]);
+            var begin = this.getUnixTime(new Date(this.setOrario(meseScorso[i], 10, 0, 0)));
+            var end = this.getUnixTime(new Date(this.setOrario(meseScorso[i], 13, 0, 0)));
+            this.mensaProvider.getDataQueueMinute(begin, end).subscribe(function (data) {
+                _this.json = data.timeslots;
+                var l = _this.json.length;
+                var passo = Math.floor(l / 6);
+                if (l < passo) {
+                    _this.valoriMeseScorso[i] = _this.valoriMeseScorso[indice] + 0;
+                }
+                else {
+                    var indice = 0;
+                    for (var x = 0; x < l; x = x + passo) {
+                        var v = _this.json[x];
+                        var j = v.aggregated_value;
+                        _this.valoriMeseScorso[indice] = _this.valoriMeseScorso[indice] + j;
+                        indice++;
+                    }
+                }
+            });
+            ;
         }
     };
     HomePage.prototype.chartClicked = function (e) {
@@ -978,13 +570,212 @@ var HomePage = (function () {
         data.setSeconds(secondi);
         return data;
     };
+    HomePage.prototype.giornoSettimana = function () {
+        var oggi = new Date();
+        var giornoSettimana;
+        if (oggi.getDay() == 0) {
+            giornoSettimana = 7;
+        }
+        else {
+            giornoSettimana = oggi.getDay();
+        }
+        return giornoSettimana;
+    };
+    HomePage.prototype.getOffset = function (i) {
+        var giornoSettimana = this.giornoSettimana();
+        var offset;
+        if (i >= giornoSettimana) {
+            offset = 7;
+        }
+        else {
+            offset = 0;
+        }
+        return offset;
+    };
+    HomePage.prototype.getQueryTimestamp = function (indice, offset) {
+        var settimana = this.getSettimana();
+        var giorno_corrente = new Date(settimana[indice]);
+        var giorno_scorso_b = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset));
+        giorno_corrente = new Date(settimana[indice]);
+        var giorno_scorso_e = new Date(giorno_corrente.setDate(giorno_corrente.getDate() - offset));
+        giorno_scorso_b = this.setOrario(giorno_scorso_b, 10, 0, 0);
+        giorno_scorso_e = this.setOrario(giorno_scorso_e, 13, 0, 0);
+        var begin = this.getUnixTime(giorno_scorso_b);
+        var end = this.getUnixTime(giorno_scorso_e);
+        return [begin, end];
+    };
+    HomePage.prototype.getLunedi = function () {
+        var _this = this;
+        var offset = this.getOffset(1);
+        var estremi = this.getQueryTimestamp(0, offset);
+        var i = 0;
+        this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe(function (data) {
+            _this.rest = data.timeslots;
+            var l = _this.rest.length;
+            var passo = Math.floor(l / 6);
+            console.log(passo);
+            if (l < passo) {
+                _this.mercoledi = [0, 0, 0, 0, 0, 0];
+            }
+            else {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
+                    var v = _this.rest[x];
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.lunedi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
+                }
+            }
+        });
+        ;
+    };
+    HomePage.prototype.getMartedi = function () {
+        var _this = this;
+        var offset = this.getOffset(2);
+        var estremi = this.getQueryTimestamp(1, offset);
+        var i = 0;
+        this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe(function (data) {
+            _this.rest = data.timeslots;
+            var l = _this.rest.length;
+            var passo = Math.floor(l / 6);
+            if (l < passo) {
+                _this.martedi = [0, 0, 0, 0, 0, 0];
+            }
+            else {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
+                    var v = _this.rest[x];
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.martedi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
+                }
+            }
+        });
+        ;
+    };
+    HomePage.prototype.getMercoledi = function () {
+        var _this = this;
+        var offset = this.getOffset(3);
+        var estremi = this.getQueryTimestamp(2, offset);
+        var i = 0;
+        this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe(function (data) {
+            _this.rest = data.timeslots;
+            var l = _this.rest.length;
+            var passo = Math.floor(l / 6);
+            if (l < passo) {
+                _this.mercoledi = [0, 0, 0, 0, 0, 0];
+            }
+            else {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
+                    var v = _this.rest[x];
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.mercoledi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
+                }
+            }
+        });
+        ;
+    };
+    HomePage.prototype.getGiovedi = function () {
+        var _this = this;
+        var offset = this.getOffset(4);
+        var estremi = this.getQueryTimestamp(3, offset);
+        var i = 0;
+        this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe(function (data) {
+            _this.rest = data.timeslots;
+            var l = _this.rest.length;
+            var passo = Math.floor(l / 6);
+            if (l < passo) {
+                _this.giovedi = [0, 0, 0, 0, 0, 0];
+            }
+            else {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
+                    var v = _this.rest[x];
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.giovedi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
+                }
+            }
+        });
+        ;
+    };
+    HomePage.prototype.getVenerdi = function () {
+        var _this = this;
+        var offset = this.getOffset(5);
+        var estremi = this.getQueryTimestamp(4, offset);
+        var i = 0;
+        this.mensaProvider.getDataQueueMinute(estremi[0], estremi[1]).subscribe(function (data) {
+            _this.rest = data.timeslots;
+            var l = _this.rest.length;
+            var passo = Math.floor(l / 6);
+            if (l < passo) {
+                _this.venerdi = [0, 0, 0, 0, 0, 0];
+            }
+            else {
+                var j = 0;
+                for (var x = 0; x < l; x++) {
+                    var v = _this.rest[x];
+                    j = j + v.aggregated_value;
+                    if (x == ((i + 1) * passo) - 1) {
+                        _this.venerdi[i] = Math.ceil(j / (passo));
+                        j = 0;
+                        i++;
+                    }
+                }
+            }
+        });
+        ;
+    };
+    HomePage.prototype.getMeseScorso = function () {
+        var oggi = new Date();
+        var giorno = oggi.getDay();
+        var meseScorso = oggi.getMonth() - 1;
+        if (oggi.getMonth() == 0) {
+            var anno = oggi.getFullYear() - 1;
+            var meseScorso = 11;
+        }
+        else {
+            var meseScorso = oggi.getMonth() - 1;
+            var anno = oggi.getFullYear();
+        }
+        var date = new Date(anno, meseScorso, 1); /** Parto dal primo giorno del mese */
+        var days = [];
+        while (date.getMonth() === meseScorso) {
+            if (date.getDay() == giorno) {
+                days.push(new Date(date));
+            }
+            date.setDate(date.getDate() + 1); /** Passo al giorno successivo */
+        }
+        return days;
+    };
+    HomePage.prototype.inizializzaGrafi = function () {
+        this.getLunedi();
+        this.getMartedi();
+        this.getMercoledi();
+        this.getGiovedi();
+        this.getVenerdi();
+    };
     return HomePage;
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-home',template:/*ion-inline-start:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu">\n\n          UNISA Easy Mensa\n\n        </ion-icon>\n\n      </button>\n\n      <ion-title text-right>\n\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n\n      </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="common-bg">\n\n\n\n  <ion-grid>\n\n\n\n        <button ion-button (click)="testMensa()">\n\n            <ion-icon name="search"></ion-icon> Cerca\n\n        </button>\n\n        <ion-item>\n\n      <ion-label>{{mensa}}</ion-label>\n\n    </ion-item>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="card" padding *ngIf="todayDate">\n\n    <ion-list>\n\n    <ion-item>\n\n      <h1>\n\n        <strong> Enjoy your Time! </strong>\n\n      </h1>\n\n    </ion-item>\n\n    <ion-item>\n\n      <h2> L\'app di Ateneo consente di regolare e prevedere </h2>\n\n      <h2>l’affluenza in mensa. </h2>\n\n      <h2> Fatti furbo e pianifica il tuo pranzo.</h2>\n\n    </ion-item>\n\n    <ion-item>\n\n      <h1>\n\n        <strong>{{orario()}}</strong>\n\n      </h1>\n\n    </ion-item>\n\n  </ion-list>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="card" padding>\n\n    <ion-list>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <strong> Organizza la tua visita </strong>\n\n        </ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="person"></ion-icon> Numero di persone in coda: {{realTimeCountPerson}}</ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="alarm"></ion-icon> Tempo di attesa previsto: {{realTimeStimaTempo}} min</ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>\n\n          <ion-icon name="alert"></ion-icon> Picco di attesa fino a\n\n          <strong>1h dalle 13:00 alle 14:00</strong>\n\n        </ion-label>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n          <ion-label>\n\n              <ion-icon name = \'ribbon\'></ion-icon><strong> Top Time on {{getDay()}} from 14:00 to 15:00 </strong>\n\n          </ion-label>\n\n        </ion-item>\n\n\n\n    </ion-list>\n\n  </ion-grid>\n\n\n\n\n\n  <ion-card>\n\n    <ion-slides pager="true" [initialSlide]="getGiorno()">\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n            <p>Lunedì</p>\n\n            <canvas baseChart  [datasets]="getValoriLunedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Martedì</p>\n\n            <canvas baseChart [datasets]="getValoriMartedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Mercoledì</p>\n\n            <canvas baseChart [datasets]="getValoriMercoledi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Giovedì</p>\n\n            <canvas baseChart [datasets]="getValoriGiovedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions"\n\n              [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <div>\n\n          <div style="display: block">\n\n              <p>Venerdì</p>\n\n            <canvas baseChart [datasets]="getValoriVenerdi()" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n\n              [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n\n          </div>\n\n        </div>\n\n      </ion-slide>\n\n    </ion-slides>\n\n  </ion-card>\n\n\n\n  <ion-grid class="card" padding>\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label>\n\n          <strong> Informazioni </strong>\n\n        </ion-label>\n\n      </ion-item>\n\n      <ion-item (click)=\'openMaps()\'> \n\n        <ion-label>\n\n          <ion-icon name="pin"></ion-icon> Via della Tecnica n. 1, 84084 Fisciano SA</ion-label>\n\n      </ion-item>\n\n      <ion-item *ngIf=\'aperto\'>\n\n        <ion-label>\n\n          <ion-icon name="time"></ion-icon>\n\n          <strong>Aperto</strong> chiude alle 15:00</ion-label>\n\n      </ion-item>\n\n      <ion-item *ngIf=\'!aperto\'>\n\n        <ion-label>\n\n          <ion-icon name="time"></ion-icon>\n\n          <strong>Chiuso</strong> riapre alle ore 12.00</ion-label>\n\n      </ion-item>\n\n    </ion-list>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/utente/Desktop/easymensa-app-1/src/pages/home/home.html"*/'<ion-header>\n    <ion-navbar color="primary">\n      <button ion-button menuToggle>\n        <ion-icon name="menu">\n          UNISA Easy Mensa\n        </ion-icon>\n      </button>\n      <ion-title text-right>\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n      </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding class="common-bg">\n\n  <ion-grid class="card" padding *ngIf="todayDate">\n    <ion-row>\n        <ion-col col-12>\n    <ion-list>\n\n        <ion-item *ngIf=\'aperto\'>\n            <ion-label>\n              <ion-icon name="pizza"><strong> Mensa Aperta </strong></ion-icon>\n            </ion-label>\n        </ion-item>\n\n        <ion-item *ngIf=\'!aperto\'>\n            <ion-label>\n              <ion-icon name="close-circle"> <strong> Mensa Chiusa </strong> </ion-icon> \n            </ion-label>\n        </ion-item>\n\n      <ion-item *ngIf=\'aperto\'>\n          <ion-label>\n            Chiude alle ore 15:00\n          </ion-label>\n      </ion-item>\n\n      <ion-item *ngIf=\'!aperto\'>\n          <ion-label>\n            Riapre alle ore 12.00\n          </ion-label>\n      </ion-item>\n\n  </ion-list>\n  </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" padding>\n    <ion-row>\n      <ion-col col-6>\n        <ion-list>\n          <ion-item>\n            <ion-label>\n              <ion-icon name="person"> <strong>{{realTimeCountPerson}}</strong> </ion-icon>  </ion-label>\n          </ion-item>\n          <ion-item>\n            Persone <br>\n            in coda\n          </ion-item>\n        </ion-list>\n      </ion-col>\n      <ion-col col-6>\n        <ion-list>\n          <ion-item>\n            <ion-label>\n              <ion-icon name="alarm"> <strong>{{realTimeStimaTempo}} min</strong></ion-icon> </ion-label>\n          </ion-item>\n          <ion-item>\n            Tempo <br>\n            di attesa\n          </ion-item>\n        </ion-list>\n      </ion-col>\n  </ion-row>\n  </ion-grid>\n\n  <ion-grid class="card" padding>\n      <ion-row>\n        <ion-col col-12>\n          <ion-list>\n            <ion-item>\n              <ion-label class="my-font">\n                <ion-icon name="alert"> <strong>{{oraTempoMassimo}}</strong> </ion-icon> </ion-label>\n            </ion-item>\n            <ion-item>\n                Picco di attesa fino a 1 ora\n            </ion-item>\n          </ion-list>\n        </ion-col>\n        <ion-col col-12>\n          <ion-list>\n            <ion-item>\n              <ion-label>\n                <ion-icon name="ribbon"> <strong> {{tempoConsigliato}} </strong></ion-icon> </ion-label>\n            </ion-item>\n            <ion-item>\n                <strong> Orario consigliato per {{getDay()}}</strong>\n            </ion-item>\n          </ion-list>\n        </ion-col>\n    </ion-row>\n    </ion-grid>\n\n  <ion-card>\n    <ion-slides pager="true" [initialSlide]="getGiorno()">\n      <ion-slide>\n        <div>\n          <div style="display: block">\n            <p>Lunedì</p>\n            <canvas baseChart  [datasets]="getValoriLunedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Martedì</p>\n            <canvas baseChart [datasets]="getValoriMartedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Mercoledì</p>\n            <canvas baseChart [datasets]="getValoriMercoledi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Giovedì</p>\n            <canvas baseChart [datasets]="getValoriGiovedi()" [colors]="chartColors" [labels]="barChartLabels" [options]="barChartOptions"\n              [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n      <ion-slide>\n        <div>\n          <div style="display: block">\n              <p>Venerdì</p>\n            <canvas baseChart [datasets]="getValoriVenerdi()" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"\n              [colors]="chartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>\n          </div>\n        </div>\n      </ion-slide>\n    </ion-slides>\n  </ion-card>\n\n  <ion-grid class="card" padding>\n    <ion-list>\n      <ion-item>\n        <ion-label>\n            <ion-icon name="pin"><strong> Dove Siamo </strong></ion-icon>\n        </ion-label>\n      </ion-item>\n      <ion-item (click)=\'openMaps()\'> \n        <ion-label>\n            <strong> Via della Tecnica n°1, Fisciano (SA)</strong>\n        </ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-grid>\n\n<ion-grid class="card" padding *ngIf="weather">\n    <ion-list>\n\n      <ion-row>\n        <ion-item>\n            <ion-icon name="umbrella"><strong> METEO {{weather.display_location.full}}</strong></ion-icon>\n        </ion-item>\n       </ion-row>\n\n    <ion-row>\n\n      <ion-col width-50 offset-25>\n            <ion-item>\n              <div class="icon">\n                <img src="{{weather.icon_url}}" alt="weather">\n              </div>\n              <h1 class="temp">{{weather.temp_c}}&deg;</h1>\n            </ion-item>\n      </ion-col>\n\n      <ion-col width-100>\n          <ion-item>\n            <strong>Umidità:</strong> {{weather.relative_humidity}}\n          </ion-item>\n          <ion-item>\n            <strong>Visibilità:</strong> {{weather.visibility_km}}\n          </ion-item>\n      </ion-col>\n\n    </ion-row>\n\n  </ion-list>\n\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/utente/Desktop/easymensa-app-1/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */],
         __WEBPACK_IMPORTED_MODULE_4__providers_servermensa_servermensa__["a" /* ServermensaProvider */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
@@ -1022,17 +813,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var StatistichePage = (function () {
-    function StatistichePage(navCtrl, navParams, mensa) {
+    function StatistichePage(navCtrl, navParams, mensaProvider, loadingController) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.mensa = mensa;
+        this.mensaProvider = mensaProvider;
+        this.loadingController = loadingController;
+        this.tempoSpesoSingolaPersona = 5;
+        this.personeAltriReparti = 5;
         this.ready = false;
         this.lineChartLegend = true;
-        this.lineChartType = 'line';
-        this.lineChartLabels = [];
         this.lineChartData = [
             { data: [], label: '' }
         ];
+        this.lineChartType = 'line';
+        this.lineChartLabels = [];
         this.lineChartOptions = {
             responsive: true
         };
@@ -1053,15 +847,6 @@ var StatistichePage = (function () {
     StatistichePage.prototype.close = function () {
         this.ready = false;
     };
-    /*
-      //hello(){
-        this.mensa.getExample().subscribe((data: any) => {
-          console.log('data = '+ data)
-          this.users = data[0].id;
-        });
-    
-      }
-    */
     StatistichePage.prototype.doDate = function (mydate, value) {
         if (value == 'Ricerca per anno') {
             var data = new Date(mydate);
@@ -1082,60 +867,134 @@ var StatistichePage = (function () {
             return giorno + "/" + mese + "/" + anno;
         }
     };
-    // in base ai dati scelti dall'utente si effettua una query ai dati storici
+    StatistichePage.prototype.getUnixTime = function (data, ora, minuti, secondi) {
+        data.setHours(ora);
+        data.setMinutes(minuti);
+        data.setSeconds(secondi);
+        return (Math.ceil(data.getTime() / 1000)).toString();
+    };
+    StatistichePage.prototype.getLabel = function () {
+        console.log(this.lineChartLabels);
+        return this.lineChartLabels;
+    };
+    StatistichePage.prototype.getValori = function () {
+        console.log(this.lineChartData);
+        return this.lineChartData;
+    };
+    StatistichePage.prototype.getTempoAttesa = function (numeroPersone) {
+        if (numeroPersone < 6)
+            return (numeroPersone) * this.tempoSpesoSingolaPersona;
+        else
+            return (numeroPersone - this.personeAltriReparti) * this.tempoSpesoSingolaPersona;
+    };
     StatistichePage.prototype.doSearch = function (value1, value, mydate) {
+        var _this = this;
         if (value1 == null || value == null || mydate == null) {
             alert("Inserisci i valori");
         }
         else {
-            this.ready = true;
             if (value == 'Ricerca per anno') {
-                var data = new Date(mydate);
-                var anno = data.getFullYear().toString();
-                this.lineChartLabels = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic',];
-                if (value1 == "Tempo d'attesa") {
-                    this.lineChartData = [
-                        { data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: "Tempo d'attesa" }
-                    ];
-                }
-                if (value1 == "Numero di persone") {
-                    this.lineChartData = [
-                        { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Numero di persone" }
-                    ];
-                }
+                var begin = this.getUnixTime(new Date('1/1/' + mydate), 10, 0, 0);
+                var end = this.getUnixTime(new Date('12/31/' + mydate), 13, 0, 0);
+                var loading_1 = this.loadingController.create({ content: "please wait..." });
+                loading_1.present();
+                this.mensaProvider.getDataQueueWeek(begin, end).subscribe(function (json) {
+                    var index = 0;
+                    _this.query = json.timeslots;
+                    console.log(_this.query);
+                    var len = _this.query.length;
+                    for (var x = 0; x < len; x = x + 1) {
+                        var aggregated_value = _this.query[x].aggregated_value;
+                        var start_timestamp = _this.query[x].start_timestamp;
+                        if (value1 == "Tempo d'attesa")
+                            _this.lineChartData[0].data[index] = _this.getTempoAttesa(Math.ceil(aggregated_value));
+                        else
+                            _this.lineChartData[0].data[index] = Math.ceil(aggregated_value);
+                        var giorno = new Date(start_timestamp * 1000).getDate() + 1;
+                        var mese = new Date(start_timestamp * 1000).getMonth() + 1;
+                        _this.lineChartLabels[index] = giorno + '/' + mese;
+                        index = index + 1;
+                    }
+                    if (value1 == "Tempo d'attesa")
+                        _this.lineChartData[0].label = 'Tempo di attesa';
+                    else
+                        _this.lineChartData[0].label = 'Numero di persone';
+                    _this.ready = true;
+                    loading_1.dismiss();
+                });
+                ;
             }
             if (value == 'Ricerca per mese') {
                 var data = new Date(mydate);
                 var anno = data.getFullYear().toString();
                 var mese = (data.getMonth() + 1).toString();
-                this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',];
-                if (value1 == "Tempo d'attesa") {
-                    this.lineChartData = [
-                        { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Tempo d'attesa" }
-                    ];
-                }
-                if (value1 == "Numero di persone") {
-                    this.lineChartData = [
-                        { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Numero di persone" }
-                    ];
-                }
+                var begin = this.getUnixTime(new Date(mese + '/1/' + anno), 10, 0, 0);
+                var end = this.getUnixTime(new Date(mese + '/31/' + anno), 13, 0, 0);
+                var loading_2 = this.loadingController.create({ content: "please wait..." });
+                loading_2.present();
+                this.mensaProvider.getDataQueueDay(begin, end).subscribe(function (json) {
+                    var index = 0;
+                    _this.query = json.timeslots;
+                    console.log(_this.query);
+                    var len = _this.query.length;
+                    for (var x = 0; x < len; x = x + 1) {
+                        var aggregated_value = _this.query[x].aggregated_value;
+                        var start_timestamp = _this.query[x].start_timestamp;
+                        if (value1 == "Tempo d'attesa")
+                            _this.lineChartData[0].data[index] = _this.getTempoAttesa(Math.ceil(aggregated_value));
+                        else
+                            _this.lineChartData[0].data[index] = Math.ceil(aggregated_value);
+                        var giorno = new Date(start_timestamp * 1000).getDate() + 1;
+                        var mese_1 = new Date(start_timestamp * 1000).getMonth() + 1;
+                        _this.lineChartLabels[index] = giorno + '/' + mese_1;
+                        index = index + 1;
+                    }
+                    if (value1 == "Tempo d'attesa")
+                        _this.lineChartData[0].label = 'Tempo di attesa';
+                    else
+                        _this.lineChartData[0].label = 'Numero di persone';
+                    _this.ready = true;
+                    loading_2.dismiss();
+                });
+                ;
             }
             if (value == 'Ricerca per giorno') {
                 var data = new Date(mydate);
                 var anno = data.getFullYear().toString();
                 var mese = (data.getMonth() + 1).toString();
                 var giorno = data.getDate().toString();
-                this.lineChartLabels = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',];
-                if (value1 == "Tempo d'attesa") {
-                    this.lineChartData = [
-                        { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Tempo d'attesa" }
-                    ];
-                }
-                if (value1 == "Numero di persone") {
-                    this.lineChartData = [
-                        { data: [10, 20, 80, 70, 50, 60, 70, 70, 70, 60, 50, 10], label: "Numero di persone" }
-                    ];
-                }
+                var begin = this.getUnixTime(new Date(mese + '/' + giorno + '/' + anno), 10, 0, 0);
+                var end = this.getUnixTime(new Date(mese + '/' + giorno + '/' + anno), 13, 0, 0);
+                var loading_3 = this.loadingController.create({ content: "please wait..." });
+                loading_3.present();
+                this.mensaProvider.getDataQueueMinute(begin, end).subscribe(function (json) {
+                    var index = 0;
+                    _this.query = json.timeslots;
+                    console.log(_this.query);
+                    var len = _this.query.length;
+                    for (var x = 0; x < len; x = x + 1) {
+                        var aggregated_value = _this.query[x].aggregated_value;
+                        var start_timestamp = _this.query[x].start_timestamp;
+                        var ora = new Date(start_timestamp * 1000).getHours();
+                        var minuto = new Date(start_timestamp * 1000).getMinutes();
+                        console.log(minuto);
+                        if (minuto % 10 == 0) {
+                            _this.lineChartLabels[index] = ora + ':' + minuto;
+                            if (value1 == "Tempo d'attesa")
+                                _this.lineChartData[0].data[index] = _this.getTempoAttesa(Math.ceil(aggregated_value));
+                            else
+                                _this.lineChartData[0].data[index] = Math.ceil(aggregated_value);
+                            index = index + 1;
+                        }
+                    }
+                    if (value1 == "Tempo d'attesa")
+                        _this.lineChartData[0].label = 'Tempo di attesa';
+                    else
+                        _this.lineChartData[0].label = 'Numero di persone';
+                    _this.ready = true;
+                    loading_3.dismiss();
+                });
+                ;
             }
         }
     };
@@ -1150,12 +1009,13 @@ var StatistichePage = (function () {
 }());
 StatistichePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-statistiche',template:/*ion-inline-start:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\statistiche\statistiche.html"*/'<!--\n\n  Generated template for the StatistichePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    <ion-navbar color="primary">\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu">\n\n          UNISA Easy Mensa\n\n        </ion-icon>\n\n      </button>\n\n      <ion-title text-right>\n\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n\n      </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <h1>{{users}}</h1>\n\n\n\n  <ion-grid class="card">\n\n    <ion-list *ngIf = \'!ready\'>\n\n        <ion-item>\n\n            <ion-label>Personalizza il tipo di ricerca</ion-label>\n\n            <ion-select [(ngModel)]="value1">\n\n              <ion-option >Tempo d\'attesa</ion-option>\n\n              <ion-option>Numero di persone</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n        <ion-item>\n\n            <ion-label>Seleziona tipo di ricerca</ion-label>\n\n            <ion-select [(ngModel)]="value">\n\n              <ion-option>Ricerca per anno</ion-option>\n\n              <ion-option>Ricerca per mese</ion-option>\n\n              <ion-option>Ricerca per giorno</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n      <ion-item *ngIf = "value == \'Ricerca per anno\'">\n\n              <ion-label>Seleziona Anno</ion-label>\n\n              <ion-datetime displayFormat="YYYY" [(ngModel)]="myDate"></ion-datetime>\n\n      </ion-item>\n\n      <ion-item *ngIf = "value == \'Ricerca per mese\'">\n\n              <ion-label>Seleziona Mese</ion-label>\n\n              <ion-datetime displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="myDate"></ion-datetime>\n\n      </ion-item>\n\n      <ion-item *ngIf = "value == \'Ricerca per giorno\'">\n\n          <ion-label>Seleziona per giorno </ion-label>\n\n          <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="myDate" values = "YYYY"></ion-datetime>\n\n      </ion-item>\n\n    </ion-list>\n\n    <button ion-button *ngIf = \'!ready\' icon-start block no-margin color="primary" class="round" tappable (click)="doSearch(value1,value,myDate)">\n\n      <ion-icon name="search"></ion-icon> Cerca\n\n    </button>\n\n  </ion-grid>\n\n\n\n  <button ion-button *ngIf = \'ready\' tappable (click)="close()">\n\n    <ion-icon name="indietro"></ion-icon> Indietro \n\n  </button>\n\n\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label> {{value1}} </ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label> {{value}} </ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label> {{doDate(myDate,value)}} </ion-label>\n\n      </ion-item>\n\n    </ion-list>\n\n  </ion-grid>\n\n\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n\n    <ion-row>\n\n      <canvas baseChart width="300" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"\n\n        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"\n\n        (chartClick)="chartClicked($event)"></canvas>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\asus\Desktop\Repository\easymensa-app\src\pages\statistiche\statistiche.html"*/,
+        selector: 'page-statistiche',template:/*ion-inline-start:"/Users/utente/Desktop/easymensa-app-1/src/pages/statistiche/statistiche.html"*/'<!--\n  Generated template for the StatistichePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar color="primary">\n      <button ion-button menuToggle>\n        <ion-icon name="menu">\n          UNISA Easy Mensa\n        </ion-icon>\n      </button>\n      <ion-title text-right>\n        <img alt="logo" width = 50 height= 50 src="assets/img/logo.png"> \n      </ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n  <h1>{{users}}</h1>\n\n  <ion-grid class="card">\n    <ion-list *ngIf = \'!ready\'>\n        <ion-item>\n            <ion-label>Personalizza il tipo di ricerca</ion-label>\n            <ion-select [(ngModel)]="value1">\n              <ion-option >Tempo d\'attesa</ion-option>\n              <ion-option>Numero di persone</ion-option>\n            </ion-select>\n          </ion-item>\n        <ion-item>\n            <ion-label>Seleziona tipo di ricerca</ion-label>\n            <ion-select [(ngModel)]="value">\n              <ion-option>Ricerca per anno</ion-option>\n              <ion-option>Ricerca per mese</ion-option>\n              <ion-option>Ricerca per giorno</ion-option>\n            </ion-select>\n          </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per anno\'">\n              <ion-label>Seleziona Anno</ion-label>\n              <ion-datetime displayFormat="YYYY" [(ngModel)]="myDate"></ion-datetime>\n      </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per mese\'">\n              <ion-label>Seleziona Mese</ion-label>\n              <ion-datetime displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="myDate"></ion-datetime>\n      </ion-item>\n      <ion-item *ngIf = "value == \'Ricerca per giorno\'">\n          <ion-label>Seleziona per giorno </ion-label>\n          <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="myDate" values = "YYYY"></ion-datetime>\n      </ion-item>\n    </ion-list>\n    <button ion-button *ngIf = \'!ready\' icon-start block no-margin color="primary" class="round" tappable (click)="doSearch(value1,value,myDate)">\n      <ion-icon name="search"></ion-icon> Cerca\n    </button>\n  </ion-grid>\n\n  <button ion-button *ngIf = \'ready\' tappable (click)="close()">\n    <ion-icon name="indietro"></ion-icon> Indietro \n  </button>\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n    <ion-list>\n      <ion-item>\n        <ion-label> {{value1}} </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label> {{value}} </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label> {{doDate(myDate,value)}} </ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-grid>\n\n  <ion-grid *ngIf = \'ready\' class="card" padding>\n    <ion-item>\n      <canvas baseChart width="300" height="200" [datasets]="getValori()" [labels]="getLabel()" [options]="lineChartOptions"\n        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"\n        (chartClick)="chartClicked($event)"></canvas>\n    </ion-item>\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"/Users/utente/Desktop/easymensa-app-1/src/pages/statistiche/statistiche.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__["a" /* ServermensaProvider */]],
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__["a" /* ServermensaProvider */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_servermensa_servermensa__["a" /* ServermensaProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]])
 ], StatistichePage);
 
 //# sourceMappingURL=statistiche.js.map
@@ -1343,13 +1203,13 @@ var MyApp = (function () {
     return MyApp;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */])
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\asus\Desktop\Repository\easymensa-app\src\app\app.html"*/'<ion-menu side="left" id="authenticated" [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n            <ion-col width-50 offset-25>\n\n            <h3><img src="assets/img/logoMensa.jpeg"></h3>\n\n            </ion-col>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content color="primary">\n\n\n\n    <ion-list class="user-list">\n\n      <button ion-item menuClose class="text-1x" *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon" color="primary"></ion-icon>\n\n        <span ion-text color="primary">{{menuItem.title}}</span>\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\asus\Desktop\Repository\easymensa-app\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/utente/Desktop/easymensa-app-1/src/app/app.html"*/'<ion-menu side="left" id="authenticated" [content]="content">\n  <ion-header>\n    <ion-toolbar>\n            <ion-col width-50 offset-25>\n            <h3><img src="assets/img/logoMensa.jpeg"></h3>\n            </ion-col>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content color="primary">\n\n    <ion-list class="user-list">\n      <button ion-item menuClose class="text-1x" *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon" color="primary"></ion-icon>\n        <span ion-text color="primary">{{menuItem.title}}</span>\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/utente/Desktop/easymensa-app-1/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */],
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */],
         __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);

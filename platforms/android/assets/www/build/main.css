@@ -21169,6 +21169,16 @@ page-home ion-content,
   background-image: url("../assets/img/bg.jpg");
 }
 
+page-home ion-icon,
+.home ion-icon {
+  font-size: 30px;
+}
+
+page-home .my-font,
+.home .my-font {
+  font-size: 1rem;
+}
+
 page-home ion-list,
 .home ion-list {
   border-radius: 1rem;

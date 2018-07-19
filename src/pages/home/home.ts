@@ -232,45 +232,40 @@ export class HomePage {
     responsive: true
   };
 
-  public barChartLabels: string[] = ['12.00 - 12.30', '12.30 - 13.00', '13.00 - 13.00', '13.30 - 14.00', '14.00 - 14.30', '14.30 - 15.00'];
+  public barChartLabels: string[] = ['12.00', '12.30', '13.00', '13.30', '14.00', '14.30'];
   public barChartType: string = 'bar';
   public barChartLegend: boolean = true;
   /** Funzioni che uso nel file 'home.html' */
   public getValoriLunedi() {
     var barChartData1: any[] = [
-      { data: this.lunedi, label: 'Tempo di attesa stimato' },
-      { data: this.getDatiMeseScorso(1), label: 'Media di questo mese' }
+      { data: this.lunedi, label: 'Tempo di attesa stimato' }
     ];
     return barChartData1;
   }
 
   public getValoriMartedi() {
     var barChartData2: any[] = [
-      { data: this.martedi, label: 'Tempo di attesa stimato' },
-      { data: this.getDatiMeseScorso(2), label: 'Media di questo mese' }
+      { data: this.martedi, label: 'Tempo di attesa stimato' }
     ];
     return barChartData2;
   }
   public getValoriMercoledi() {
     var barChartData3: any[] = [
-      { data: this.mercoledi, label: 'Tempo di attesa stimato' },
-      { data: this.getDatiMeseScorso(3), label: 'Media di questo mese' }
+      { data: this.mercoledi, label: 'Tempo di attesa stimato' }
     ];
     return barChartData3;
   }
 
   public getValoriGiovedi() {
     var barChartData4: any[] = [
-      { data: this.giovedi, label: 'Tempo di attesa stimato' },
-      { data: this.getDatiMeseScorso(4), label: 'Media di questo mese' }
+      { data: this.giovedi, label: 'Tempo di attesa stimato' }
     ];
     return barChartData4;
   }
 
   public getValoriVenerdi() {
     var barChartData5: any[] = [
-      { data: this.venerdi, label: 'Tempo di attesa stimato' },
-      { data: this.getDatiMeseScorso(5), label: 'Media di questo mese' }
+      { data: this.venerdi, label: 'Tempo di attesa stimato' }
     ];
     return barChartData5;
   }
